@@ -1117,3 +1117,27 @@ nav {
   }
 
 }
+
+/* Multi-student record selector */
+
+.form-help {
+  color: var(--muted);
+  font-size: 11px;
+  margin: -2px 0 8px;
+}
+
+#recordStudent {
+  min-height: 145px;
+  padding: 6px;
+}
+
+#recordStudent option {
+  padding: 9px 10px;
+  border-radius: 6px;
+  margin: 2px 0;
+}
+
+#recordStudent option:checked {
+  background: var(--blue-600);
+  color: white;
+}
