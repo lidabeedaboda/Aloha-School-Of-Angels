@@ -1,265 +1,661 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Aloha School of Angels</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-  <!-- LOGIN -->
-  <div id="loginPage" class="login-page">
-    <div class="login-card">
-      <div class="angel-logo">✦</div>
-      <h1>Aloha School of Angels</h1>
-      <p class="subtitle">Student Management Portal</p>
+<!-- =========================
+     LOGIN
+========================= -->
 
-      <form id="loginForm">
-        <label>Username</label>
-        <input id="username" type="text" placeholder="Enter username" required />
+<div id="loginPage" class="login-page">
 
-        <label>Password</label>
-        <input id="password" type="password" placeholder="Enter password" required />
+  <div class="login-background">
+    <div class="cloud cloud-one"></div>
+    <div class="cloud cloud-two"></div>
+    <div class="cloud cloud-three"></div>
+  </div>
 
-        <button type="submit" class="primary-btn">Sign In</button>
+  <div class="login-card">
 
-        <p id="loginError" class="error"></p>
-      </form>
-
-      <div class="login-note">
-        <span>✦</span> Aloha School of Angels
-      </div>
+    <div class="school-logo">
+      <div class="logo-star">✦</div>
     </div>
-  </div>
 
-  <!-- APP -->
-  <div id="app" class="hidden">
+    <h1>Aloha School of Angels</h1>
 
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="small-logo">✦</div>
-        <div>
-          <strong>Aloha</strong>
-          <span>School of Angels</span>
-        </div>
-      </div>
+    <p class="login-subtitle">
+      School Management Portal
+    </p>
 
-      <nav>
-        <button class="nav-item active" data-page="dashboard">
-          <span>⌂</span> Dashboard
-        </button>
+    <form id="loginForm">
 
-        <button class="nav-item" data-page="merits">
-          <span>★</span> Merits
-        </button>
+      <div class="form-group">
+        <label for="username">Username</label>
 
-        <button class="nav-item" data-page="demerits">
-          <span>!</span> Demerits
-        </button>
-
-        <button class="nav-item" data-page="students" id="studentsNav">
-          <span>♙</span> Students
-        </button>
-      </nav>
-
-      <div class="sidebar-bottom">
-        <div class="logged-user">
-          <div class="avatar" id="sidebarAvatar">A</div>
-          <div>
-            <strong id="sidebarName">User</strong>
-            <span id="sidebarRole">Student</span>
-          </div>
-        </div>
-
-        <button id="logoutBtn" class="logout-btn">↪ Log out</button>
-      </div>
-    </aside>
-
-    <main class="main-content">
-
-      <header class="topbar">
-        <div>
-          <p class="eyebrow">ALOHA SCHOOL OF ANGELS</p>
-          <h2 id="pageTitle">Dashboard</h2>
-        </div>
-
-        <div class="top-user">
-          <div class="avatar" id="topAvatar">A</div>
-          <div>
-            <strong id="topName">User</strong>
-            <small id="topRole">Student</small>
-          </div>
-        </div>
-      </header>
-
-      <!-- DASHBOARD -->
-      <section id="dashboardPage" class="page active-page">
-
-        <div class="welcome">
-          <div>
-            <p class="eyebrow">WELCOME BACK</p>
-            <h1>Good day, <span id="welcomeName">Student</span> ✦</h1>
-            <p>Here's what's happening with your school record.</p>
-          </div>
-          <div class="welcome-icon">☀</div>
-        </div>
-
-        <div class="stats-grid">
-          <div class="stat-card gold">
-            <div class="stat-icon">★</div>
-            <div>
-              <span>Merits</span>
-              <strong id="meritCount">0</strong>
-            </div>
-          </div>
-
-          <div class="stat-card red">
-            <div class="stat-icon">!</div>
-            <div>
-              <span>Demerits</span>
-              <strong id="demeritCount">0</strong>
-            </div>
-          </div>
-
-          <div class="stat-card blue">
-            <div class="stat-icon">◆</div>
-            <div>
-              <span>Points</span>
-              <strong id="pointCount">0</strong>
-            </div>
-          </div>
-
-          <div class="stat-card green">
-            <div class="stat-icon">✓</div>
-            <div>
-              <span>Standing</span>
-              <strong id="standing">Excellent</strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="content-grid">
-          <div class="panel">
-            <div class="panel-header">
-              <div>
-                <h3>Recent Activity</h3>
-                <p>Your latest school records</p>
-              </div>
-            </div>
-
-            <div id="recentActivity" class="activity-list"></div>
-          </div>
-
-          <div class="panel">
-            <div class="panel-header">
-              <div>
-                <h3>School Notice</h3>
-                <p>Aloha School of Angels</p>
-              </div>
-            </div>
-
-            <div class="notice">
-              <div class="notice-icon">✦</div>
-              <div>
-                <h4>Keep shining!</h4>
-                <p>
-                  Remember to show kindness, respect and responsibility
-                  throughout the school day.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- MERITS -->
-      <section id="meritsPage" class="page">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">RECOGNITION</p>
-            <h1>Merits</h1>
-            <p>Positive achievements and recognition.</p>
-          </div>
-
-          <button id="addMeritBtn" class="primary-btn admin-only">
-            + Add Merit
-          </button>
-        </div>
-
-        <div id="meritList" class="record-list"></div>
-      </section>
-
-      <!-- DEMERITS -->
-      <section id="demeritsPage" class="page">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">BEHAVIOUR</p>
-            <h1>Demerits</h1>
-            <p>Behaviour records and school incidents.</p>
-          </div>
-
-          <button id="addDemeritBtn" class="danger-btn admin-only">
-            + Add Demerit
-          </button>
-        </div>
-
-        <div id="demeritList" class="record-list"></div>
-      </section>
-
-      <!-- STUDENTS -->
-      <section id="studentsPage" class="page">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">ADMINISTRATION</p>
-            <h1>Students</h1>
-            <p>Student records at Aloha School of Angels.</p>
-          </div>
-        </div>
-
-        <div id="studentsList" class="students-grid"></div>
-      </section>
-
-    </main>
-  </div>
-
-  <!-- MODAL -->
-  <div id="recordModal" class="modal hidden">
-    <div class="modal-card">
-      <button id="closeModal" class="close-btn">×</button>
-
-      <p class="eyebrow" id="modalEyebrow">NEW RECORD</p>
-      <h2 id="modalTitle">Add Merit</h2>
-
-      <form id="recordForm">
-
-        <label>Student</label>
-        <select id="recordStudent" required></select>
-
-        <label>Reason</label>
         <input
-          id="recordReason"
+          id="username"
           type="text"
-          placeholder="e.g. Excellent participation"
+          autocomplete="username"
+          placeholder="Enter your username"
           required
-        />
+        >
+      </div>
 
-        <label>Points</label>
+      <div class="form-group">
+        <label for="password">Password</label>
+
+        <input
+          id="password"
+          type="password"
+          autocomplete="current-password"
+          placeholder="Enter your password"
+          required
+        >
+      </div>
+
+      <button class="login-button" type="submit">
+        Sign In
+      </button>
+
+      <p id="loginError" class="login-error"></p>
+
+    </form>
+
+    <div class="login-footer">
+      ✦ Aloha School of Angels
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     APPLICATION
+========================= -->
+
+<div id="app" class="hidden">
+
+  <!-- SIDEBAR -->
+
+  <aside class="sidebar">
+
+    <div class="sidebar-brand">
+
+      <div class="brand-logo">
+        ✦
+      </div>
+
+      <div>
+        <strong>Aloha</strong>
+        <span>School of Angels</span>
+      </div>
+
+    </div>
+
+
+    <div class="sidebar-section-title">
+      MAIN
+    </div>
+
+    <nav id="mainNavigation">
+
+      <button
+        class="nav-item active"
+        data-page="dashboard"
+      >
+        <span>⌂</span>
+        Dashboard
+      </button>
+
+      <button
+        class="nav-item"
+        data-page="merits"
+      >
+        <span>★</span>
+        Merits
+      </button>
+
+      <button
+        class="nav-item"
+        data-page="demerits"
+      >
+        <span>!</span>
+        Demerits
+      </button>
+
+      <button
+        class="nav-item"
+        data-page="detentions"
+      >
+        <span>◷</span>
+        Detentions
+      </button>
+
+      <button
+        class="nav-item"
+        data-page="suspensions"
+      >
+        <span>⚠</span>
+        Suspensions
+      </button>
+
+      <button
+        class="nav-item"
+        data-page="expulsions"
+      >
+        <span>×</span>
+        Expulsions
+      </button>
+
+      <button
+        class="nav-item"
+        data-page="students"
+        id="studentsNav"
+      >
+        <span>♙</span>
+        Students
+      </button>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+      <div class="sidebar-user">
+
+        <div
+          class="avatar"
+          id="sidebarAvatar"
+        >
+          A
+        </div>
+
+        <div class="sidebar-user-info">
+
+          <strong id="sidebarName">
+            User
+          </strong>
+
+          <span id="sidebarRole">
+            Student
+          </span>
+
+        </div>
+
+      </div>
+
+      <button
+        id="logoutButton"
+        class="logout-button"
+      >
+        ↪ Log out
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN -->
+
+  <main class="main">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+      <div>
+
+        <p class="topbar-eyebrow">
+          ALOHA SCHOOL OF ANGELS
+        </p>
+
+        <h2 id="pageTitle">
+          Dashboard
+        </h2>
+
+      </div>
+
+
+      <div class="topbar-user">
+
+        <div
+          class="avatar"
+          id="topAvatar"
+        >
+          A
+        </div>
+
+        <div>
+
+          <strong id="topName">
+            User
+          </strong>
+
+          <small id="topRole">
+            Student
+          </small>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- =========================
+         DASHBOARD
+    ========================= -->
+
+    <section
+      id="dashboardPage"
+      class="page active-page"
+    >
+
+      <div
+        id="dashboardContent"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         MERITS
+    ========================= -->
+
+    <section
+      id="meritsPage"
+      class="page"
+    >
+
+      <div class="section-heading">
+
+        <div>
+          <p class="eyebrow">
+            POSITIVE RECOGNITION
+          </p>
+
+          <h1>
+            Merits
+          </h1>
+
+          <p>
+            Recognition for positive behaviour and achievement.
+          </p>
+        </div>
+
+        <button
+          id="addMeritButton"
+          class="primary-button admin-teacher"
+        >
+          + Add Merit
+        </button>
+
+      </div>
+
+      <div
+        id="meritsList"
+        class="records-list"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         DEMERITS
+    ========================= -->
+
+    <section
+      id="demeritsPage"
+      class="page"
+    >
+
+      <div class="section-heading">
+
+        <div>
+          <p class="eyebrow">
+            BEHAVIOUR
+          </p>
+
+          <h1>
+            Demerits
+          </h1>
+
+          <p>
+            Review student behaviour records.
+          </p>
+        </div>
+
+        <button
+          id="addDemeritButton"
+          class="danger-button admin-teacher"
+        >
+          + Add Demerit
+        </button>
+
+      </div>
+
+      <div
+        id="demeritsList"
+        class="records-list"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         DETENTIONS
+    ========================= -->
+
+    <section
+      id="detentionsPage"
+      class="page"
+    >
+
+      <div class="section-heading">
+
+        <div>
+          <p class="eyebrow">
+            DISCIPLINE
+          </p>
+
+          <h1>
+            Detentions
+          </h1>
+
+          <p>
+            Scheduled student detentions.
+          </p>
+        </div>
+
+        <button
+          id="addDetentionButton"
+          class="primary-button admin-teacher"
+        >
+          + Add Detention
+        </button>
+
+      </div>
+
+      <div
+        id="detentionsList"
+        class="records-list"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         SUSPENSIONS
+    ========================= -->
+
+    <section
+      id="suspensionsPage"
+      class="page"
+    >
+
+      <div class="section-heading">
+
+        <div>
+          <p class="eyebrow">
+            DISCIPLINARY ACTION
+          </p>
+
+          <h1>
+            Suspensions
+          </h1>
+
+          <p>
+            Student suspension records.
+          </p>
+        </div>
+
+        <button
+          id="addSuspensionButton"
+          class="danger-button admin-only"
+        >
+          + Add Suspension
+        </button>
+
+      </div>
+
+      <div
+        id="suspensionsList"
+        class="records-list"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         EXPULSIONS
+    ========================= -->
+
+    <section
+      id="expulsionsPage"
+      class="page"
+    >
+
+      <div class="section-heading">
+
+        <div>
+          <p class="eyebrow">
+            SERIOUS DISCIPLINARY ACTION
+          </p>
+
+          <h1>
+            Expulsions
+          </h1>
+
+          <p>
+            Expulsion records.
+          </p>
+        </div>
+
+        <button
+          id="addExpulsionButton"
+          class="danger-button admin-only"
+        >
+          + Add Expulsion
+        </button>
+
+      </div>
+
+      <div
+        id="expulsionsList"
+        class="records-list"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         STUDENTS
+    ========================= -->
+
+    <section
+      id="studentsPage"
+      class="page"
+    >
+
+      <div class="section-heading">
+
+        <div>
+          <p class="eyebrow">
+            STUDENT DIRECTORY
+          </p>
+
+          <h1>
+            Students
+          </h1>
+
+          <p>
+            Search students and open their profiles.
+          </p>
+        </div>
+
+      </div>
+
+
+      <div class="search-box">
+
+        <input
+          id="studentSearch"
+          type="text"
+          placeholder="Search students..."
+        >
+
+      </div>
+
+
+      <div
+        id="studentsGrid"
+        class="students-grid"
+      ></div>
+
+    </section>
+
+
+    <!-- =========================
+         PROFILE
+    ========================= -->
+
+    <section
+      id="profilePage"
+      class="page"
+    >
+
+      <button
+        id="backToStudents"
+        class="back-button"
+      >
+        ← Back to Students
+      </button>
+
+      <div
+        id="profileContent"
+      ></div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<!-- =========================
+     RECORD MODAL
+========================= -->
+
+<div
+  id="recordModal"
+  class="modal hidden"
+>
+
+  <div class="modal-card">
+
+    <button
+      id="closeModal"
+      class="close-button"
+    >
+      ×
+    </button>
+
+    <p
+      class="eyebrow"
+      id="modalEyebrow"
+    >
+      NEW RECORD
+    </p>
+
+    <h2
+      id="modalTitle"
+    >
+      Add Record
+    </h2>
+
+
+    <form id="recordForm">
+
+      <label>
+        Student
+      </label>
+
+      <select
+        id="recordStudent"
+        required
+      ></select>
+
+
+      <label>
+        Reason / Details
+      </label>
+
+      <input
+        id="recordReason"
+        type="text"
+        placeholder="Enter details..."
+        required
+      >
+
+
+      <div
+        id="pointsGroup"
+      >
+
+        <label>
+          Points
+        </label>
+
         <input
           id="recordPoints"
           type="number"
-          value="1"
           min="1"
-          max="100"
-          required
-        />
+          value="1"
+        >
 
-        <button type="submit" class="primary-btn">Add Record</button>
-      </form>
-    </div>
+      </div>
+
+
+      <label>
+        Date
+      </label>
+
+      <input
+        id="recordDate"
+        type="date"
+        required
+      >
+
+
+      <button
+        type="submit"
+        class="primary-button full-width"
+      >
+        Create Record
+      </button>
+
+    </form>
+
   </div>
 
-  <script src="script.js"></script>
+</div>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
