@@ -15,9 +15,7 @@
 
 <body>
 
-<!-- =========================
-     LOGIN
-========================= -->
+<!-- LOGIN -->
 
 <div id="loginPage" class="login-page">
 
@@ -47,8 +45,8 @@
         <input
           id="username"
           type="text"
-          autocomplete="username"
           placeholder="Enter your username"
+          autocomplete="username"
           required
         >
       </div>
@@ -59,8 +57,8 @@
         <input
           id="password"
           type="password"
-          autocomplete="current-password"
           placeholder="Enter your password"
+          autocomplete="current-password"
           required
         >
       </div>
@@ -82,21 +80,15 @@
 </div>
 
 
-<!-- =========================
-     APPLICATION
-========================= -->
+<!-- APPLICATION -->
 
 <div id="app" class="hidden">
-
-  <!-- SIDEBAR -->
 
   <aside class="sidebar">
 
     <div class="sidebar-brand">
 
-      <div class="brand-logo">
-        ✦
-      </div>
+      <div class="brand-logo">✦</div>
 
       <div>
         <strong>Aloha</strong>
@@ -105,57 +97,43 @@
 
     </div>
 
-
     <div class="sidebar-section-title">
       MAIN
     </div>
 
     <nav id="mainNavigation">
 
-      <button
-        class="nav-item active"
-        data-page="dashboard"
-      >
+      <button class="nav-item active" data-page="dashboard">
         <span>⌂</span>
         Dashboard
       </button>
 
-      <button
-        class="nav-item"
-        data-page="merits"
-      >
+      <button class="nav-item" data-page="merits">
         <span>★</span>
         Merits
       </button>
 
-      <button
-        class="nav-item"
-        data-page="demerits"
-      >
+      <button class="nav-item" data-page="demerits">
         <span>!</span>
         Demerits
       </button>
 
-      <button
-        class="nav-item"
-        data-page="detentions"
-      >
+      <button class="nav-item" data-page="negative-incidents">
+        <span>⚠</span>
+        Negative Incidents
+      </button>
+
+      <button class="nav-item" data-page="detentions">
         <span>◷</span>
         Detentions
       </button>
 
-      <button
-        class="nav-item"
-        data-page="suspensions"
-      >
+      <button class="nav-item" data-page="suspensions">
         <span>⚠</span>
         Suspensions
       </button>
 
-      <button
-        class="nav-item"
-        data-page="expulsions"
-      >
+      <button class="nav-item" data-page="expulsions">
         <span>×</span>
         Expulsions
       </button>
@@ -171,15 +149,11 @@
 
     </nav>
 
-
     <div class="sidebar-bottom">
 
       <div class="sidebar-user">
 
-        <div
-          class="avatar"
-          id="sidebarAvatar"
-        >
+        <div class="avatar" id="sidebarAvatar">
           A
         </div>
 
@@ -197,10 +171,7 @@
 
       </div>
 
-      <button
-        id="logoutButton"
-        class="logout-button"
-      >
+      <button id="logoutButton" class="logout-button">
         ↪ Log out
       </button>
 
@@ -209,11 +180,7 @@
   </aside>
 
 
-  <!-- MAIN -->
-
   <main class="main">
-
-    <!-- TOPBAR -->
 
     <header class="topbar">
 
@@ -229,13 +196,9 @@
 
       </div>
 
-
       <div class="topbar-user">
 
-        <div
-          class="avatar"
-          id="topAvatar"
-        >
+        <div class="avatar" id="topAvatar">
           A
         </div>
 
@@ -256,41 +219,23 @@
     </header>
 
 
-    <!-- =========================
-         DASHBOARD
-    ========================= -->
+    <!-- DASHBOARD -->
 
-    <section
-      id="dashboardPage"
-      class="page active-page"
-    >
-
-      <div
-        id="dashboardContent"
-      ></div>
-
+    <section id="dashboardPage" class="page active-page">
+      <div id="dashboardContent"></div>
     </section>
 
 
-    <!-- =========================
-         MERITS
-    ========================= -->
+    <!-- MERITS -->
 
-    <section
-      id="meritsPage"
-      class="page"
-    >
+    <section id="meritsPage" class="page">
 
       <div class="section-heading">
 
         <div>
-          <p class="eyebrow">
-            POSITIVE RECOGNITION
-          </p>
+          <p class="eyebrow">POSITIVE RECOGNITION</p>
 
-          <h1>
-            Merits
-          </h1>
+          <h1>Merits</h1>
 
           <p>
             Recognition for positive behaviour and achievement.
@@ -306,33 +251,21 @@
 
       </div>
 
-      <div
-        id="meritsList"
-        class="records-list"
-      ></div>
+      <div id="meritsList" class="records-list"></div>
 
     </section>
 
 
-    <!-- =========================
-         DEMERITS
-    ========================= -->
+    <!-- DEMERITS -->
 
-    <section
-      id="demeritsPage"
-      class="page"
-    >
+    <section id="demeritsPage" class="page">
 
       <div class="section-heading">
 
         <div>
-          <p class="eyebrow">
-            BEHAVIOUR
-          </p>
+          <p class="eyebrow">BEHAVIOUR</p>
 
-          <h1>
-            Demerits
-          </h1>
+          <h1>Demerits</h1>
 
           <p>
             Review student behaviour records.
@@ -348,33 +281,54 @@
 
       </div>
 
+      <div id="demeritsList" class="records-list"></div>
+
+    </section>
+
+
+    <!-- NEGATIVE INCIDENTS -->
+
+    <section id="negative-incidentsPage" class="page">
+
+      <div class="section-heading">
+
+        <div>
+          <p class="eyebrow">BEHAVIOUR MANAGEMENT</p>
+
+          <h1>Negative Incidents</h1>
+
+          <p>
+            Record incidents involving student behaviour.
+          </p>
+        </div>
+
+        <button
+          id="addNegativeIncidentButton"
+          class="danger-button admin-teacher"
+        >
+          + Add Incident
+        </button>
+
+      </div>
+
       <div
-        id="demeritsList"
+        id="negativeIncidentsList"
         class="records-list"
       ></div>
 
     </section>
 
 
-    <!-- =========================
-         DETENTIONS
-    ========================= -->
+    <!-- DETENTIONS -->
 
-    <section
-      id="detentionsPage"
-      class="page"
-    >
+    <section id="detentionsPage" class="page">
 
       <div class="section-heading">
 
         <div>
-          <p class="eyebrow">
-            DISCIPLINE
-          </p>
+          <p class="eyebrow">DISCIPLINE</p>
 
-          <h1>
-            Detentions
-          </h1>
+          <h1>Detentions</h1>
 
           <p>
             Scheduled student detentions.
@@ -390,33 +344,21 @@
 
       </div>
 
-      <div
-        id="detentionsList"
-        class="records-list"
-      ></div>
+      <div id="detentionsList" class="records-list"></div>
 
     </section>
 
 
-    <!-- =========================
-         SUSPENSIONS
-    ========================= -->
+    <!-- SUSPENSIONS -->
 
-    <section
-      id="suspensionsPage"
-      class="page"
-    >
+    <section id="suspensionsPage" class="page">
 
       <div class="section-heading">
 
         <div>
-          <p class="eyebrow">
-            DISCIPLINARY ACTION
-          </p>
+          <p class="eyebrow">DISCIPLINARY ACTION</p>
 
-          <h1>
-            Suspensions
-          </h1>
+          <h1>Suspensions</h1>
 
           <p>
             Student suspension records.
@@ -432,33 +374,21 @@
 
       </div>
 
-      <div
-        id="suspensionsList"
-        class="records-list"
-      ></div>
+      <div id="suspensionsList" class="records-list"></div>
 
     </section>
 
 
-    <!-- =========================
-         EXPULSIONS
-    ========================= -->
+    <!-- EXPULSIONS -->
 
-    <section
-      id="expulsionsPage"
-      class="page"
-    >
+    <section id="expulsionsPage" class="page">
 
       <div class="section-heading">
 
         <div>
-          <p class="eyebrow">
-            SERIOUS DISCIPLINARY ACTION
-          </p>
+          <p class="eyebrow">SERIOUS DISCIPLINARY ACTION</p>
 
-          <h1>
-            Expulsions
-          </h1>
+          <h1>Expulsions</h1>
 
           <p>
             Expulsion records.
@@ -474,33 +404,21 @@
 
       </div>
 
-      <div
-        id="expulsionsList"
-        class="records-list"
-      ></div>
+      <div id="expulsionsList" class="records-list"></div>
 
     </section>
 
 
-    <!-- =========================
-         STUDENTS
-    ========================= -->
+    <!-- STUDENTS -->
 
-    <section
-      id="studentsPage"
-      class="page"
-    >
+    <section id="studentsPage" class="page">
 
       <div class="section-heading">
 
         <div>
-          <p class="eyebrow">
-            STUDENT DIRECTORY
-          </p>
+          <p class="eyebrow">STUDENT DIRECTORY</p>
 
-          <h1>
-            Students
-          </h1>
+          <h1>Students</h1>
 
           <p>
             Search students and open their profiles.
@@ -508,7 +426,6 @@
         </div>
 
       </div>
-
 
       <div class="search-box">
 
@@ -520,34 +437,20 @@
 
       </div>
 
-
-      <div
-        id="studentsGrid"
-        class="students-grid"
-      ></div>
+      <div id="studentsGrid" class="students-grid"></div>
 
     </section>
 
 
-    <!-- =========================
-         PROFILE
-    ========================= -->
+    <!-- PROFILE -->
 
-    <section
-      id="profilePage"
-      class="page"
-    >
+    <section id="profilePage" class="page">
 
-      <button
-        id="backToStudents"
-        class="back-button"
-      >
+      <button id="backToStudents" class="back-button">
         ← Back to Students
       </button>
 
-      <div
-        id="profileContent"
-      ></div>
+      <div id="profileContent"></div>
 
     </section>
 
@@ -556,47 +459,39 @@
 </div>
 
 
-<!-- =========================
-     RECORD MODAL
-========================= -->
+<!-- RECORD MODAL -->
 
-<div
-  id="recordModal"
-  class="modal hidden"
->
+<div id="recordModal" class="modal hidden">
 
   <div class="modal-card">
 
-    <button
-      id="closeModal"
-      class="close-button"
-    >
+    <button id="closeModal" class="close-button">
       ×
     </button>
 
-    <p
-      class="eyebrow"
-      id="modalEyebrow"
-    >
+    <p class="eyebrow" id="modalEyebrow">
       NEW RECORD
     </p>
 
-    <h2
-      id="modalTitle"
-    >
+    <h2 id="modalTitle">
       Add Record
     </h2>
-
 
     <form id="recordForm">
 
       <label>
-        Student
+        Students
       </label>
+
+      <p class="form-help">
+        Hold Ctrl/Cmd to select multiple students.
+      </p>
 
       <select
         id="recordStudent"
+        multiple
         required
+        size="6"
       ></select>
 
 
@@ -612,9 +507,7 @@
       >
 
 
-      <div
-        id="pointsGroup"
-      >
+      <div id="pointsGroup">
 
         <label>
           Points
