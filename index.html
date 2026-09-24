@@ -1,2219 +1,524 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Aloha School of Angels</title>
 
 <style>
-
-/* =========================================================
-   ALOHA SCHOOL OF ANGELS
-   SENTRAL-INSPIRED FRONTEND
-========================================================= */
-
-* {
-  box-sizing: border-box;
-}
-
-:root {
-
-  --blue-950: #102b4a;
-  --blue-900: #173c64;
-  --blue-800: #20527f;
-  --blue-700: #276aa1;
-  --blue-600: #327db7;
-  --blue-500: #4b94ca;
-  --blue-100: #e8f3fc;
-  --blue-50: #f4f9fd;
-
-  --text: #23384d;
-  --muted: #73869b;
-
-  --green: #2da567;
-  --green-light: #e3f7ec;
-
-  --red: #d95d61;
-  --red-light: #fff0f0;
-
-  --orange: #db9b31;
-  --orange-light: #fff5df;
-
-  --purple: #7169c7;
-  --purple-light: #efedff;
-
-  --border: #dce6f0;
-  --background: #f4f7fb;
-  --white: #ffffff;
-
-  --shadow:
-    0 5px 20px rgba(30, 66, 100, .07);
-
-  --radius: 14px;
-
-}
-
-html,
-body {
-  margin: 0;
-  min-height: 100%;
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
-  color: var(--text);
-  background: var(--background);
-}
-
-button,
-input,
-select,
-textarea {
-  font-family: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-
-/* =========================================================
-   UTILITIES
-========================================================= */
-
-.hidden {
-  display: none !important;
-}
-
-
-/* =========================================================
-   LOGIN
-========================================================= */
-
-.login-page {
-
-  min-height: 100vh;
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  position: relative;
-
-  overflow: hidden;
-
-  background:
-    linear-gradient(
-      135deg,
-      #dceffc,
-      #f8fbff
-    );
-
-}
-
-.login-background {
-
-  position: absolute;
-
-  inset: 0;
-
-  pointer-events: none;
-
-}
-
-.cloud {
-
-  position: absolute;
-
-  width: 350px;
-
-  height: 100px;
-
-  border-radius: 100px;
-
-  background: rgba(255,255,255,.65);
-
-  filter: blur(2px);
-
-}
-
-.cloud-one {
-  top: 12%;
-  left: -80px;
-}
-
-.cloud-two {
-  top: 60%;
-  right: -100px;
-  width: 430px;
-}
-
-.cloud-three {
-  bottom: 5%;
-  left: 20%;
-  width: 280px;
-}
-
-.login-card {
-
-  width: min(430px, calc(100% - 30px));
-
-  padding: 38px;
-
-  background: rgba(255,255,255,.96);
-
-  border: 1px solid rgba(255,255,255,.8);
-
-  border-radius: 22px;
-
-  box-shadow:
-    0 30px 80px rgba(31, 75, 111, .15);
-
-  position: relative;
-
-  z-index: 2;
-
-}
-
-.school-logo {
-
-  width: 64px;
-
-  height: 64px;
-
-  margin: 0 auto 20px;
-
-  border-radius: 18px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  color: white;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--blue-700),
-      var(--blue-500)
-    );
-
-  box-shadow:
-    0 10px 25px rgba(50,125,183,.25);
-
-}
-
-.logo-star {
-  font-size: 28px;
-}
-
-.login-card h1 {
-
-  text-align: center;
-
-  margin: 0;
-
-  color: var(--blue-950);
-
-  font-size: 27px;
-
-}
-
-.login-subtitle {
-
-  text-align: center;
-
-  color: var(--muted);
-
-  margin: 8px 0 30px;
-
-  font-size: 14px;
-
-}
-
-.form-group {
-  margin-bottom: 18px;
-}
-
-.form-group label,
-.modal-card label {
-
-  display: block;
-
-  font-size: 12px;
-
-  font-weight: 700;
-
-  color: #52677d;
-
-  margin-bottom: 7px;
-
-}
-
-.form-group input,
-.modal-card input,
-.modal-card select,
-.search-box input {
-
-  width: 100%;
-
-  border: 1px solid var(--border);
-
-  border-radius: 9px;
-
-  padding: 12px 13px;
-
-  outline: none;
-
-  color: var(--text);
-
-  background: white;
-
-  transition: .15s;
-
-}
-
-.form-group input:focus,
-.modal-card input:focus,
-.modal-card select:focus,
-.search-box input:focus {
-
-  border-color: var(--blue-500);
-
-  box-shadow:
-    0 0 0 3px rgba(75,148,202,.12);
-
-}
-
-.login-button {
-
-  width: 100%;
-
-  padding: 13px;
-
-  border: 0;
-
-  border-radius: 9px;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--blue-700),
-      var(--blue-500)
-    );
-
-  color: white;
-
-  font-weight: 700;
-
-  font-size: 14px;
-
-}
-
-.login-button:hover {
-  filter: brightness(1.04);
-}
-
-.login-error {
-
-  min-height: 18px;
-
-  color: var(--red);
-
-  text-align: center;
-
-  font-size: 12px;
-
-}
-
-.login-footer {
-
-  margin-top: 25px;
-
-  text-align: center;
-
-  color: #9aaabd;
-
-  font-size: 11px;
-
-}
-
-
-/* =========================================================
-   APP LAYOUT
-========================================================= */
-
-#app {
-
-  min-height: 100vh;
-
-  display: flex;
-
-}
-
-
-/* =========================================================
-   SIDEBAR
-========================================================= */
-
-.sidebar {
-
-  width: 250px;
-
-  min-height: 100vh;
-
-  background: #fff;
-
-  border-right: 1px solid var(--border);
-
-  display: flex;
-
-  flex-direction: column;
-
-  position: fixed;
-
-  left: 0;
-
-  top: 0;
-
-  bottom: 0;
-
-  z-index: 10;
-
-}
-
-.sidebar-brand {
-
-  padding: 23px 19px;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 11px;
-
-  border-bottom: 1px solid #edf2f7;
-
-}
-
-.brand-logo {
-
-  width: 40px;
-
-  height: 40px;
-
-  border-radius: 11px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  color: white;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--blue-700),
-      var(--blue-500)
-    );
-
-}
-
-.sidebar-brand strong {
-
-  display: block;
-
-  color: var(--blue-950);
-
-  font-size: 14px;
-
-}
-
-.sidebar-brand span {
-
-  display: block;
-
-  color: #93a2b2;
-
-  font-size: 10px;
-
-  margin-top: 2px;
-
-}
-
-.sidebar-section-title {
-
-  padding: 23px 18px 9px;
-
-  color: #a2afbd;
-
-  font-size: 9px;
-
-  font-weight: 800;
-
-  letter-spacing: 1.3px;
-
-}
-
-nav {
-
-  padding: 0 10px;
-
-}
-
-.nav-item {
-
-  width: 100%;
-
-  border: 0;
-
-  background: transparent;
-
-  color: #687b90;
-
-  padding: 11px 12px;
-
-  margin-bottom: 3px;
-
-  border-radius: 8px;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 12px;
-
-  font-size: 12px;
-
-  font-weight: 600;
-
-  text-align: left;
-
-}
-
-.nav-item span {
-
-  width: 18px;
-
-  text-align: center;
-
-  font-size: 15px;
-
-}
-
-.nav-item:hover {
-
-  color: var(--blue-700);
-
-  background: var(--blue-50);
-
-}
-
-.nav-item.active {
-
-  color: var(--blue-700);
-
-  background: var(--blue-100);
-
-}
-
-.sidebar-bottom {
-
-  margin-top: auto;
-
-  padding: 15px;
-
-  border-top: 1px solid #edf2f7;
-
-}
-
-.sidebar-user {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 10px;
-
-  margin-bottom: 12px;
-
-}
-
-.avatar {
-
-  width: 36px;
-
-  height: 36px;
-
-  border-radius: 10px;
-
-  background: var(--blue-100);
-
-  color: var(--blue-700);
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  font-weight: 800;
-
-  font-size: 13px;
-
-}
-
-.sidebar-user-info strong {
-
-  display: block;
-
-  font-size: 12px;
-
-  color: var(--blue-950);
-
-}
-
-.sidebar-user-info span {
-
-  display: block;
-
-  color: #9aa8b7;
-
-  font-size: 10px;
-
-  margin-top: 2px;
-
-}
-
-.logout-button {
-
-  width: 100%;
-
-  border: 1px solid var(--border);
-
-  background: white;
-
-  color: #73869a;
-
-  border-radius: 8px;
-
-  padding: 9px;
-
-  font-size: 11px;
-
-}
-
-
-/* =========================================================
-   MAIN
-========================================================= */
-
-.main {
-
-  margin-left: 250px;
-
-  width: calc(100% - 250px);
-
-  min-height: 100vh;
-
-}
-
-.topbar {
-
-  height: 77px;
-
-  background: white;
-
-  border-bottom: 1px solid var(--border);
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  padding: 0 32px;
-
-}
-
-.topbar-eyebrow {
-
-  margin: 0 0 2px;
-
-  font-size: 8px;
-
-  letter-spacing: 1.5px;
-
-  color: #9caaba;
-
-  font-weight: 800;
-
-}
-
-.topbar h2 {
-
-  margin: 0;
-
-  color: var(--blue-950);
-
-  font-size: 20px;
-
-}
-
-.topbar-user {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 9px;
-
-}
-
-.topbar-user strong {
-
-  display: block;
-
-  color: var(--blue-950);
-
-  font-size: 12px;
-
-}
-
-.topbar-user small {
-
-  color: #95a3b2;
-
-  font-size: 10px;
-
-}
-
-.page {
-
-  display: none;
-
-  padding: 29px 32px 50px;
-
-}
-
-.active-page {
-
-  display: block;
-
-}
-
-
-/* =========================================================
-   HEADINGS
-========================================================= */
-
-.section-heading {
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: flex-end;
-
-  margin-bottom: 25px;
-
-  gap: 20px;
-
-}
-
-.eyebrow {
-
-  margin: 0 0 5px;
-
-  color: var(--blue-600);
-
-  font-size: 9px;
-
-  letter-spacing: 1.2px;
-
-  font-weight: 800;
-
-}
-
-.section-heading h1 {
-
-  margin: 0;
-
-  color: var(--blue-950);
-
-  font-size: 25px;
-
-}
-
-.section-heading p:not(.eyebrow) {
-
-  margin: 7px 0 0;
-
-  color: var(--muted);
-
-  font-size: 12px;
-
-}
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.primary-button,
-.danger-button {
-
-  border: 0;
-
-  color: white;
-
-  border-radius: 8px;
-
-  padding: 10px 15px;
-
-  font-size: 11px;
-
-  font-weight: 700;
-
-  white-space: nowrap;
-
-}
-
-.primary-button {
-
-  background: var(--blue-700);
-
-}
-
-.primary-button:hover {
-  background: var(--blue-800);
-}
-
-.danger-button {
-
-  background: var(--red);
-
-}
-
-.danger-button:hover {
-  background: #c84e52;
-}
-
-.full-width {
-  width: 100%;
-}
-
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-.dashboard-welcome {
-
-  padding: 24px;
-
-  border-radius: 15px;
-
-  background:
-    linear-gradient(
-      120deg,
-      #e8f4fc,
-      #f7fbff
-    );
-
-  border: 1px solid #d8eaf7;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  margin-bottom: 19px;
-
-}
-
-.dashboard-welcome h1 {
-
-  margin: 0;
-
-  font-size: 22px;
-
-  color: var(--blue-950);
-
-}
-
-.dashboard-welcome p:not(.eyebrow) {
-
-  margin: 6px 0 0;
-
-  color: var(--muted);
-
-  font-size: 12px;
-
-}
-
-.dashboard-icon {
-
-  width: 65px;
-
-  height: 65px;
-
-  border-radius: 18px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  color: var(--blue-600);
-
-  background: white;
-
-  font-size: 28px;
-
-  box-shadow: var(--shadow);
-
-}
-
-.stats-grid {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
-  gap: 14px;
-
-  margin-bottom: 18px;
-
-}
-
-.stat-card {
-
-  background: white;
-
-  border: 1px solid var(--border);
-
-  border-radius: 13px;
-
-  padding: 17px;
-
-  position: relative;
-
-  overflow: hidden;
-
-}
-
-.stat-card-icon {
-
-  width: 31px;
-
-  height: 31px;
-
-  border-radius: 8px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  margin-bottom: 13px;
-
-  font-size: 13px;
-
-}
-
-.stat-card span {
-
-  display: block;
-
-  color: #8394a7;
-
-  font-size: 10px;
-
-}
-
-.stat-card strong {
-
-  display: block;
-
-  color: var(--blue-950);
-
-  font-size: 22px;
-
-  margin-top: 3px;
-
-}
-
-.stat-blue .stat-card-icon {
-  background: var(--blue-100);
-  color: var(--blue-700);
-}
-
-.stat-green .stat-card-icon {
-  background: var(--green-light);
-  color: var(--green);
-}
-
-.stat-red .stat-card-icon {
-  background: var(--red-light);
-  color: var(--red);
-}
-
-.stat-yellow .stat-card-icon {
-  background: var(--orange-light);
-  color: var(--orange);
-}
-
-.dashboard-grid {
-
-  display: grid;
-
-  grid-template-columns:
-    minmax(0, 1.5fr)
-    minmax(280px, .8fr);
-
-  gap: 18px;
-
-}
-
-.panel {
-
-  background: white;
-
-  border: 1px solid var(--border);
-
-  border-radius: 14px;
-
-  overflow: hidden;
-
-}
-
-.panel-header {
-
-  padding: 17px 18px;
-
-  border-bottom: 1px solid #edf2f7;
-
-}
-
-.panel-header h3 {
-
-  margin: 0;
-
-  color: var(--blue-950);
-
-  font-size: 14px;
-
-}
-
-.panel-header p {
-
-  margin: 4px 0 0;
-
-  color: #91a0af;
-
-  font-size: 10px;
-
-}
-
-.activity {
-
-  padding: 13px 18px;
-
-  border-bottom: 1px solid #f0f3f7;
-
-  display: flex;
-
-  gap: 11px;
-
-  align-items: center;
-
-}
-
-.activity:last-child {
-  border-bottom: 0;
-}
-
-.activity-icon {
-
-  width: 32px;
-
-  height: 32px;
-
-  flex-shrink: 0;
-
-  border-radius: 9px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  font-weight: 800;
-
-  font-size: 12px;
-
-}
-
-.activity-icon.merit {
-  background: var(--green-light);
-  color: var(--green);
-}
-
-.activity-icon.demerit {
-  background: var(--red-light);
-  color: var(--red);
-}
-
-.activity-icon.suspension {
-  background: var(--orange-light);
-  color: var(--orange);
-}
-
-.activity-icon.detention {
-  background: var(--purple-light);
-  color: var(--purple);
-}
-
-.activity strong {
-
-  display: block;
-
-  font-size: 11px;
-
-  color: var(--blue-950);
-
-}
-
-.activity span {
-
-  display: block;
-
-  margin-top: 3px;
-
-  color: #91a0af;
-
-  font-size: 9px;
-
-}
-
-.teacher-actions {
-
-  padding: 14px;
-
-  display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
-  gap: 9px;
-
-}
-
-.teacher-action {
-
-  border: 1px solid var(--border);
-
-  background: var(--blue-50);
-
-  color: var(--blue-700);
-
-  border-radius: 9px;
-
-  padding: 13px;
-
-  font-size: 10px;
-
-  font-weight: 700;
-
-}
-
-.teacher-action:hover {
-
-  background: var(--blue-100);
-
-}
-
-
-/* =========================================================
-   RECORDS
-========================================================= */
-
-.records-list {
-
-  background: white;
-
-  border: 1px solid var(--border);
-
-  border-radius: 14px;
-
-  overflow: hidden;
-
-}
-
-.record {
-
-  min-height: 75px;
-
-  padding: 13px 17px;
-
-  border-bottom: 1px solid #edf2f7;
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  gap: 15px;
-
-}
-
-.record:last-child {
-  border-bottom: 0;
-}
-
-.record-left {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 11px;
-
-  min-width: 0;
-
-}
-
-.record-icon {
-
-  width: 34px;
-
-  height: 34px;
-
-  flex-shrink: 0;
-
-  border-radius: 9px;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  font-weight: 800;
-
-}
-
-.record h4 {
-
-  margin: 0;
-
-  font-size: 11px;
-
-  color: var(--blue-950);
-
-}
-
-.record p {
-
-  margin: 4px 0 0;
-
-  color: #8c9cac;
-
-  font-size: 9px;
-
-}
-
-.record-points {
-
-  min-width: 38px;
-
-  text-align: center;
-
-  font-size: 13px;
-
-  font-weight: 800;
-
-}
-
-.record-points.positive {
-  color: var(--green);
-}
-
-.record-points.negative {
-  color: var(--red);
-}
-
-.record-remove {
-
-  border: 0;
-
-  background: var(--red-light);
-
-  color: var(--red);
-
-  border-radius: 7px;
-
-  padding: 7px 9px;
-
-  font-size: 9px;
-
-  font-weight: 700;
-
-}
-
-.record-remove:hover {
-
-  background: #ffe0e0;
-
-}
-
-
-/* =========================================================
-   STUDENTS
-========================================================= */
-
-.search-box {
-
-  margin-bottom: 17px;
-
-  max-width: 420px;
-
-}
-
-.students-grid {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(
-      auto-fill,
-      minmax(220px, 1fr)
-    );
-
-  gap: 14px;
-
-}
-
-.student-card {
-
-  background: white;
-
-  border: 1px solid var(--border);
-
-  border-radius: 14px;
-
-  padding: 17px;
-
-}
-
-.student-header {
-
-  display: flex;
-
-  gap: 11px;
-
-  align-items: center;
-
-}
-
-.student-header h3 {
-
-  margin: 0;
-
-  font-size: 13px;
-
-  color: var(--blue-950);
-
-}
-
-.student-header small {
-
-  display: block;
-
-  margin-top: 3px;
-
-  color: #95a3b2;
-
-  font-size: 9px;
-
-}
-
-.student-stats {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
-  margin: 18px 0;
-
-  border-top: 1px solid #edf2f7;
-
-  border-bottom: 1px solid #edf2f7;
-
-}
-
-.student-stat {
-
-  padding: 10px 3px;
-
-  text-align: center;
-
-}
-
-.student-stat strong {
-
-  display: block;
-
-  color: var(--blue-950);
-
-  font-size: 15px;
-
-}
-
-.student-stat span {
-
-  display: block;
-
-  color: #94a2b1;
-
-  font-size: 8px;
-
-  margin-top: 3px;
-
-}
-
-.profile-button {
-
-  width: 100%;
-
-  border: 1px solid #cfe0ee;
-
-  background: var(--blue-50);
-
-  color: var(--blue-700);
-
-  border-radius: 8px;
-
-  padding: 9px;
-
-  font-size: 10px;
-
-  font-weight: 700;
-
-}
-
-
-/* =========================================================
-   PROFILE
-========================================================= */
-
-.back-button {
-
-  border: 0;
-
-  background: transparent;
-
-  color: var(--blue-700);
-
-  font-weight: 700;
-
-  font-size: 11px;
-
-  padding: 0;
-
-  margin-bottom: 18px;
-
-}
-
-.profile-header {
-
-  background: white;
-
-  border: 1px solid var(--border);
-
-  border-radius: 15px;
-
-  padding: 22px;
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  margin-bottom: 16px;
-
-}
-
-.profile-person {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 13px;
-
-}
-
-.profile-avatar {
-
-  width: 55px;
-
-  height: 55px;
-
-  border-radius: 15px;
-
-  background: var(--blue-100);
-
-  color: var(--blue-700);
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  font-size: 20px;
-
-  font-weight: 800;
-
-}
-
-.profile-person h1 {
-
-  margin: 0;
-
-  font-size: 21px;
-
-  color: var(--blue-950);
-
-}
-
-.profile-person p {
-
-  margin: 5px 0 0;
-
-  color: var(--muted);
-
-  font-size: 10px;
-
-}
-
-.profile-stats {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(4, 1fr);
-
-  gap: 12px;
-
-  margin-bottom: 16px;
-
-}
-
-.profile-stat {
-
-  background: white;
-
-  border: 1px solid var(--border);
-
-  border-radius: 12px;
-
-  padding: 15px;
-
-}
-
-.profile-stat span {
-
-  display: block;
-
-  color: #91a0af;
-
-  font-size: 9px;
-
-}
-
-.profile-stat strong {
-
-  display: block;
-
-  color: var(--blue-950);
-
-  font-size: 19px;
-
-  margin-top: 5px;
-
-}
-
-.profile-records {
-
-  background: white;
-
-  border: 1px solid var(--border);
-
-  border-radius: 14px;
-
-  overflow: hidden;
-
-}
-
-
-/* =========================================================
-   MODAL
-========================================================= */
-
-.modal {
-
-  position: fixed;
-
-  inset: 0;
-
-  background: rgba(18,43,69,.38);
-
-  backdrop-filter: blur(3px);
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  padding: 20px;
-
-  z-index: 100;
-
-}
-
-.modal-card {
-
-  width: min(520px, 100%);
-
-  max-height: 90vh;
-
-  overflow-y: auto;
-
-  background: white;
-
-  border-radius: 17px;
-
-  padding: 24px;
-
-  position: relative;
-
-  box-shadow:
-    0 30px 80px rgba(18,43,69,.22);
-
-}
-
-.close-button {
-
-  position: absolute;
-
-  top: 15px;
-
-  right: 16px;
-
-  width: 29px;
-
-  height: 29px;
-
-  border: 0;
-
-  border-radius: 7px;
-
-  background: #f1f5f9;
-
-  color: #75889d;
-
-  font-size: 18px;
-
-}
-
-.modal-card h2 {
-
-  margin: 0 0 22px;
-
-  color: var(--blue-950);
-
-  font-size: 20px;
-
-}
-
-.modal-card label {
-
-  margin-top: 14px;
-
-}
-
-.modal-card select[multiple] {
-
-  min-height: 150px;
-
-}
-
-.form-help {
-
-  color: #8b9aab;
-
-  font-size: 9px;
-
-  margin: -2px 0 7px;
-
-}
-
-
-/* =========================================================
-   ROLL
-========================================================= */
-
-.roll-date-bar {
-
-  background: white;
-
-  border: 1px solid var(--border);
-
-  border-radius: 13px;
-
-  padding: 13px 16px;
-
-  margin-bottom: 15px;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 10px;
-
-}
-
-.roll-date-bar label {
-
-  font-weight: 700;
-
-  font-size: 10px;
-
-  color: #657a90;
-
-}
-
-.roll-date-bar input {
-
-  border: 1px solid var(--border);
-
-  border-radius: 7px;
-
-  padding: 8px 10px;
-
-}
-
-.roll-list {
-
-  background: white;
-
-  border: 1px solid var(--border);
-
-  border-radius: 14px;
-
-  overflow: hidden;
-
-}
-
-.roll-row {
-
-  min-height: 70px;
-
-  padding: 12px 16px;
-
-  border-bottom: 1px solid #edf2f7;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  gap: 15px;
-
-}
-
-.roll-row:last-child {
-  border-bottom: 0;
-}
-
-.roll-student {
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 10px;
-
-}
-
-.roll-student strong {
-
-  display: block;
-
-  font-size: 11px;
-
-  color: var(--blue-950);
-
-}
-
-.roll-student small {
-
-  display: block;
-
-  color: #91a0af;
-
-  font-size: 9px;
-
-  margin-top: 3px;
-
-}
-
-.roll-options {
-
-  display: flex;
-
-  gap: 6px;
-
-  flex-wrap: wrap;
-
-  justify-content: flex-end;
-
-}
-
-.roll-button {
-
-  border: 1px solid var(--border);
-
-  background: #fafcff;
-
-  color: #65798f;
-
-  border-radius: 7px;
-
-  padding: 7px 10px;
-
-  font-size: 9px;
-
-  font-weight: 700;
-
-}
-
-.roll-button.selected.status-present {
-
-  background: var(--green-light);
-
-  border-color: #79cf9a;
-
-  color: #257746;
-
-}
-
-.roll-button.selected.status-late {
-
-  background: var(--orange-light);
-
-  border-color: #e1bd69;
-
-  color: #8b671d;
-
-}
-
-.roll-button.selected.status-absent {
-
-  background: var(--red-light);
-
-  border-color: #e49a9a;
-
-  color: #a43e42;
-
-}
-
-.roll-button.selected.status-excused {
-
-  background: var(--purple-light);
-
-  border-color: #a09be5;
-
-  color: #5551a0;
-
-}
-
-
-/* =========================================================
-   EMPTY
-========================================================= */
-
-.empty-state {
-
-  padding: 45px 20px;
-
-  text-align: center;
-
-  color: #98a6b5;
-
-  font-size: 11px;
-
-}
-
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-
-@media (max-width: 900px) {
-
-  .sidebar {
-    width: 210px;
-  }
-
-  .main {
-    margin-left: 210px;
-    width: calc(100% - 210px);
-  }
-
-  .stats-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
-  }
-
-  .dashboard-grid {
-    grid-template-columns: 1fr;
-  }
-
-}
-
-@media (max-width: 650px) {
-
-  .sidebar {
-    position: relative;
-    width: 100%;
-    min-height: auto;
-  }
-
-  #app {
-    display: block;
-  }
-
-  .main {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .topbar {
-    padding: 0 18px;
-  }
-
-  .page {
-    padding: 22px 16px 40px;
-  }
-
-  .section-heading {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .stats-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .profile-stats {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .roll-row {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .roll-options {
-    justify-content: flex-start;
-  }
-
+*{box-sizing:border-box}
+:root{
+ --navy:#102b4a;
+ --navy2:#173c64;
+ --blue:#2875b5;
+ --blue2:#4c9bd0;
+ --blueLight:#eaf5fd;
+ --bg:#f4f7fb;
+ --card:#fff;
+ --border:#dce6ef;
+ --muted:#8191a3;
+ --green:#24a563;
+ --greenLight:#e4f8ed;
+ --red:#d9585d;
+ --redLight:#fff0f0;
+ --orange:#d99a2f;
+ --orangeLight:#fff5df;
+ --purple:#7168c7;
+ --purpleLight:#efedff;
+ --shadow:0 10px 30px rgba(30,65,100,.07);
+ --radius:16px;
+}
+html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#263d53;background:var(--bg)}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+
+/* LOGIN */
+.login{
+ min-height:100vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ padding:25px;
+ background:
+ radial-gradient(circle at 15% 15%,#dff3ff,transparent 35%),
+ radial-gradient(circle at 90% 80%,#e8f1ff,transparent 35%),
+ linear-gradient(135deg,#edf8ff,#f9fbff);
+}
+.login-card{
+ width:min(460px,100%);
+ background:rgba(255,255,255,.97);
+ border:1px solid #fff;
+ border-radius:25px;
+ padding:35px;
+ box-shadow:0 35px 90px rgba(30,70,110,.16);
+}
+.logo{
+ width:68px;height:68px;border-radius:20px;
+ display:flex;align-items:center;justify-content:center;
+ margin:auto auto 18px;
+ color:#fff;font-size:30px;
+ background:linear-gradient(135deg,var(--blue),var(--blue2));
+ box-shadow:0 12px 28px rgba(40,117,181,.25);
+}
+.login h1{text-align:center;color:var(--navy);margin:0;font-size:27px}
+.login-sub{text-align:center;color:var(--muted);font-size:13px;margin:8px 0 28px}
+.setup-note{
+ padding:13px 15px;border-radius:11px;
+ background:var(--blueLight);color:var(--blue);
+ font-size:11px;line-height:1.5;margin-bottom:18px;
+}
+label{display:block;font-size:11px;font-weight:800;color:#60758a;margin:13px 0 7px}
+input,select,textarea{
+ width:100%;border:1px solid var(--border);background:#fff;
+ border-radius:10px;padding:11px 12px;outline:none;color:#253c52;
+ transition:.15s;
+}
+textarea{resize:vertical;min-height:85px}
+input:focus,select:focus,textarea:focus{
+ border-color:var(--blue2);
+ box-shadow:0 0 0 3px rgba(76,155,208,.12)
+}
+.btn{
+ border:0;border-radius:10px;padding:10px 15px;
+ font-size:11px;font-weight:800;
+ transition:.15s;
+}
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff}
+.btn-primary:hover{filter:brightness(1.05)}
+.btn-danger{background:var(--red);color:#fff}
+.btn-soft{background:var(--blueLight);color:var(--blue);border:1px solid #d5e9f7}
+.btn-green{background:var(--green);color:#fff}
+.btn-gray{background:#f2f5f8;color:#66798c}
+.btn-small{padding:7px 10px;font-size:9px}
+.full{width:100%}
+.error{color:var(--red);font-size:11px;text-align:center;min-height:17px;margin:10px 0}
+
+/* APP */
+#app{min-height:100vh}
+.sidebar{
+ position:fixed;left:0;top:0;bottom:0;width:255px;
+ background:#fff;border-right:1px solid var(--border);
+ display:flex;flex-direction:column;z-index:20;
+}
+.brand{
+ padding:21px 19px;border-bottom:1px solid #edf2f7;
+ display:flex;align-items:center;gap:11px;
+}
+.brand-icon{
+ width:40px;height:40px;border-radius:12px;
+ display:flex;align-items:center;justify-content:center;
+ background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff
+}
+.brand strong{display:block;color:var(--navy);font-size:14px}
+.brand small{display:block;color:#9aa9b8;font-size:9px;margin-top:2px}
+.nav-title{
+ padding:20px 18px 8px;color:#a0adba;font-size:9px;
+ font-weight:900;letter-spacing:1.5px
+}
+nav{padding:0 10px;overflow:auto}
+.nav{
+ width:100%;border:0;background:transparent;color:#6d7f91;
+ padding:10px 12px;border-radius:9px;margin-bottom:3px;
+ display:flex;gap:11px;align-items:center;text-align:left;
+ font-size:11px;font-weight:700
+}
+.nav:hover{background:#f2f8fd;color:var(--blue)}
+.nav.active{background:var(--blueLight);color:var(--blue)}
+.nav span{width:17px;text-align:center;font-size:14px}
+.sidebar-bottom{margin-top:auto;padding:14px;border-top:1px solid #edf2f7}
+.user-mini{display:flex;gap:9px;align-items:center;margin-bottom:10px}
+.avatar{
+ width:36px;height:36px;border-radius:11px;
+ display:flex;align-items:center;justify-content:center;
+ background:var(--blueLight);color:var(--blue);font-weight:900;font-size:12px;
+ flex-shrink:0
+}
+.user-mini strong{display:block;font-size:11px;color:var(--navy)}
+.user-mini small{display:block;color:#9aa8b7;font-size:9px;margin-top:2px}
+.logout{width:100%;border:1px solid var(--border);background:#fff;border-radius:9px;padding:8px;color:#718396;font-size:10px}
+
+/* MAIN */
+.main{margin-left:255px;min-height:100vh}
+.topbar{
+ height:75px;background:#fff;border-bottom:1px solid var(--border);
+ display:flex;justify-content:space-between;align-items:center;padding:0 30px;
+ position:sticky;top:0;z-index:10
+}
+.eyebrow{font-size:8px;letter-spacing:1.4px;color:var(--blue);font-weight:900;margin:0 0 4px}
+.topbar h2{margin:0;color:var(--navy);font-size:20px}
+.top-user{display:flex;align-items:center;gap:9px}
+.top-user strong{display:block;color:var(--navy);font-size:11px}
+.top-user small{color:#95a4b2;font-size:9px}
+.page{display:none;padding:28px 30px 55px}
+.page.active{display:block}
+.heading{
+ display:flex;justify-content:space-between;align-items:flex-end;
+ gap:20px;margin-bottom:20px
+}
+.heading h1{margin:0;color:var(--navy);font-size:25px}
+.heading p:not(.eyebrow){margin:6px 0 0;color:var(--muted);font-size:11px}
+
+/* DASHBOARD */
+.hero{
+ border:1px solid #d9eaf7;border-radius:18px;padding:24px;
+ background:linear-gradient(120deg,#e5f4fd,#f8fcff);
+ display:flex;justify-content:space-between;align-items:center;margin-bottom:17px
+}
+.hero h1{margin:0;color:var(--navy);font-size:23px}
+.hero p:not(.eyebrow){margin:6px 0 0;color:var(--muted);font-size:11px}
+.hero-icon{
+ width:65px;height:65px;border-radius:19px;background:#fff;
+ display:flex;align-items:center;justify-content:center;
+ font-size:28px;color:var(--blue);box-shadow:var(--shadow)
+}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:17px}
+.stat{
+ background:#fff;border:1px solid var(--border);border-radius:14px;
+ padding:16px;position:relative;overflow:hidden
+}
+.stat-icon{
+ width:32px;height:32px;border-radius:9px;
+ display:flex;align-items:center;justify-content:center;margin-bottom:12px
+}
+.stat span{display:block;color:#8999a9;font-size:9px}
+.stat strong{display:block;color:var(--navy);font-size:22px;margin-top:3px}
+.blue .stat-icon{background:var(--blueLight);color:var(--blue)}
+.green .stat-icon{background:var(--greenLight);color:var(--green)}
+.red .stat-icon{background:var(--redLight);color:var(--red)}
+.orange .stat-icon{background:var(--orangeLight);color:var(--orange)}
+.grid2{display:grid;grid-template-columns:1.45fr .85fr;gap:17px}
+.panel{background:#fff;border:1px solid var(--border);border-radius:15px;overflow:hidden}
+.panel-head{padding:16px 18px;border-bottom:1px solid #edf2f7}
+.panel-head h3{margin:0;color:var(--navy);font-size:13px}
+.panel-head p{margin:4px 0 0;color:#92a0ae;font-size:9px}
+.activity{
+ display:flex;gap:10px;align-items:center;padding:12px 17px;
+ border-bottom:1px solid #f0f3f6
+}
+.activity:last-child{border-bottom:0}
+.activity-icon{
+ width:33px;height:33px;border-radius:9px;
+ display:flex;align-items:center;justify-content:center;font-weight:900;
+ flex-shrink:0
+}
+.activity-icon.merit{background:var(--greenLight);color:var(--green)}
+.activity-icon.demerit{background:var(--redLight);color:var(--red)}
+.activity-icon.incident{background:var(--orangeLight);color:var(--orange)}
+.activity-icon.detention{background:var(--purpleLight);color:var(--purple)}
+.activity strong{display:block;color:var(--navy);font-size:10px}
+.activity small{display:block;color:#94a2b0;font-size:8px;margin-top:3px}
+.quick{padding:13px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.quick button{border:1px solid var(--border);background:#f7fbfe;color:var(--blue);border-radius:9px;padding:13px 8px;font-size:9px;font-weight:800}
+.quick button:hover{background:var(--blueLight)}
+
+/* RECORDS */
+.toolbar{
+ display:flex;gap:8px;align-items:center;margin-bottom:14px;flex-wrap:wrap
+}
+.search{max-width:320px}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.chip{
+ border:1px solid var(--border);background:#fff;color:#718396;
+ border-radius:20px;padding:7px 10px;font-size:9px;font-weight:800
+}
+.chip.active{background:var(--blueLight);border-color:#cde4f4;color:var(--blue)}
+.records{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.record{
+ padding:13px 16px;border-bottom:1px solid #edf2f6;
+ display:flex;justify-content:space-between;align-items:center;gap:12px
+}
+.record:last-child{border-bottom:0}
+.record-left{display:flex;align-items:center;gap:11px;min-width:0}
+.record-icon{
+ width:35px;height:35px;border-radius:10px;
+ display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0
+}
+.record-icon.merit{background:var(--greenLight);color:var(--green)}
+.record-icon.demerit{background:var(--redLight);color:var(--red)}
+.record-icon.incident{background:var(--orangeLight);color:var(--orange)}
+.record-icon.detention{background:var(--purpleLight);color:var(--purple)}
+.record-icon.other{background:#f1f5f8;color:#728497}
+.record h4{margin:0;color:var(--navy);font-size:11px}
+.record p{margin:4px 0 0;color:#92a0ae;font-size:8px}
+.record-actions{display:flex;align-items:center;gap:7px;flex-shrink:0}
+.points{font-size:12px;font-weight:900}
+.points.pos{color:var(--green)}
+.points.neg{color:var(--red)}
+.badge{
+ display:inline-flex;align-items:center;border-radius:20px;
+ padding:4px 7px;font-size:8px;font-weight:900
+}
+.badge.green{background:var(--greenLight);color:#247a4b}
+.badge.red{background:var(--redLight);color:#a43f43}
+.badge.orange{background:var(--orangeLight);color:#8d671f}
+.badge.purple{background:var(--purpleLight);color:#5d57a4}
+.badge.gray{background:#f0f3f6;color:#697c8e}
+.empty{padding:45px 20px;text-align:center;color:#98a6b5;font-size:10px}
+
+/* PEOPLE */
+.people-grid{
+ display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:13px
+}
+.person-card{
+ background:#fff;border:1px solid var(--border);border-radius:15px;padding:16px
+}
+.person-head{display:flex;gap:10px;align-items:center}
+.person-head h3{margin:0;color:var(--navy);font-size:13px}
+.person-head small{display:block;color:#91a0ae;font-size:9px;margin-top:3px}
+.person-role{margin:14px 0 11px}
+.person-actions{display:flex;gap:6px}
+.person-actions button{flex:1}
+
+/* PROFILE */
+.profile-top{
+ background:#fff;border:1px solid var(--border);border-radius:16px;padding:21px;
+ display:flex;justify-content:space-between;align-items:center;margin-bottom:14px
+}
+.profile-person{display:flex;align-items:center;gap:13px}
+.profile-avatar{
+ width:57px;height:57px;border-radius:17px;
+ display:flex;align-items:center;justify-content:center;
+ background:var(--blueLight);color:var(--blue);font-weight:900;font-size:20px
+}
+.profile-person h1{margin:0;color:var(--navy);font-size:21px}
+.profile-person p{margin:5px 0 0;color:var(--muted);font-size:9px}
+.profile-stats{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px}
+.profile-stat{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px}
+.profile-stat span{display:block;color:#91a0af;font-size:8px}
+.profile-stat strong{display:block;color:var(--navy);font-size:19px;margin-top:4px}
+
+/* ROLLS */
+.roll-card{background:#fff;border:1px solid var(--border);border-radius:15px;overflow:hidden}
+.roll-row{
+ padding:12px 16px;border-bottom:1px solid #edf2f6;
+ display:flex;justify-content:space-between;align-items:center;gap:15px
+}
+.roll-row:last-child{border-bottom:0}
+.roll-person{display:flex;align-items:center;gap:10px}
+.roll-person strong{display:block;color:var(--navy);font-size:10px}
+.roll-person small{display:block;color:#93a1ae;font-size:8px;margin-top:3px}
+.roll-buttons{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.roll-btn{
+ border:1px solid var(--border);background:#fafcff;color:#66798c;
+ border-radius:7px;padding:7px 9px;font-size:8px;font-weight:900
+}
+.roll-btn.selected.present{background:var(--greenLight);border-color:#8bd5a8;color:#267749}
+.roll-btn.selected.late{background:var(--orangeLight);border-color:#e1bf70;color:#8a661d}
+.roll-btn.selected.absent{background:var(--redLight);border-color:#e39a9d;color:#a33f44}
+.roll-btn.selected.excused{background:var(--purpleLight);border-color:#aaa5e8;color:#5b56a2}
+
+/* CATEGORIES */
+.category-grid{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px
+}
+.category-option{
+ border:1px solid var(--border);background:#f8fafc;border-radius:10px;
+ padding:11px;text-align:left;color:#617589;font-size:9px;font-weight:900
+}
+.category-option.selected{background:var(--blueLight);border-color:#b9d9ed;color:var(--blue)}
+
+/* MODAL */
+.modal{
+ position:fixed;inset:0;background:rgba(12,34,57,.42);
+ backdrop-filter:blur(4px);display:flex;justify-content:center;align-items:center;
+ padding:20px;z-index:100
+}
+.modal-card{
+ width:min(560px,100%);max-height:92vh;overflow:auto;background:#fff;
+ border-radius:19px;padding:24px;box-shadow:0 30px 90px rgba(10,30,50,.25);
+ position:relative
+}
+.modal-card h2{margin:0;color:var(--navy);font-size:20px}
+.close{
+ position:absolute;right:15px;top:15px;width:29px;height:29px;
+ border:0;border-radius:8px;background:#f0f4f7;color:#6e8194;font-size:17px
+}
+.modal-sub{color:var(--muted);font-size:9px;margin:5px 0 17px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
+.span2{grid-column:1/-1}
+
+/* SETTINGS */
+.setting{
+ background:#fff;border:1px solid var(--border);border-radius:14px;
+ padding:17px;margin-bottom:12px
+}
+.setting h3{margin:0;color:var(--navy);font-size:13px}
+.setting p{color:var(--muted);font-size:9px;line-height:1.5}
+.switch{
+ display:flex;justify-content:space-between;align-items:center;gap:15px
+}
+.toggle{
+ width:44px;height:24px;border-radius:20px;background:#d9e1e8;
+ border:0;position:relative
+}
+.toggle:after{
+ content:"";position:absolute;width:18px;height:18px;border-radius:50%;
+ background:#fff;top:3px;left:3px;transition:.2s
+}
+.toggle.on{background:var(--green)}
+.toggle.on:after{left:23px}
+
+/* RESPONSIVE */
+@media(max-width:950px){
+ .sidebar{width:215px}
+ .main{margin-left:215px}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .grid2{grid-template-columns:1fr}
+ .profile-stats{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:650px){
+ .sidebar{position:relative;width:100%;min-height:auto}
+ .main{margin-left:0}
+ .topbar{padding:0 17px}
+ .top-user>div:last-child{display:none}
+ .page{padding:21px 15px 40px}
+ .heading{align-items:flex-start;flex-direction:column}
+ .stats{grid-template-columns:1fr 1fr}
+ .profile-stats{grid-template-columns:1fr 1fr}
+ .profile-top{align-items:flex-start;flex-direction:column;gap:15px}
+ .roll-row{align-items:flex-start;flex-direction:column}
+ .roll-buttons{justify-content:flex-start}
+ .form-grid{grid-template-columns:1fr}
+ .span2{grid-column:auto}
 }
-
 </style>
 </head>
 
-
 <body>
 
-
 <!-- =====================================================
-     LOGIN
-===================================================== -->
+     LOGIN / FIRST RUN
+====================================================== -->
 
-<div id="loginPage" class="login-page">
-
-  <div class="login-background">
-
-    <div class="cloud cloud-one"></div>
-    <div class="cloud cloud-two"></div>
-    <div class="cloud cloud-three"></div>
-
-  </div>
-
+<div id="loginPage" class="login">
 
   <div class="login-card">
 
-    <div class="school-logo">
-      <div class="logo-star">✦</div>
+    <div class="logo">✦</div>
+
+    <h1>Aloha School of Angels</h1>
+
+    <p class="login-sub">School Management Portal</p>
+
+    <div id="setupNotice" class="setup-note hidden">
+      This is the first launch. Create your school administrator account.
+      After that, the administrator can create teachers and students.
     </div>
-
-    <h1>
-      Aloha School of Angels
-    </h1>
-
-    <p class="login-subtitle">
-      School Management Portal
-    </p>
-
 
     <form id="loginForm">
 
-      <div class="form-group">
+      <div id="setupFields" class="hidden">
 
-        <label>
-          Username
-        </label>
-
-        <input
-          id="username"
-          type="text"
-          placeholder="Enter your username"
-          required
-        >
+        <label>Administrator Name</label>
+        <input id="setupName" placeholder="e.g. School Administrator">
 
       </div>
 
+      <label>Username</label>
+      <input id="loginUsername" required autocomplete="username">
 
-      <div class="form-group">
+      <label>Password</label>
+      <input id="loginPassword" type="password" required autocomplete="current-password">
 
-        <label>
-          Password
-        </label>
-
-        <input
-          id="password"
-          type="password"
-          placeholder="Enter your password"
-          required
-        >
-
+      <div id="confirmPasswordGroup" class="hidden">
+        <label>Confirm Password</label>
+        <input id="confirmPassword" type="password">
       </div>
 
-
-      <button
-        class="login-button"
-        type="submit"
-      >
+      <button id="loginButton" class="btn btn-primary full" type="submit">
         Sign In
       </button>
 
-
-      <p
-        id="loginError"
-        class="login-error"
-      ></p>
+      <p id="loginError" class="error"></p>
 
     </form>
 
-
-    <div class="login-footer">
-      ✦ Aloha School of Angels
-    </div>
-
   </div>
-
 </div>
 
 
-
 <!-- =====================================================
-     APPLICATION
-===================================================== -->
+     APP
+====================================================== -->
 
 <div id="app" class="hidden">
 
-
-  <!-- SIDEBAR -->
-
   <aside class="sidebar">
 
-    <div class="sidebar-brand">
-
-      <div class="brand-logo">
-        ✦
-      </div>
-
+    <div class="brand">
+      <div class="brand-icon">✦</div>
       <div>
-
-        <strong>
-          Aloha
-        </strong>
-
-        <span>
-          School of Angels
-        </span>
-
+        <strong>Aloha</strong>
+        <small>School of Angels</small>
       </div>
-
     </div>
 
-
-    <div class="sidebar-section-title">
-      MAIN
-    </div>
-
+    <div class="nav-title">MAIN</div>
 
     <nav>
 
-
-      <button
-        class="nav-item active"
-        data-page="dashboard"
-      >
-        <span>⌂</span>
-        Dashboard
+      <button class="nav active" data-page="dashboard">
+        <span>⌂</span> Dashboard
       </button>
 
-
-      <button
-        class="nav-item"
-        data-page="merits"
-      >
-        <span>★</span>
-        Merits
+      <button class="nav" data-page="merits">
+        <span>★</span> Merits
       </button>
 
-
-      <button
-        class="nav-item"
-        data-page="demerits"
-      >
-        <span>!</span>
-        Demerits
+      <button class="nav" data-page="demerits">
+        <span>!</span> Demerits
       </button>
 
-
-      <button
-        class="nav-item"
-        data-page="negative-incidents"
-      >
-        <span>⚠</span>
-        Negative Incidents
+      <button class="nav" data-page="incidents">
+        <span>⚠</span> Negative Incidents
       </button>
 
-
-      <button
-        class="nav-item"
-        data-page="detentions"
-      >
-        <span>◷</span>
-        Detentions
+      <button class="nav" data-page="detentions">
+        <span>◷</span> Detentions
       </button>
 
-
-      <button
-        class="nav-item"
-        data-page="suspensions"
-      >
-        <span>⚠</span>
-        Suspensions
+      <button class="nav" data-page="suspensions">
+        <span>⚠</span> Suspensions
       </button>
 
-
-      <button
-        class="nav-item"
-        data-page="expulsions"
-      >
-        <span>×</span>
-        Expulsions
+      <button class="nav" data-page="expulsions">
+        <span>×</span> Expulsions
       </button>
 
-
-      <button
-        class="nav-item"
-        data-page="school-roll"
-      >
-        <span>✓</span>
-        School Roll
+      <button class="nav" data-page="school-roll">
+        <span>✓</span> School Roll
       </button>
 
-
-      <button
-        class="nav-item"
-        data-page="detention-roll"
-      >
-        <span>◷</span>
-        Detention Roll
+      <button class="nav" data-page="detention-roll">
+        <span>◷</span> Detention Roll
       </button>
 
-
-      <button
-        class="nav-item"
-        id="studentsNav"
-        data-page="students"
-      >
-        <span>♙</span>
-        Students
+      <button class="nav staff-only" data-page="people">
+        <span>♙</span> People
       </button>
 
+      <button class="nav staff-only" data-page="students">
+        <span>♙</span> Students
+      </button>
+
+      <button class="nav admin-only" data-page="settings">
+        <span>⚙</span> Settings
+      </button>
 
     </nav>
 
-
     <div class="sidebar-bottom">
 
-      <div class="sidebar-user">
-
-        <div
-          class="avatar"
-          id="sidebarAvatar"
-        >
-          A
+      <div class="user-mini">
+        <div class="avatar" id="sideAvatar">A</div>
+        <div>
+          <strong id="sideName">User</strong>
+          <small id="sideRole">Role</small>
         </div>
-
-        <div class="sidebar-user-info">
-
-          <strong id="sidebarName">
-            User
-          </strong>
-
-          <span id="sidebarRole">
-            Student
-          </span>
-
-        </div>
-
       </div>
 
-
-      <button
-        class="logout-button"
-        id="logoutButton"
-      >
+      <button id="logout" class="logout">
         ↪ Log out
       </button>
 
@@ -2222,874 +527,818 @@ nav {
   </aside>
 
 
-
-  <!-- MAIN -->
-
   <main class="main">
-
-
-    <!-- TOP BAR -->
 
     <header class="topbar">
 
       <div>
-
-        <p class="topbar-eyebrow">
-          ALOHA SCHOOL OF ANGELS
-        </p>
-
-        <h2 id="pageTitle">
-          Dashboard
-        </h2>
-
+        <p class="eyebrow">ALOHA SCHOOL OF ANGELS</p>
+        <h2 id="pageTitle">Dashboard</h2>
       </div>
 
-
-      <div class="topbar-user">
-
-        <div
-          class="avatar"
-          id="topAvatar"
-        >
-          A
-        </div>
-
+      <div class="top-user">
+        <div class="avatar" id="topAvatar">A</div>
         <div>
-
-          <strong id="topName">
-            User
-          </strong>
-
-          <small id="topRole">
-            Student
-          </small>
-
+          <strong id="topName">User</strong>
+          <small id="topRole">Role</small>
         </div>
-
       </div>
 
     </header>
 
 
-
-    <!-- =================================================
-         DASHBOARD
-    ================================================== -->
-
-    <section
-      id="dashboardPage"
-      class="page active-page"
-    >
-
-      <div id="dashboardContent"></div>
-
-    </section>
+    <!-- DASHBOARD -->
+    <section id="dashboardPage" class="page active"></section>
 
 
+    <!-- MERITS -->
+    <section id="meritsPage" class="page">
 
-    <!-- =================================================
-         MERITS
-    ================================================== -->
-
-    <section
-      id="meritsPage"
-      class="page"
-    >
-
-      <div class="section-heading">
-
+      <div class="heading">
         <div>
-
-          <p class="eyebrow">
-            POSITIVE RECOGNITION
-          </p>
-
-          <h1>
-            Merits
-          </h1>
-
-          <p>
-            Recognition for positive behaviour and achievement.
-          </p>
-
+          <p class="eyebrow">POSITIVE RECOGNITION</p>
+          <h1>Merits</h1>
+          <p>Celebrate positive behaviour and achievement.</p>
         </div>
 
-
-        <button
-          id="addMeritButton"
-          class="primary-button admin-teacher"
-        >
+        <button class="btn btn-primary staff-action"
+          onclick="openRecordModal('merit')">
           + Add Merit
         </button>
-
       </div>
 
-
-      <div
-        id="meritsList"
-        class="records-list"
-      ></div>
+      <div id="meritCategories" class="category-grid" style="margin-bottom:15px"></div>
+      <div id="meritsList" class="records"></div>
 
     </section>
 
 
+    <!-- DEMERITS -->
+    <section id="demeritsPage" class="page">
 
-    <!-- =================================================
-         DEMERITS
-    ================================================== -->
-
-    <section
-      id="demeritsPage"
-      class="page"
-    >
-
-      <div class="section-heading">
-
+      <div class="heading">
         <div>
-
-          <p class="eyebrow">
-            BEHAVIOUR
-          </p>
-
-          <h1>
-            Demerits
-          </h1>
-
-          <p>
-            Review student behaviour records.
-          </p>
-
+          <p class="eyebrow">BEHAVIOUR</p>
+          <h1>Demerits</h1>
+          <p>Record behaviour that requires follow-up.</p>
         </div>
 
-
-        <button
-          id="addDemeritButton"
-          class="danger-button admin-teacher"
-        >
+        <button class="btn btn-danger staff-action"
+          onclick="openRecordModal('demerit')">
           + Add Demerit
         </button>
-
       </div>
 
-
-      <div
-        id="demeritsList"
-        class="records-list"
-      ></div>
+      <div id="demeritCategories" class="category-grid" style="margin-bottom:15px"></div>
+      <div id="demeritsList" class="records"></div>
 
     </section>
 
 
+    <!-- INCIDENTS -->
+    <section id="incidentsPage" class="page">
 
-    <!-- =================================================
-         NEGATIVE INCIDENTS
-    ================================================== -->
-
-    <section
-      id="negative-incidentsPage"
-      class="page"
-    >
-
-      <div class="section-heading">
-
+      <div class="heading">
         <div>
-
-          <p class="eyebrow">
-            BEHAVIOUR MANAGEMENT
-          </p>
-
-          <h1>
-            Negative Incidents
-          </h1>
-
-          <p>
-            Record significant behaviour incidents.
-          </p>
-
+          <p class="eyebrow">BEHAVIOUR MANAGEMENT</p>
+          <h1>Negative Incidents</h1>
+          <p>Record significant behaviour incidents.</p>
         </div>
 
-
-        <button
-          id="addNegativeIncidentButton"
-          class="danger-button admin-teacher"
-        >
+        <button class="btn btn-danger staff-action"
+          onclick="openRecordModal('negative-incident')">
           + Add Incident
         </button>
-
       </div>
 
-
-      <div
-        id="negativeIncidentsList"
-        class="records-list"
-      ></div>
+      <div id="incidentCategories" class="category-grid" style="margin-bottom:15px"></div>
+      <div id="incidentsList" class="records"></div>
 
     </section>
 
 
+    <!-- DETENTIONS -->
+    <section id="detentionsPage" class="page">
 
-    <!-- =================================================
-         DETENTIONS
-    ================================================== -->
-
-    <section
-      id="detentionsPage"
-      class="page"
-    >
-
-      <div class="section-heading">
-
+      <div class="heading">
         <div>
-
-          <p class="eyebrow">
-            DISCIPLINE
-          </p>
-
-          <h1>
-            Detentions
-          </h1>
-
-          <p>
-            Student detention records.
-          </p>
-
+          <p class="eyebrow">DISCIPLINE</p>
+          <h1>Detentions</h1>
+          <p>Full detention history, including completed detentions.</p>
         </div>
 
-
-        <button
-          id="addDetentionButton"
-          class="primary-button admin-teacher"
-        >
-          + Add Detention
+        <button class="btn btn-primary staff-action"
+          onclick="openRecordModal('detention')">
+          + Schedule Detention
         </button>
-
       </div>
 
+      <div class="toolbar">
+        <button class="chip active detention-filter" data-filter="all">
+          All
+        </button>
+        <button class="chip detention-filter" data-filter="scheduled">
+          Scheduled
+        </button>
+        <button class="chip detention-filter" data-filter="completed">
+          Completed
+        </button>
+        <button class="chip detention-filter" data-filter="missed">
+          Missed / Absent
+        </button>
+      </div>
 
-      <div
-        id="detentionsList"
-        class="records-list"
-      ></div>
+      <div id="detentionsList" class="records"></div>
 
     </section>
 
 
+    <!-- SUSPENSIONS -->
+    <section id="suspensionsPage" class="page">
 
-    <!-- =================================================
-         SUSPENSIONS
-    ================================================== -->
-
-    <section
-      id="suspensionsPage"
-      class="page"
-    >
-
-      <div class="section-heading">
-
+      <div class="heading">
         <div>
-
-          <p class="eyebrow">
-            DISCIPLINARY ACTION
-          </p>
-
-          <h1>
-            Suspensions
-          </h1>
-
-          <p>
-            Student suspension records.
-          </p>
-
+          <p class="eyebrow">DISCIPLINARY ACTION</p>
+          <h1>Suspensions</h1>
+          <p>Suspension records.</p>
         </div>
 
-
-        <button
-          id="addSuspensionButton"
-          class="danger-button admin-only"
-        >
+        <button class="btn btn-danger admin-only"
+          onclick="openRecordModal('suspension')">
           + Add Suspension
         </button>
-
       </div>
 
-
-      <div
-        id="suspensionsList"
-        class="records-list"
-      ></div>
+      <div id="suspensionsList" class="records"></div>
 
     </section>
 
 
+    <!-- EXPULSIONS -->
+    <section id="expulsionsPage" class="page">
 
-    <!-- =================================================
-         EXPULSIONS
-    ================================================== -->
-
-    <section
-      id="expulsionsPage"
-      class="page"
-    >
-
-      <div class="section-heading">
-
+      <div class="heading">
         <div>
-
-          <p class="eyebrow">
-            SERIOUS DISCIPLINARY ACTION
-          </p>
-
-          <h1>
-            Expulsions
-          </h1>
-
-          <p>
-            Expulsion records.
-          </p>
-
+          <p class="eyebrow">SERIOUS DISCIPLINARY ACTION</p>
+          <h1>Expulsions</h1>
+          <p>Expulsion records.</p>
         </div>
 
-
-        <button
-          id="addExpulsionButton"
-          class="danger-button admin-only"
-        >
+        <button class="btn btn-danger admin-only"
+          onclick="openRecordModal('expulsion')">
           + Add Expulsion
         </button>
-
       </div>
 
-
-      <div
-        id="expulsionsList"
-        class="records-list"
-      ></div>
+      <div id="expulsionsList" class="records"></div>
 
     </section>
 
 
+    <!-- SCHOOL ROLL -->
+    <section id="school-rollPage" class="page">
 
-    <!-- =================================================
-         SCHOOL ROLL
-    ================================================== -->
-
-    <section
-      id="school-rollPage"
-      class="page"
-    >
-
-      <div class="section-heading">
-
+      <div class="heading">
         <div>
-
-          <p class="eyebrow">
-            ATTENDANCE
-          </p>
-
-          <h1>
-            School Roll
-          </h1>
-
-          <p>
-            Mark student attendance.
-          </p>
-
+          <p class="eyebrow">ATTENDANCE</p>
+          <h1>School Roll</h1>
+          <p>Mark student attendance.</p>
         </div>
 
-
-        <button
-          class="primary-button admin-teacher"
-          onclick="saveSchoolRoll()"
-        >
+        <button class="btn btn-primary staff-action"
+          onclick="saveSchoolRoll()">
           Save Roll
         </button>
-
       </div>
 
-
-      <div class="roll-date-bar">
-
-        <label>
-          Date
-        </label>
-
-        <input
-          type="date"
-          id="schoolRollDate"
-        >
-
+      <div class="toolbar">
+        <input type="date" id="schoolDate" style="max-width:190px">
       </div>
 
-
-      <div
-        id="schoolRollList"
-        class="roll-list"
-      ></div>
+      <div id="schoolRollList" class="roll-card"></div>
 
     </section>
 
 
+    <!-- DETENTION ROLL -->
+    <section id="detention-rollPage" class="page">
 
-    <!-- =================================================
-         DETENTION ROLL
-    ================================================== -->
-
-    <section
-      id="detention-rollPage"
-      class="page"
-    >
-
-      <div class="section-heading">
-
+      <div class="heading">
         <div>
-
-          <p class="eyebrow">
-            DETENTION ATTENDANCE
-          </p>
-
-          <h1>
-            Detention Roll
-          </h1>
-
+          <p class="eyebrow">DETENTION ATTENDANCE</p>
+          <h1>Detention Roll</h1>
           <p>
-            Mark attendance for scheduled detentions.
+            Present students automatically complete their detention.
           </p>
-
         </div>
 
-
-        <button
-          class="primary-button admin-teacher"
-          onclick="saveDetentionRoll()"
-        >
+        <button class="btn btn-primary staff-action"
+          onclick="saveDetentionRoll()">
           Save Detention Roll
         </button>
-
       </div>
 
-
-      <div
-        id="detentionRollList"
-        class="roll-list"
-      ></div>
+      <div id="detentionRollList" class="roll-card"></div>
 
     </section>
 
 
+    <!-- PEOPLE -->
+    <section id="peoplePage" class="page">
 
-    <!-- =================================================
-         STUDENTS
-    ================================================== -->
-
-    <section
-      id="studentsPage"
-      class="page"
-    >
-
-      <div class="section-heading">
-
+      <div class="heading">
         <div>
-
-          <p class="eyebrow">
-            STUDENT DIRECTORY
-          </p>
-
-          <h1>
-            Students
-          </h1>
-
-          <p>
-            Search students and open their profiles.
-          </p>
-
+          <p class="eyebrow">ACCOUNT MANAGEMENT</p>
+          <h1>People</h1>
+          <p>Create teachers, students and administrators.</p>
         </div>
 
+        <button class="btn btn-primary"
+          onclick="openPersonModal()">
+          + Create Person
+        </button>
       </div>
 
-
-      <div class="search-box">
-
-        <input
-          id="studentSearch"
-          type="text"
-          placeholder="Search students..."
-        >
-
+      <div class="toolbar">
+        <input class="search" id="peopleSearch" placeholder="Search people...">
       </div>
 
-
-      <div
-        id="studentsGrid"
-        class="students-grid"
-      ></div>
+      <div id="peopleGrid" class="people-grid"></div>
 
     </section>
 
 
+    <!-- STUDENTS -->
+    <section id="studentsPage" class="page">
 
-    <!-- =================================================
-         PROFILE
-    ================================================== -->
+      <div class="heading">
+        <div>
+          <p class="eyebrow">STUDENT DIRECTORY</p>
+          <h1>Students</h1>
+          <p>Search students and open their full portals.</p>
+        </div>
+      </div>
 
-    <section
-      id="profilePage"
-      class="page"
-    >
+      <div class="toolbar">
+        <input class="search" id="studentSearch" placeholder="Search students...">
+      </div>
 
-      <button
-        id="backToStudents"
-        class="back-button"
-      >
-        ← Back to Students
+      <div id="studentsGrid" class="people-grid"></div>
+
+    </section>
+
+
+    <!-- PROFILE -->
+    <section id="profilePage" class="page">
+
+      <button class="btn btn-soft" onclick="goBackToStudents()" style="margin-bottom:15px">
+        ← Back
       </button>
-
 
       <div id="profileContent"></div>
 
     </section>
 
 
+    <!-- SETTINGS -->
+    <section id="settingsPage" class="page">
+
+      <div class="heading">
+        <div>
+          <p class="eyebrow">SYSTEM</p>
+          <h1>Settings</h1>
+          <p>Configure the behaviour system.</p>
+        </div>
+      </div>
+
+      <div class="setting">
+
+        <div class="switch">
+
+          <div>
+            <h3>Automatic Negative Incident Detention</h3>
+            <p>
+              Automatically schedule a detention when a negative incident
+              is created.
+            </p>
+          </div>
+
+          <button id="toggleIncidentDetention"
+            class="toggle"
+            onclick="toggleSetting('incidentDetention')">
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="setting">
+
+        <div class="switch">
+
+          <div>
+            <h3>Five Demerit Point Detention</h3>
+            <p>
+              Automatically create a detention when a student's
+              total demerit points reach five.
+            </p>
+          </div>
+
+          <button id="toggleDemeritDetention"
+            class="toggle"
+            onclick="toggleSetting('demeritDetention')">
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="setting">
+
+        <h3>Data</h3>
+
+        <p>
+          Export the portal data for backup or reset the local prototype.
+        </p>
+
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-soft" onclick="exportData()">
+            Export Data
+          </button>
+
+          <button class="btn btn-danger" onclick="resetAllData()">
+            Reset Everything
+          </button>
+        </div>
+
+      </div>
+
+    </section>
+
   </main>
-
 </div>
-
 
 
 <!-- =====================================================
      RECORD MODAL
-===================================================== -->
+====================================================== -->
 
-<div
-  id="recordModal"
-  class="modal hidden"
->
+<div id="recordModal" class="modal hidden">
 
   <div class="modal-card">
 
-    <button
-      id="closeModal"
-      class="close-button"
-    >
-      ×
-    </button>
+    <button class="close" onclick="closeModal('recordModal')">×</button>
 
-
-    <p
-      class="eyebrow"
-      id="modalEyebrow"
-    >
-      NEW RECORD
-    </p>
-
-
-    <h2 id="modalTitle">
-      Add Record
-    </h2>
-
+    <p id="recordModalEyebrow" class="eyebrow">NEW RECORD</p>
+    <h2 id="recordModalTitle">Add Record</h2>
+    <p id="recordModalSub" class="modal-sub"></p>
 
     <form id="recordForm">
 
+      <div class="form-grid">
 
-      <label>
-        Students
-      </label>
+        <div class="span2">
 
+          <label>Student</label>
 
-      <p class="form-help">
-        Hold Ctrl/Cmd to select multiple students.
-      </p>
+          <select id="recordStudent" required>
+          </select>
 
-
-      <select
-        id="recordStudent"
-        multiple
-        required
-        size="7"
-      ></select>
+        </div>
 
 
-      <label>
-        Reason / Details
-      </label>
+        <div id="recordCategoryWrap" class="span2">
+
+          <label>Category</label>
+
+          <div id="recordCategories" class="category-grid"></div>
+
+          <input type="hidden" id="recordCategory">
+
+        </div>
 
 
-      <input
-        id="recordReason"
-        type="text"
-        placeholder="Enter details..."
-        required
-      >
+        <div class="span2">
+
+          <label>Reason / Details</label>
+
+          <textarea id="recordReason"
+            placeholder="Describe what happened..."
+            required></textarea>
+
+        </div>
 
 
-      <div id="pointsGroup">
+        <div id="pointsWrap">
 
-        <label>
-          Points
-        </label>
+          <label>Points</label>
 
-        <input
-          id="recordPoints"
-          type="number"
-          min="1"
-          value="1"
-        >
+          <input id="recordPoints"
+            type="number"
+            min="1"
+            value="1">
+
+        </div>
+
+
+        <div>
+
+          <label>Date</label>
+
+          <input id="recordDate"
+            type="date"
+            required>
+
+        </div>
+
+
+        <div id="detentionTimeWrap">
+
+          <label>Detention Time</label>
+
+          <input id="detentionTime"
+            type="time"
+            value="15:30">
+
+        </div>
+
+
+        <div id="detentionLocationWrap">
+
+          <label>Location</label>
+
+          <input id="detentionLocation"
+            placeholder="e.g. Room 4">
+
+        </div>
 
       </div>
 
-
-      <label>
-        Date
-      </label>
-
-
-      <input
-        id="recordDate"
-        type="date"
-        required
-      >
-
-
-      <button
-        type="submit"
-        class="primary-button full-width"
-      >
+      <button class="btn btn-primary full"
+        style="margin-top:18px">
         Create Record
       </button>
-
 
     </form>
 
   </div>
-
 </div>
 
 
+<!-- =====================================================
+     PERSON MODAL
+====================================================== -->
+
+<div id="personModal" class="modal hidden">
+
+  <div class="modal-card">
+
+    <button class="close" onclick="closeModal('personModal')">×</button>
+
+    <p class="eyebrow">ACCOUNT MANAGEMENT</p>
+    <h2>Create Person</h2>
+    <p class="modal-sub">
+      Create a teacher, student or administrator.
+    </p>
+
+    <form id="personForm">
+
+      <label>Full Name</label>
+      <input id="personName" required placeholder="e.g. Alex Smith">
+
+      <label>Username</label>
+      <input id="personUsername" required placeholder="e.g. alex.smith">
+
+      <label>Password</label>
+      <input id="personPassword" required type="password">
+
+      <label>Role</label>
+      <select id="personRole">
+        <option value="Student">Student</option>
+        <option value="Teacher">Teacher</option>
+        <option value="Admin">Admin</option>
+      </select>
+
+      <label>Year / Class</label>
+      <input id="personClass" placeholder="e.g. Year 8 / 8A">
+
+      <button class="btn btn-primary full" style="margin-top:18px">
+        Create Person
+      </button>
+
+      <p id="personError" class="error"></p>
+
+    </form>
+
+  </div>
+</div>
+
 
 <script>
+/* =========================================================
+   ALOHA SCHOOL OF ANGELS
+   FULL LOCAL PROTOTYPE
+========================================================= */
 
 
 /* =========================================================
-   USERS
+   CONSTANTS
 ========================================================= */
 
-const users = [
+const STORAGE_KEY = "aloha_school_of_angels_v3";
 
-  {
-    username: "Chase",
-    password: "Hmaw4357",
-    role: "Admin"
-  },
-
-  {
-    username: "Alexis",
-    password: "Password",
-    role: "Student"
-  },
-
-  {
-    username: "Ela",
-    password: "Password1",
-    role: "Student"
-  },
-
-  {
-    username: "Rebecca",
-    password: "Password2",
-    role: "Student"
-  },
-
-  {
-    username: "Jonny",
-    password: "Password3",
-    role: "Student"
-  },
-
-  {
-    username: "Benjamin",
-    password: "Password4",
-    role: "Student"
-  },
-
-  {
-    username: "Asher",
-    password: "Love",
-    role: "Student"
-  },
-
-  {
-    username: "Teacher",
-    password: "Teacher123",
-    role: "Teacher"
-  }
-
+const MERIT_CATEGORIES = [
+  "STRIVE",
+  "SERVE",
+  "ENCOURAGE",
+  "THINK",
+  "OTHER"
 ];
+
+const BEHAVIOUR_CATEGORIES = [
+  "UNIFORM",
+  "PREPARATION",
+  "PLAYGROUND",
+  "IN-CLASS",
+  "OTHER"
+];
+
+const RECORD_NAMES = {
+  merit:"Merit",
+  demerit:"Demerit",
+  "negative-incident":"Negative Incident",
+  detention:"Detention",
+  suspension:"Suspension",
+  expulsion:"Expulsion"
+};
 
 
 /* =========================================================
    STATE
 ========================================================= */
 
-let records = [];
-
-let schoolRolls = [];
-
-let detentionRolls = [];
-
-let nextRecordId = 1;
+let db = loadDatabase();
 
 let currentUser = null;
 
+let currentPage = "dashboard";
+
 let currentRecordType = "merit";
 
-let openedProfile = null;
+let currentDetentionFilter = "all";
+
+let selectedProfile = null;
+
+let selectedCategory = "";
 
 
 /* =========================================================
-   DOM
+   DATABASE
 ========================================================= */
 
-const loginPage =
-  document.getElementById("loginPage");
+function blankDatabase(){
 
-const app =
-  document.getElementById("app");
+  return {
 
-const loginForm =
-  document.getElementById("loginForm");
+    users:[],
 
-const loginError =
-  document.getElementById("loginError");
+    records:[],
 
-const pageTitle =
-  document.getElementById("pageTitle");
+    schoolRolls:[],
 
-const dashboardContent =
-  document.getElementById(
-    "dashboardContent"
+    detentionRolls:[],
+
+    nextId:1,
+
+    settings:{
+      incidentDetention:true,
+      demeritDetention:true
+    }
+
+  };
+
+}
+
+
+function loadDatabase(){
+
+  try{
+
+    const saved =
+      localStorage.getItem(STORAGE_KEY);
+
+    if(!saved)
+      return blankDatabase();
+
+    const parsed =
+      JSON.parse(saved);
+
+    return {
+      ...blankDatabase(),
+      ...parsed,
+      settings:{
+        ...blankDatabase().settings,
+        ...(parsed.settings || {})
+      }
+    };
+
+  }catch(error){
+
+    console.error(error);
+
+    return blankDatabase();
+
+  }
+
+}
+
+
+function saveDatabase(){
+
+  localStorage.setItem(
+    STORAGE_KEY,
+    JSON.stringify(db)
   );
 
-const meritsList =
-  document.getElementById("meritsList");
+}
 
-const demeritsList =
-  document.getElementById("demeritsList");
 
-const negativeIncidentsList =
-  document.getElementById(
-    "negativeIncidentsList"
-  );
+/* =========================================================
+   ELEMENTS
+========================================================= */
 
-const detentionsList =
-  document.getElementById(
-    "detentionsList"
-  );
+const $ = id =>
+  document.getElementById(id);
 
-const suspensionsList =
-  document.getElementById(
-    "suspensionsList"
-  );
 
-const expulsionsList =
-  document.getElementById(
-    "expulsionsList"
-  );
+/* =========================================================
+   FIRST RUN
+========================================================= */
 
-const studentsGrid =
-  document.getElementById(
-    "studentsGrid"
-  );
+function updateFirstRun(){
 
-const studentSearch =
-  document.getElementById(
-    "studentSearch"
-  );
+  const firstRun =
+    db.users.length === 0;
 
-const profileContent =
-  document.getElementById(
-    "profileContent"
-  );
+  $("setupNotice")
+    .classList.toggle(
+      "hidden",
+      !firstRun
+    );
 
-const recordModal =
-  document.getElementById(
-    "recordModal"
-  );
+  $("setupFields")
+    .classList.toggle(
+      "hidden",
+      !firstRun
+    );
 
-const recordForm =
-  document.getElementById(
-    "recordForm"
-  );
+  $("confirmPasswordGroup")
+    .classList.toggle(
+      "hidden",
+      !firstRun
+    );
 
-const recordStudent =
-  document.getElementById(
-    "recordStudent"
-  );
+  $("loginButton").textContent =
+    firstRun
+      ? "Create School Admin"
+      : "Sign In";
 
-const recordReason =
-  document.getElementById(
-    "recordReason"
-  );
+  $("setupName").required =
+    firstRun;
 
-const recordPoints =
-  document.getElementById(
-    "recordPoints"
-  );
+  $("confirmPassword").required =
+    firstRun;
 
-const recordDate =
-  document.getElementById(
-    "recordDate"
-  );
+}
 
-const pointsGroup =
-  document.getElementById(
-    "pointsGroup"
-  );
 
-const modalTitle =
-  document.getElementById(
-    "modalTitle"
-  );
-
-const modalEyebrow =
-  document.getElementById(
-    "modalEyebrow"
-  );
+updateFirstRun();
 
 
 /* =========================================================
    LOGIN
 ========================================================= */
 
-loginForm.addEventListener(
+$("loginForm").addEventListener(
   "submit",
   event => {
 
     event.preventDefault();
 
+    $("loginError").textContent = "";
+
     const username =
-      document
-        .getElementById("username")
+      $("loginUsername")
         .value
         .trim();
 
     const password =
-      document
-        .getElementById("password")
+      $("loginPassword")
         .value;
+
+    const firstRun =
+      db.users.length === 0;
+
+
+    if(firstRun){
+
+      const name =
+        $("setupName")
+          .value
+          .trim();
+
+      const confirm =
+        $("confirmPassword")
+          .value;
+
+
+      if(!name){
+
+        $("loginError").textContent =
+          "Enter the administrator name.";
+
+        return;
+
+      }
+
+
+      if(password.length < 4){
+
+        $("loginError").textContent =
+          "Password must be at least 4 characters.";
+
+        return;
+
+      }
+
+
+      if(password !== confirm){
+
+        $("loginError").textContent =
+          "Passwords do not match.";
+
+        return;
+
+      }
+
+
+      if(!username){
+
+        $("loginError").textContent =
+          "Enter an administrator username.";
+
+        return;
+
+      }
+
+
+      const admin = {
+
+        id:db.nextId++,
+
+        name,
+
+        username,
+
+        password,
+
+        role:"Admin",
+
+        className:"",
+
+        active:true,
+
+        createdAt:new Date().toISOString()
+
+      };
+
+
+      db.users.push(admin);
+
+      saveDatabase();
+
+      currentUser = admin;
+
+      enterApp();
+
+      return;
+
+    }
 
 
     const user =
-      users.find(
-        account =>
-          account.username.toLowerCase() ===
+      db.users.find(
+        u =>
+          u.active !== false &&
+          u.username.toLowerCase() ===
             username.toLowerCase() &&
-          account.password ===
-            password
+          u.password === password
       );
 
 
-    if (!user) {
+    if(!user){
 
-      loginError.textContent =
+      $("loginError").textContent =
         "Incorrect username or password.";
 
       return;
@@ -3099,101 +1348,98 @@ loginForm.addEventListener(
 
     currentUser = user;
 
-    loginError.textContent = "";
-
-    loginPage.classList.add("hidden");
-
-    app.classList.remove("hidden");
-
-    setupUser();
-
-    showPage("dashboard");
+    enterApp();
 
   }
 );
 
 
 /* =========================================================
-   SETUP USER
+   ENTER APP
 ========================================================= */
 
-function setupUser() {
+function enterApp(){
+
+  $("loginPage")
+    .classList.add("hidden");
+
+  $("app")
+    .classList.remove("hidden");
+
+  setupUser();
+
+  showPage(
+    currentUser.role === "Student"
+      ? "dashboard"
+      : "dashboard"
+  );
+
+}
+
+
+/* =========================================================
+   USER SETUP
+========================================================= */
+
+function setupUser(){
 
   const initial =
-    currentUser.username
+    currentUser.name
       .charAt(0)
       .toUpperCase();
 
+  $("sideAvatar").textContent =
+    initial;
 
-  document.getElementById(
-    "sidebarName"
-  ).textContent =
-    currentUser.username;
+  $("topAvatar").textContent =
+    initial;
 
+  $("sideName").textContent =
+    currentUser.name;
 
-  document.getElementById(
-    "sidebarRole"
-  ).textContent =
+  $("topName").textContent =
+    currentUser.name;
+
+  $("sideRole").textContent =
+    currentUser.role;
+
+  $("topRole").textContent =
     currentUser.role;
 
 
-  document.getElementById(
-    "topName"
-  ).textContent =
-    currentUser.username;
+  const isStaff =
+    currentUser.role !== "Student";
 
-
-  document.getElementById(
-    "topRole"
-  ).textContent =
-    currentUser.role;
-
-
-  document.getElementById(
-    "sidebarAvatar"
-  ).textContent =
-    initial;
-
-
-  document.getElementById(
-    "topAvatar"
-  ).textContent =
-    initial;
-
-
-  document.getElementById(
-    "studentsNav"
-  ).style.display =
-    currentUser.role === "Student"
-      ? "none"
-      : "";
+  const isAdmin =
+    currentUser.role === "Admin";
 
 
   document
-    .querySelectorAll(
-      ".admin-teacher"
-    )
-    .forEach(button => {
+    .querySelectorAll(".staff-only")
+    .forEach(el => {
 
-      button.style.display =
-        currentUser.role === "Admin" ||
-        currentUser.role === "Teacher"
-          ? ""
-          : "none";
+      el.style.display =
+        isStaff ? "" : "none";
 
     });
 
 
   document
-    .querySelectorAll(
-      ".admin-only"
-    )
-    .forEach(button => {
+    .querySelectorAll(".staff-action")
+    .forEach(el => {
 
-      button.style.display =
-        currentUser.role === "Admin"
-          ? ""
-          : "none";
+      el.style.display =
+        isStaff ? "" : "none";
+
+    });
+
+
+  document
+    .querySelectorAll(".admin-only")
+    .forEach(el => {
+
+      el.style.display =
+        isAdmin ? "" : "none";
 
     });
 
@@ -3208,7 +1454,7 @@ function setupUser() {
 ========================================================= */
 
 document
-  .querySelectorAll(".nav-item")
+  .querySelectorAll(".nav")
   .forEach(button => {
 
     button.addEventListener(
@@ -3225,108 +1471,171 @@ document
   });
 
 
-function showPage(page) {
+const PAGE_TITLES = {
+
+  dashboard:"Dashboard",
+  merits:"Merits",
+  demerits:"Demerits",
+  incidents:"Negative Incidents",
+  detentions:"Detentions",
+  suspensions:"Suspensions",
+  expulsions:"Expulsions",
+  "school-roll":"School Roll",
+  "detention-roll":"Detention Roll",
+  people:"People",
+  students:"Students",
+  profile:"Student Profile",
+  settings:"Settings"
+
+};
+
+
+function showPage(page){
+
+  if(
+    currentUser.role === "Student" &&
+    ["people","students","settings"]
+      .includes(page)
+  ){
+
+    page = "dashboard";
+
+  }
+
+
+  currentPage = page;
+
 
   document
     .querySelectorAll(".page")
     .forEach(section => {
 
       section.classList.remove(
-        "active-page"
-      );
-
-    });
-
-
-  const target =
-    document.getElementById(
-      `${page}Page`
-    );
-
-
-  if (!target) return;
-
-
-  target.classList.add(
-    "active-page"
-  );
-
-
-  document
-    .querySelectorAll(".nav-item")
-    .forEach(button => {
-
-      button.classList.remove(
         "active"
       );
 
     });
 
 
-  const nav =
-    document.querySelector(
-      `.nav-item[data-page="${page}"]`
-    );
+  const target =
+    $(page + "Page");
 
 
-  if (nav) {
-
-    nav.classList.add(
-      "active"
-    );
-
-  }
+  if(!target)
+    return;
 
 
-  const titles = {
-
-    dashboard: "Dashboard",
-
-    merits: "Merits",
-
-    demerits: "Demerits",
-
-    "negative-incidents":
-      "Negative Incidents",
-
-    detentions: "Detentions",
-
-    suspensions: "Suspensions",
-
-    expulsions: "Expulsions",
-
-    "school-roll":
-      "School Roll",
-
-    "detention-roll":
-      "Detention Roll",
-
-    students: "Students",
-
-    profile: "Student Profile"
-
-  };
+  target.classList.add("active");
 
 
-  pageTitle.textContent =
-    titles[page] ||
+  document
+    .querySelectorAll(".nav")
+    .forEach(nav => {
+
+      nav.classList.toggle(
+        "active",
+        nav.dataset.page === page
+      );
+
+    });
+
+
+  $("pageTitle").textContent =
+    PAGE_TITLES[page] ||
     "Dashboard";
 
 
-  if (
-    page === "school-roll"
-  ) {
+  renderPage(page);
 
-    renderSchoolRoll();
-
-  }
+}
 
 
-  if (
-    page === "detention-roll"
-  ) {
+/* =========================================================
+   PAGE RENDER
+========================================================= */
 
-    renderDetentionRoll();
+function renderPage(page){
+
+  switch(page){
+
+    case "dashboard":
+      renderDashboard();
+      break;
+
+    case "merits":
+      renderRecordPage(
+        "merit",
+        $("meritsList")
+      );
+      renderCategoryBar(
+        $("meritCategories"),
+        MERIT_CATEGORIES
+      );
+      break;
+
+    case "demerits":
+      renderRecordPage(
+        "demerit",
+        $("demeritsList")
+      );
+      renderCategoryBar(
+        $("demeritCategories"),
+        BEHAVIOUR_CATEGORIES
+      );
+      break;
+
+    case "incidents":
+      renderRecordPage(
+        "negative-incident",
+        $("incidentsList")
+      );
+      renderCategoryBar(
+        $("incidentCategories"),
+        BEHAVIOUR_CATEGORIES
+      );
+      break;
+
+    case "detentions":
+      renderDetentions();
+      break;
+
+    case "suspensions":
+      renderRecordPage(
+        "suspension",
+        $("suspensionsList")
+      );
+      break;
+
+    case "expulsions":
+      renderRecordPage(
+        "expulsion",
+        $("expulsionsList")
+      );
+      break;
+
+    case "school-roll":
+      renderSchoolRoll();
+      break;
+
+    case "detention-roll":
+      renderDetentionRoll();
+      break;
+
+    case "people":
+      renderPeople();
+      break;
+
+    case "students":
+      renderStudents();
+      break;
+
+    case "profile":
+      renderProfile();
+      break;
+
+    case "settings":
+      renderSettings();
+      break;
 
   }
 
@@ -3337,70 +1646,89 @@ function showPage(page) {
    DASHBOARD
 ========================================================= */
 
-function renderDashboard() {
+function renderDashboard(){
 
-  if (
-    currentUser.role ===
-    "Student"
-  ) {
-
-    renderStudentDashboard();
-
-    return;
-
-  }
+  const isStudent =
+    currentUser.role === "Student";
 
 
-  renderStaffDashboard();
+  const visible =
+    getVisibleRecords();
 
-}
-
-
-function renderStaffDashboard() {
 
   const students =
-    users.filter(
-      user =>
-        user.role ===
-        "Student"
+    db.users.filter(
+      u => u.role === "Student"
     );
 
 
   const merits =
-    records.filter(
-      record =>
-        record.type ===
-        "merit"
-    ).length;
+    visible.filter(
+      r => r.type === "merit"
+    );
 
 
   const demerits =
-    records.filter(
-      record =>
-        record.type ===
-        "demerit"
-    ).length;
+    visible.filter(
+      r => r.type === "demerit"
+    );
 
 
   const incidents =
-    records.filter(
-      record =>
-        record.type ===
+    visible.filter(
+      r =>
+        r.type ===
         "negative-incident"
-    ).length;
+    );
 
 
   const detentions =
-    records.filter(
-      record =>
-        record.type ===
+    visible.filter(
+      r =>
+        r.type ===
         "detention"
+    );
+
+
+  const meritPoints =
+    merits.reduce(
+      (sum,r) =>
+        sum + Number(r.points || 0),
+      0
+    );
+
+
+  const demeritPoints =
+    demerits.reduce(
+      (sum,r) =>
+        sum + Number(r.points || 0),
+      0
+    );
+
+
+  const completedDetentions =
+    detentions.filter(
+      d =>
+        d.status === "completed"
     ).length;
 
 
-  dashboardContent.innerHTML = `
+  const activeDetentions =
+    detentions.filter(
+      d =>
+        d.status !== "completed"
+    ).length;
 
-    <div class="dashboard-welcome">
+
+  const name =
+    escapeHTML(
+      currentUser.name
+    );
+
+
+  $("dashboardPage").innerHTML = `
+
+    <div class="hero">
 
       <div>
 
@@ -3409,145 +1737,204 @@ function renderStaffDashboard() {
         </p>
 
         <h1>
-          Welcome back,
-          ${escapeHTML(
-            currentUser.username
-          )}.
+          Welcome back, ${name}.
         </h1>
 
         <p>
-          Manage student records,
-          attendance and behaviour.
+          ${
+            isStudent
+              ? "View your school behaviour, attendance and detention history."
+              : "Manage students, behaviour, attendance and school records."
+          }
         </p>
 
       </div>
 
-      <div class="dashboard-icon">
-        ✦
-      </div>
+      <div class="hero-icon">✦</div>
 
     </div>
 
 
-    <div class="stats-grid">
+    <div class="stats">
 
-      ${statCard(
-        "blue",
-        "♙",
-        "Students",
-        students.length
-      )}
+      ${
+        isStudent
 
-      ${statCard(
-        "green",
-        "★",
-        "Merits",
-        merits
-      )}
+          ? statCard(
+              "green",
+              "★",
+              "Merit Points",
+              meritPoints
+            )
 
-      ${statCard(
-        "red",
-        "!",
-        "Demerits",
-        demerits
-      )}
+          : statCard(
+              "blue",
+              "♙",
+              "Students",
+              students.length
+            )
+      }
 
-      ${statCard(
-        "yellow",
-        "⚠",
-        "Incidents",
-        incidents
-      )}
+
+      ${
+        isStudent
+
+          ? statCard(
+              "red",
+              "!",
+              "Demerit Points",
+              demeritPoints
+            )
+
+          : statCard(
+              "green",
+              "★",
+              "Merits",
+              merits.length
+            )
+      }
+
+
+      ${
+        isStudent
+
+          ? statCard(
+              "orange",
+              "⚠",
+              "Incidents",
+              incidents.length
+            )
+
+          : statCard(
+              "red",
+              "!",
+              "Demerits",
+              demerits.length
+            )
+      }
+
+
+      ${
+        isStudent
+
+          ? statCard(
+              "orange",
+              "◷",
+              "Active Detentions",
+              activeDetentions
+            )
+
+          : statCard(
+              "orange",
+              "◷",
+              "Active Detentions",
+              activeDetentions
+            )
+      }
 
     </div>
 
 
-    <div class="dashboard-grid">
+    <div class="grid2">
 
       <div class="panel">
 
-        <div class="panel-header">
+        <div class="panel-head">
 
           <h3>
-            Recent Activity
+            ${
+              isStudent
+                ? "My Recent Activity"
+                : "Recent School Activity"
+            }
           </h3>
 
           <p>
-            Latest school records
+            Latest records
           </p>
 
         </div>
 
-        ${renderRecentActivitiesHTML()}
+        ${recentActivityHTML(visible)}
 
       </div>
 
 
       <div class="panel">
 
-        <div class="panel-header">
+        <div class="panel-head">
 
-          <h3>
-            Quick Actions
-          </h3>
+          <h3>Quick Actions</h3>
 
           <p>
-            Common staff actions
+            ${
+              isStudent
+                ? "Your portal"
+                : "Common staff actions"
+            }
           </p>
 
         </div>
 
 
-        <div class="teacher-actions">
+        ${
+          isStudent
 
-          <button
-            class="teacher-action"
-            onclick="openRecordModal('merit')"
-          >
-            ★ Add Merit
-          </button>
+            ? `
 
+              <div style="padding:17px">
 
-          <button
-            class="teacher-action"
-            onclick="openRecordModal('demerit')"
-          >
-            ! Add Demerit
-          </button>
+                <div style="margin-bottom:13px">
+                  <span class="badge purple">
+                    ${completedDetentions}
+                    completed detention${completedDetentions===1?"":"s"}
+                  </span>
+                </div>
 
+                <button
+                  class="btn btn-soft full"
+                  onclick="showPage('detentions')"
+                >
+                  View My Detentions
+                </button>
 
-          <button
-            class="teacher-action"
-            onclick="openRecordModal('negative-incident')"
-          >
-            ⚠ Negative Incident
-          </button>
+              </div>
 
+            `
 
-          <button
-            class="teacher-action"
-            onclick="showPage('students')"
-          >
-            ♙ Students
-          </button>
+            : `
 
+              <div class="quick">
 
-          <button
-            class="teacher-action"
-            onclick="showPage('school-roll')"
-          >
-            ✓ School Roll
-          </button>
+                <button onclick="openRecordModal('merit')">
+                  ★ Add Merit
+                </button>
 
+                <button onclick="openRecordModal('demerit')">
+                  ! Add Demerit
+                </button>
 
-          <button
-            class="teacher-action"
-            onclick="showPage('detention-roll')"
-          >
-            ◷ Detention Roll
-          </button>
+                <button onclick="openRecordModal('negative-incident')">
+                  ⚠ Incident
+                </button>
 
-        </div>
+                <button onclick="openRecordModal('detention')">
+                  ◷ Detention
+                </button>
+
+                <button onclick="showPage('school-roll')">
+                  ✓ School Roll
+                </button>
+
+                <button onclick="showPage('detention-roll')">
+                  ◷ Detention Roll
+                </button>
+
+              </div>
+
+            `
+
+        }
 
       </div>
 
@@ -3557,220 +1944,19 @@ function renderStaffDashboard() {
 
 }
 
-
-/* =========================================================
-   STUDENT DASHBOARD
-========================================================= */
-
-function renderStudentDashboard() {
-
-  const mine =
-    getUserRecords(
-      currentUser.username
-    );
-
-
-  const merits =
-    mine.filter(
-      r =>
-        r.type ===
-        "merit"
-    );
-
-
-  const demerits =
-    mine.filter(
-      r =>
-        r.type ===
-        "demerit"
-    );
-
-
-  const incidents =
-    mine.filter(
-      r =>
-        r.type ===
-        "negative-incident"
-    );
-
-
-  const meritPoints =
-    merits.reduce(
-      (total, record) =>
-        total +
-        Number(
-          record.points || 0
-        ),
-      0
-    );
-
-
-  const demeritPoints =
-    demerits.reduce(
-      (total, record) =>
-        total +
-        Number(
-          record.points || 0
-        ),
-      0
-    );
-
-
-  dashboardContent.innerHTML = `
-
-    <div class="dashboard-welcome">
-
-      <div>
-
-        <p class="eyebrow">
-          STUDENT PORTAL
-        </p>
-
-        <h1>
-          Welcome,
-          ${escapeHTML(
-            currentUser.username
-          )}.
-        </h1>
-
-        <p>
-          View your school records and attendance.
-        </p>
-
-      </div>
-
-      <div class="dashboard-icon">
-        ✦
-      </div>
-
-    </div>
-
-
-    <div class="stats-grid">
-
-      ${statCard(
-        "green",
-        "★",
-        "Merit Points",
-        meritPoints
-      )}
-
-      ${statCard(
-        "red",
-        "!",
-        "Demerit Points",
-        demeritPoints
-      )}
-
-      ${statCard(
-        "yellow",
-        "⚠",
-        "Incidents",
-        incidents.length
-      )}
-
-      ${statCard(
-        "blue",
-        "◷",
-        "Detentions",
-        mine.filter(
-          r =>
-            r.type ===
-            "detention"
-        ).length
-      )}
-
-    </div>
-
-
-    <div class="dashboard-grid">
-
-      <div class="panel">
-
-        <div class="panel-header">
-
-          <h3>
-            My Recent Activity
-          </h3>
-
-          <p>
-            Your latest school records
-          </p>
-
-        </div>
-
-        ${renderRecentActivitiesHTML(
-          currentUser.username
-        )}
-
-      </div>
-
-
-      <div class="panel">
-
-        <div class="panel-header">
-
-          <h3>
-            My Record
-          </h3>
-
-          <p>
-            Current behaviour summary
-          </p>
-
-        </div>
-
-
-        <div style="padding:18px">
-
-          <p>
-            Merit points:
-            <strong>
-              ${meritPoints}
-            </strong>
-          </p>
-
-          <p>
-            Demerit points:
-            <strong>
-              ${demeritPoints}
-            </strong>
-          </p>
-
-          <p>
-            Negative incidents:
-            <strong>
-              ${incidents.length}
-            </strong>
-          </p>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-
-/* =========================================================
-   STAT CARD
-========================================================= */
 
 function statCard(
   colour,
   icon,
   label,
   value
-) {
+){
 
   return `
 
-    <div class="stat-card stat-${colour}">
+    <div class="stat ${colour}">
 
-      <div class="stat-card-icon">
+      <div class="stat-icon">
         ${icon}
       </div>
 
@@ -3779,7 +1965,7 @@ function statCard(
       </span>
 
       <strong>
-        ${escapeHTML(value)}
+        ${escapeHTML(String(value))}
       </strong>
 
     </div>
@@ -3790,41 +1976,133 @@ function statCard(
 
 
 /* =========================================================
-   RECORD VISIBILITY
+   RECENT ACTIVITY
 ========================================================= */
 
-function getVisibleRecords() {
+function recentActivityHTML(
+  records
+){
 
-  if (
-    currentUser.role ===
-      "Admin" ||
-    currentUser.role ===
-      "Teacher"
-  ) {
+  const list =
+    records
+      .slice()
+      .sort(
+        (a,b) =>
+          new Date(b.createdAt || b.date) -
+          new Date(a.createdAt || a.date)
+      )
+      .slice(0,8);
 
-    return records;
+
+  if(!list.length){
+
+    return `
+      <div class="empty">
+        No records yet.
+      </div>
+    `;
 
   }
 
 
-  return records.filter(
-    record =>
-      record.username ===
-      currentUser.username
-  );
+  return list
+    .map(r => {
+
+      const cls =
+        recordClass(r.type);
+
+      return `
+
+        <div class="activity">
+
+          <div class="activity-icon ${cls}">
+            ${recordIcon(r.type)}
+          </div>
+
+          <div>
+
+            <strong>
+              ${escapeHTML(r.reason)}
+            </strong>
+
+            <small>
+
+              ${
+                currentUser.role === "Student"
+                  ? ""
+                  : escapeHTML(
+                      getUserName(r.userId)
+                    ) + " · "
+              }
+
+              ${escapeHTML(
+                RECORD_NAMES[r.type] ||
+                r.type
+              )}
+
+              ·
+
+              ${formatDate(r.date)}
+
+            </small>
+
+          </div>
+
+        </div>
+
+      `;
+
+    })
+    .join("");
 
 }
 
 
-function getUserRecords(
-  username
-) {
+/* =========================================================
+   CATEGORY BAR
+========================================================= */
 
-  return records.filter(
-    record =>
-      record.username ===
-      username
-  );
+function renderCategoryBar(
+  container,
+  categories
+){
+
+  if(!container)
+    return;
+
+
+  container.innerHTML =
+    categories
+      .map(
+        category => `
+
+          <button
+            class="category-option ${
+              selectedCategory === category
+                ? "selected"
+                : ""
+            }"
+            onclick="filterCategory('${escapeJS(category)}')"
+          >
+            ${escapeHTML(category)}
+          </button>
+
+        `
+      )
+      .join("");
+
+}
+
+
+function filterCategory(category){
+
+  selectedCategory =
+    selectedCategory === category
+      ? ""
+      : category;
+
+
+  renderPage(currentPage);
 
 }
 
@@ -3833,84 +2111,38 @@ function getUserRecords(
    RECORD PAGES
 ========================================================= */
 
-function renderRecordPages() {
+function renderRecordPage(
+  type,
+  container
+){
 
-  const visible =
-    getVisibleRecords();
-
-
-  renderTypedRecords(
-    meritsList,
-    visible,
-    "merit"
-  );
-
-
-  renderTypedRecords(
-    demeritsList,
-    visible,
-    "demerit"
-  );
-
-
-  renderTypedRecords(
-    negativeIncidentsList,
-    visible,
-    "negative-incident"
-  );
+  const records =
+    getVisibleRecords()
+      .filter(
+        r =>
+          r.type === type
+      )
+      .filter(
+        r =>
+          !selectedCategory ||
+          r.category ===
+            selectedCategory
+      )
+      .sort(
+        (a,b) =>
+          new Date(b.createdAt || b.date) -
+          new Date(a.createdAt || a.date)
+      );
 
 
-  renderTypedRecords(
-    detentionsList,
-    visible,
-    "detention"
-  );
-
-
-  renderTypedRecords(
-    suspensionsList,
-    visible,
-    "suspension"
-  );
-
-
-  renderTypedRecords(
-    expulsionsList,
-    visible,
-    "expulsion"
-  );
-
-}
-
-
-function renderTypedRecords(
-  container,
-  allRecords,
-  type
-) {
-
-  const list =
-    allRecords.filter(
-      record =>
-        record.type ===
-        type
-    );
-
-
-  if (!list.length) {
+  if(!records.length){
 
     container.innerHTML = `
-
-      <div class="empty-state">
-
-        No ${
-          formatRecordType(
-            type
-          ).toLowerCase()
-        } records yet.
-
+      <div class="empty">
+        No ${escapeHTML(
+          RECORD_NAMES[type].toLowerCase()
+        )} records found.
       </div>
-
     `;
 
     return;
@@ -3919,19 +2151,25 @@ function renderTypedRecords(
 
 
   container.innerHTML =
-    list
-      .slice()
-      .reverse()
+    records
       .map(
-        record =>
-          recordHTML(record)
+        r =>
+          recordHTML(r)
       )
       .join("");
 
 }
 
 
-function recordHTML(record) {
+function recordHTML(record){
+
+  const isStaff =
+    currentUser.role !== "Student";
+
+
+  const cls =
+    recordClass(record.type);
+
 
   const points =
     record.type === "merit" ||
@@ -3944,60 +2182,51 @@ function recordHTML(record) {
 
       <div class="record-left">
 
-        <div
-          class="record-icon ${
-            getActivityClass(
-              record.type
-            )
-          }"
-        >
-          ${getRecordIcon(
-            record.type
-          )}
+        <div class="record-icon ${cls}">
+          ${recordIcon(record.type)}
         </div>
-
 
         <div>
 
           <h4>
-            ${escapeHTML(
-              record.reason
-            )}
+            ${escapeHTML(record.reason)}
           </h4>
-
 
           <p>
 
             ${
-              currentUser.role !==
-              "Student"
-                ? `${escapeHTML(
-                    record.username
-                  )} · `
+              isStaff
+                ? escapeHTML(
+                    getUserName(record.userId)
+                  ) + " · "
                 : ""
             }
 
-            ${formatRecordType(
+            ${escapeHTML(
+              RECORD_NAMES[record.type] ||
               record.type
             )}
 
-            ·
-
-            ${formatDate(
-              record.date
-            )}
-
             ${
-              record.issuedBy
-                ? ` · Issued by ${escapeHTML(
-                    record.issuedBy
-                  )}`
+              record.category
+                ? " · " +
+                  escapeHTML(record.category)
                 : ""
             }
 
+            ·
+
+            ${formatDate(record.date)}
+
             ${
-              record.automatic
-                ? " · Automatic"
+              record.issuedBy
+                ? " · " +
+                  escapeHTML(
+                    "By " +
+                    getUserName(
+                      record.issuedBy
+                    )
+                  )
                 : ""
             }
 
@@ -4008,40 +2237,25 @@ function recordHTML(record) {
       </div>
 
 
-      <div
-        style="
-          display:flex;
-          align-items:center;
-          gap:10px;
-        "
-      >
+      <div class="record-actions">
 
         ${
           points
             ? `
 
-              <div
-                class="
-                  record-points
-                  ${
-                    record.type ===
-                    "merit"
-                      ? "positive"
-                      : "negative"
-                  }
-                "
-              >
+              <span class="points ${
+                record.type === "merit"
+                  ? "pos"
+                  : "neg"
+              }">
 
                 ${
-                  record.type ===
-                  "merit"
+                  record.type === "merit"
                     ? "+"
                     : "-"
-                }
+                }${record.points}
 
-                ${record.points}
-
-              </div>
+              </span>
 
             `
             : ""
@@ -4049,22 +2263,24 @@ function recordHTML(record) {
 
 
         ${
-          currentUser.role ===
-            "Admin" ||
-          currentUser.role ===
-            "Teacher"
+          record.type === "detention"
+            ? detentionBadge(record)
+            : ""
+        }
 
+
+        ${
+          isStaff
             ? `
 
               <button
-                class="record-remove"
-                onclick="removeRecord(${record.id})"
+                class="btn btn-small btn-gray"
+                onclick="deleteRecord(${record.id})"
               >
-                Remove
+                Delete
               </button>
 
             `
-
             : ""
         }
 
@@ -4078,114 +2294,287 @@ function recordHTML(record) {
 
 
 /* =========================================================
-   REMOVE RECORD
+   DETENTIONS
 ========================================================= */
 
-function removeRecord(
-  recordId
-) {
+function renderDetentions(){
 
-  if (
-    currentUser.role !==
-      "Admin" &&
-    currentUser.role !==
-      "Teacher"
-  ) {
+  const list =
+    getVisibleRecords()
+      .filter(
+        r =>
+          r.type === "detention"
+      )
+      .filter(
+        r => {
+
+          if(
+            currentDetentionFilter ===
+            "all"
+          )
+            return true;
+
+          if(
+            currentDetentionFilter ===
+            "completed"
+          )
+            return r.status === "completed";
+
+          if(
+            currentDetentionFilter ===
+            "scheduled"
+          )
+            return r.status === "scheduled";
+
+          if(
+            currentDetentionFilter ===
+            "missed"
+          )
+            return (
+              r.status === "absent" ||
+              r.status === "missed"
+            );
+
+          return true;
+
+        }
+      )
+      .sort(
+        (a,b) =>
+          new Date(b.date) -
+          new Date(a.date)
+      );
+
+
+  if(!list.length){
+
+    $("detentionsList").innerHTML = `
+      <div class="empty">
+        No detentions found.
+      </div>
+    `;
 
     return;
 
   }
 
 
-  const record =
-    records.find(
-      item =>
-        item.id ===
-        recordId
-    );
+  $("detentionsList").innerHTML =
+    list
+      .map(
+        r =>
+          detentionRecordHTML(r)
+      )
+      .join("");
 
 
-  if (!record) return;
+  document
+    .querySelectorAll(
+      ".detention-filter"
+    )
+    .forEach(btn => {
 
-
-  const confirmed =
-    confirm(
-      `Remove this ${formatRecordType(
-        record.type
-      ).toLowerCase()} for ${record.username}?`
-    );
-
-
-  if (!confirmed) return;
-
-
-  /*
-    Remove the selected record.
-  */
-
-  records =
-    records.filter(
-      item =>
-        item.id !==
-        recordId
-    );
-
-
-  /*
-    If this was an automatic detention,
-    also remove its associated detention
-    roll entry.
-  */
-
-  detentionRolls =
-    detentionRolls.filter(
-      roll =>
-        roll.recordId !==
-        recordId
-    );
-
-
-  /*
-    If a negative incident or demerit
-    that caused an automatic detention
-    is removed, remove that automatic
-    detention too.
-  */
-
-  const automaticDetention =
-    records.find(
-      item =>
-        item.type ===
-          "detention" &&
-        item.sourceRecordId ===
-          recordId
-    );
-
-
-  if (automaticDetention) {
-
-    records =
-      records.filter(
-        item =>
-          item.id !==
-          automaticDetention.id
+      btn.classList.toggle(
+        "active",
+        btn.dataset.filter ===
+          currentDetentionFilter
       );
 
-  }
-
-
-  renderEverything();
-
-
-  if (openedProfile) {
-
-    openStudentProfile(
-      openedProfile
-    );
-
-  }
+    });
 
 }
+
+
+function detentionRecordHTML(
+  record
+){
+
+  const staff =
+    currentUser.role !== "Student";
+
+
+  return `
+
+    <div class="record">
+
+      <div class="record-left">
+
+        <div class="record-icon detention">
+          ◷
+        </div>
+
+        <div>
+
+          <h4>
+            ${escapeHTML(record.reason)}
+          </h4>
+
+          <p>
+
+            ${
+              staff
+                ? escapeHTML(
+                    getUserName(record.userId)
+                  ) + " · "
+                : ""
+            }
+
+            ${formatDate(record.date)}
+
+            ${
+              record.time
+                ? " · " +
+                  escapeHTML(record.time)
+                : ""
+            }
+
+            ${
+              record.location
+                ? " · " +
+                  escapeHTML(record.location)
+                : ""
+            }
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="record-actions">
+
+        ${detentionBadge(record)}
+
+
+        ${
+          staff &&
+          record.status !== "completed"
+
+            ? `
+
+              <button
+                class="btn btn-small btn-green"
+                onclick="completeDetention(${record.id},'manual')"
+              >
+                Complete
+              </button>
+
+            `
+
+            : ""
+
+        }
+
+
+        ${
+          staff
+
+            ? `
+
+              <button
+                class="btn btn-small btn-gray"
+                onclick="deleteRecord(${record.id})"
+              >
+                Delete
+              </button>
+
+            `
+
+            : ""
+
+        }
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+function detentionBadge(record){
+
+  if(record.status === "completed"){
+
+    return `
+      <span class="badge green">
+        ✓ COMPLETED
+      </span>
+    `;
+
+  }
+
+
+  if(
+    record.status === "absent" ||
+    record.status === "missed"
+  ){
+
+    return `
+      <span class="badge red">
+        ABSENT
+      </span>
+    `;
+
+  }
+
+
+  if(record.status === "late"){
+
+    return `
+      <span class="badge orange">
+        LATE
+      </span>
+    `;
+
+  }
+
+
+  if(record.status === "excused"){
+
+    return `
+      <span class="badge purple">
+        EXCUSED
+      </span>
+    `;
+
+  }
+
+
+  return `
+    <span class="badge gray">
+      SCHEDULED
+    </span>
+  `;
+
+}
+
+
+/* =========================================================
+   DETENTION FILTER
+========================================================= */
+
+document
+  .querySelectorAll(
+    ".detention-filter"
+  )
+  .forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
+
+        currentDetentionFilter =
+          button.dataset.filter;
+
+        renderDetentions();
+
+      }
+    );
+
+  });
 
 
 /* =========================================================
@@ -4194,52 +2583,51 @@ function removeRecord(
 
 function openRecordModal(
   type,
-  selectedStudent = ""
-) {
+  selectedUserId = null
+){
 
-  if (
-    currentUser.role !==
-      "Admin" &&
-    currentUser.role !==
-      "Teacher"
-  ) {
-
+  if(
+    currentUser.role === "Student"
+  )
     return;
-
-  }
 
 
   currentRecordType =
     type;
 
+  selectedCategory = "";
 
   const students =
-    users.filter(
-      user =>
-        user.role ===
-        "Student"
+    db.users.filter(
+      u =>
+        u.role === "Student" &&
+        u.active !== false
     );
 
 
-  recordStudent.innerHTML =
+  $("recordStudent").innerHTML =
     students
       .map(
         student => `
 
           <option
-            value="${escapeHTML(
-              student.username
-            )}"
+            value="${student.id}"
             ${
-              student.username ===
-              selectedStudent
+              String(student.id) ===
+              String(selectedUserId)
                 ? "selected"
                 : ""
             }
           >
-            ${escapeHTML(
-              student.username
-            )}
+            ${escapeHTML(student.name)}
+            ${
+              student.className
+                ? " — " +
+                  escapeHTML(
+                    student.className
+                  )
+                : ""
+            }
           </option>
 
         `
@@ -4247,30 +2635,17 @@ function openRecordModal(
       .join("");
 
 
-  recordReason.value = "";
+  const titles = {
 
-  recordPoints.value = "1";
+    merit:"Add Merit",
 
-
-  recordDate.value =
-    new Date()
-      .toISOString()
-      .split("T")[0];
-
-
-  const names = {
-
-    merit:
-      "Add Merit",
-
-    demerit:
-      "Add Demerit",
+    demerit:"Add Demerit",
 
     "negative-incident":
       "Add Negative Incident",
 
     detention:
-      "Add Detention",
+      "Schedule Detention",
 
     suspension:
       "Add Suspension",
@@ -4281,47 +2656,148 @@ function openRecordModal(
   };
 
 
-  const subtitles = {
-
-    merit:
-      "POSITIVE RECOGNITION",
-
-    demerit:
-      "BEHAVIOUR RECORD",
-
-    "negative-incident":
-      "NEGATIVE INCIDENT",
-
-    detention:
-      "DISCIPLINE",
-
-    suspension:
-      "SUSPENSION",
-
-    expulsion:
-      "EXPULSION"
-
-  };
+  $("recordModalTitle").textContent =
+    titles[type];
 
 
-  modalTitle.textContent =
-    names[type];
+  $("recordModalEyebrow").textContent =
+    (
+      type === "merit"
+        ? "POSITIVE RECOGNITION"
+        : type === "detention"
+          ? "DETENTION"
+          : "BEHAVIOUR MANAGEMENT"
+    );
 
 
-  modalEyebrow.textContent =
-    subtitles[type];
+  $("recordModalSub").textContent =
+    type === "merit"
+      ? "Choose one of the five merit categories."
+      : (
+          type === "demerit" ||
+          type === "negative-incident"
+        )
+        ? "Choose a behaviour category."
+        : "Create a school record.";
 
 
-  pointsGroup.style.display =
-    type === "merit" ||
-    type === "demerit"
-      ? ""
-      : "none";
+  $("recordReason").value = "";
+
+  $("recordPoints").value = "1";
+
+  $("recordDate").value =
+    today();
 
 
-  recordModal.classList.remove(
-    "hidden"
-  );
+  $("detentionTime").value =
+    "15:30";
+
+  $("detentionLocation").value =
+    "";
+
+
+  const needsCategory =
+    [
+      "merit",
+      "demerit",
+      "negative-incident"
+    ].includes(type);
+
+
+  $("recordCategoryWrap")
+    .style.display =
+      needsCategory
+        ? ""
+        : "none";
+
+
+  $("pointsWrap")
+    .style.display =
+      type === "merit" ||
+      type === "demerit"
+        ? ""
+        : "none";
+
+
+  $("detentionTimeWrap")
+    .style.display =
+      type === "detention"
+        ? ""
+        : "none";
+
+
+  $("detentionLocationWrap")
+    .style.display =
+      type === "detention"
+        ? ""
+        : "none";
+
+
+  const categories =
+    type === "merit"
+      ? MERIT_CATEGORIES
+      : BEHAVIOUR_CATEGORIES;
+
+
+  $("recordCategories").innerHTML =
+    needsCategory
+
+      ? categories
+          .map(
+            category => `
+
+              <button
+                type="button"
+                class="category-option"
+                onclick="selectRecordCategory(
+                  '${escapeJS(category)}'
+                )"
+              >
+                ${escapeHTML(category)}
+              </button>
+
+            `
+          )
+          .join("")
+
+      : "";
+
+
+  $("recordCategory").value = "";
+
+
+  $("recordModal")
+    .classList.remove(
+      "hidden"
+    );
+
+}
+
+
+function selectRecordCategory(
+  category
+){
+
+  selectedCategory =
+    category;
+
+  $("recordCategory").value =
+    category;
+
+
+  document
+    .querySelectorAll(
+      "#recordCategories .category-option"
+    )
+    .forEach(button => {
+
+      button.classList.toggle(
+        "selected",
+        button.textContent.trim() ===
+          category
+      );
+
+    });
 
 }
 
@@ -4330,56 +2806,52 @@ function openRecordModal(
    CREATE RECORD
 ========================================================= */
 
-recordForm.addEventListener(
+$("recordForm").addEventListener(
   "submit",
   event => {
 
     event.preventDefault();
 
 
-    if (
-      currentUser.role !==
-        "Admin" &&
-      currentUser.role !==
-        "Teacher"
-    ) {
-
+    if(
+      currentUser.role ===
+      "Student"
+    )
       return;
 
-    }
 
-
-    const selectedStudents =
-      Array.from(
-        recordStudent.selectedOptions
-      ).map(
-        option =>
-          option.value
+    const userId =
+      Number(
+        $("recordStudent").value
       );
+
+
+    const type =
+      currentRecordType;
 
 
     const reason =
-      recordReason.value.trim();
+      $("recordReason")
+        .value
+        .trim();
 
 
     const date =
-      recordDate.value;
+      $("recordDate").value;
 
 
-    const points =
-      Number(
-        recordPoints.value
-      );
+    const category =
+      $("recordCategory").value;
 
 
-    if (
-      !selectedStudents.length ||
+    if(
+      !userId ||
       !reason ||
       !date
-    ) {
+    ){
 
       alert(
-        "Please complete the form."
+        "Please complete the required fields."
       );
 
       return;
@@ -4387,64 +2859,124 @@ recordForm.addEventListener(
     }
 
 
-    selectedStudents.forEach(
-      username => {
+    if(
+      [
+        "merit",
+        "demerit",
+        "negative-incident"
+      ].includes(type) &&
+      !category
+    ){
 
-        const newRecord = {
+      alert(
+        "Please choose a category."
+      );
 
-          id:
-            nextRecordId++,
+      return;
 
-          username,
-
-          type:
-            currentRecordType,
-
-          reason,
-
-          points:
-            currentRecordType ===
-              "merit" ||
-            currentRecordType ===
-              "demerit"
-              ? points
-              : null,
-
-          date,
-
-          issuedBy:
-            currentUser.username,
-
-          automatic:
-            false
-
-        };
+    }
 
 
-        records.push(
-          newRecord
-        );
+    const record = {
+
+      id:db.nextId++,
+
+      type,
+
+      userId,
+
+      category:
+        category || null,
+
+      reason,
+
+      points:
+        type === "merit" ||
+        type === "demerit"
+          ? Number(
+              $("recordPoints").value
+            )
+          : null,
+
+      date,
+
+      time:
+        type === "detention"
+          ? $("detentionTime").value
+          : null,
+
+      location:
+        type === "detention"
+          ? $("detentionLocation").value.trim()
+          : null,
+
+      status:
+        type === "detention"
+          ? "scheduled"
+          : null,
+
+      issuedBy:
+        currentUser.id,
+
+      createdAt:
+        new Date().toISOString(),
+
+      automatic:false
+
+    };
 
 
-        checkAutomaticDetention(
-          username,
-          newRecord
-        );
+    db.records.push(record);
 
-      }
+
+    /*
+      AUTOMATIC DETENTION
+    */
+
+    if(
+      type ===
+      "negative-incident" &&
+      db.settings.incidentDetention
+    ){
+
+      createAutomaticDetention(
+        userId,
+        `Automatic detention — ${category}: ${reason}`,
+        record
+      );
+
+    }
+
+
+    /*
+      FIVE DEMERIT POINT THRESHOLD
+    */
+
+    if(
+      type === "demerit" &&
+      db.settings.demeritDetention
+    ){
+
+      checkDemeritThreshold(
+        userId,
+        record
+      );
+
+    }
+
+
+    saveDatabase();
+
+    closeModal(
+      "recordModal"
     );
-
-
-    closeModal();
 
     renderEverything();
 
 
-    if (openedProfile) {
+    if(selectedProfile){
 
-      openStudentProfile(
-        openedProfile
-      );
+      renderProfile();
 
     }
 
@@ -4453,383 +2985,723 @@ recordForm.addEventListener(
 
 
 /* =========================================================
-   AUTOMATIC DETENTION RULES
+   AUTOMATIC DETENTION
 ========================================================= */
 
-function checkAutomaticDetention(
-  username,
-  sourceRecord
-) {
+function checkDemeritThreshold(
+  userId,
+  source
+){
+
+  const total =
+    db.records
+      .filter(
+        r =>
+          r.userId === userId &&
+          r.type === "demerit"
+      )
+      .reduce(
+        (sum,r) =>
+          sum +
+          Number(r.points || 0),
+        0
+      );
 
 
-  /*
-    ONE NEGATIVE INCIDENT
-    = AUTOMATIC DETENTION
-  */
-
-  if (
-    sourceRecord.type ===
-    "negative-incident"
-  ) {
-
-    createAutomaticDetention(
-      username,
-
-      `Automatic detention — Negative Incident: ${sourceRecord.reason}`,
-
-      sourceRecord
-
-    );
-
+  if(total < 5)
     return;
 
-  }
+
+  const already =
+    db.records.some(
+      r =>
+        r.type === "detention" &&
+        r.userId === userId &&
+        r.autoSource ===
+          "demerit-threshold" &&
+        r.status !== "completed"
+    );
 
 
-  /*
-    FIVE DEMERIT POINTS
-    = AUTOMATIC DETENTION
-  */
-
-  if (
-    sourceRecord.type ===
-    "demerit"
-  ) {
-
-    const totalDemerits =
-      records
-        .filter(
-          record =>
-            record.username ===
-              username &&
-            record.type ===
-              "demerit"
-        )
-        .reduce(
-          (total, record) =>
-            total +
-            Number(
-              record.points || 0
-            ),
-          0
-        );
+  if(already)
+    return;
 
 
-    if (
-      totalDemerits >= 5
-    ) {
-
-      const alreadyExists =
-        records.some(
-          record =>
-            record.username ===
-              username &&
-            record.type ===
-              "detention" &&
-            record.autoSource ===
-              "demerit-threshold"
-        );
-
-
-      if (
-        !alreadyExists
-      ) {
-
-        createAutomaticDetention(
-
-          username,
-
-          "Automatic detention — 5 demerit points reached",
-
-          sourceRecord
-
-        );
-
-      }
-
-    }
-
-  }
-
-}
-
-
-function createAutomaticDetention(
-  username,
-  reason,
-  sourceRecord
-) {
-
-  const detention = {
-
-    id:
-      nextRecordId++,
-
-    username,
-
-    type:
-      "detention",
-
-    reason,
-
-    points:
-      null,
-
-    date:
-      sourceRecord.date ||
-      new Date()
-        .toISOString()
-        .split("T")[0],
-
-    issuedBy:
-      currentUser.username,
-
-    automatic:
-      true,
-
-    autoSource:
-      sourceRecord.type ===
-        "demerit"
-
-        ? "demerit-threshold"
-
-        : "negative-incident",
-
-    sourceRecordId:
-      sourceRecord.id
-
-  };
-
-
-  records.push(
-    detention
+  createAutomaticDetention(
+    userId,
+    "Automatic detention — 5 demerit points reached",
+    source
   );
 
 }
 
 
+function createAutomaticDetention(
+  userId,
+  reason,
+  source
+){
+
+  db.records.push({
+
+    id:db.nextId++,
+
+    type:"detention",
+
+    userId,
+
+    category:
+      source.category ||
+      null,
+
+    reason,
+
+    points:null,
+
+    date:
+      source.date ||
+      today(),
+
+    time:"15:30",
+
+    location:"Detention Room",
+
+    status:"scheduled",
+
+    issuedBy:
+      currentUser.id,
+
+    createdAt:
+      new Date().toISOString(),
+
+    automatic:true,
+
+    autoSource:
+      source.type === "demerit"
+        ? "demerit-threshold"
+        : "negative-incident",
+
+    sourceRecordId:
+      source.id
+
+  });
+
+}
+
+
 /* =========================================================
-   STUDENT DIRECTORY
+   DELETE RECORD
 ========================================================= */
 
-function renderStudents() {
+function deleteRecord(id){
 
-  if (
-    currentUser.role ===
-    "Student"
-  ) {
-
+  if(
+    currentUser.role === "Student"
+  )
     return;
 
+
+  const record =
+    db.records.find(
+      r => r.id === id
+    );
+
+
+  if(!record)
+    return;
+
+
+  if(
+    !confirm(
+      `Delete this ${(
+        RECORD_NAMES[
+          record.type
+        ] || "record"
+      ).toLowerCase()}?`
+    )
+  )
+    return;
+
+
+  /*
+    If the deleted record created an
+    automatic detention, remove that
+    automatic detention too.
+  */
+
+  const linked =
+    db.records.filter(
+      r =>
+        r.type === "detention" &&
+        r.sourceRecordId === id
+    );
+
+
+  db.records =
+    db.records.filter(
+      r =>
+        r.id !== id &&
+        !linked.some(
+          d => d.id === r.id
+        )
+    );
+
+
+  linked.forEach(
+    detention => {
+
+      db.detentionRolls =
+        db.detentionRolls.filter(
+          roll =>
+            roll.recordId !==
+            detention.id
+        );
+
+    }
+  );
+
+
+  saveDatabase();
+
+  renderEverything();
+
+}
+
+
+/* =========================================================
+   PEOPLE
+========================================================= */
+
+function openPersonModal(){
+
+  if(
+    currentUser.role !== "Admin"
+  )
+    return;
+
+
+  $("personForm").reset();
+
+  $("personError").textContent = "";
+
+  $("personModal")
+    .classList.remove(
+      "hidden"
+    );
+
+}
+
+
+$("personForm").addEventListener(
+  "submit",
+  event => {
+
+    event.preventDefault();
+
+
+    if(
+      currentUser.role !== "Admin"
+    )
+      return;
+
+
+    const name =
+      $("personName")
+        .value
+        .trim();
+
+    const username =
+      $("personUsername")
+        .value
+        .trim();
+
+    const password =
+      $("personPassword")
+        .value;
+
+    const role =
+      $("personRole").value;
+
+    const className =
+      $("personClass")
+        .value
+        .trim();
+
+
+    if(
+      db.users.some(
+        u =>
+          u.username.toLowerCase() ===
+          username.toLowerCase()
+      )
+    ){
+
+      $("personError").textContent =
+        "That username already exists.";
+
+      return;
+
+    }
+
+
+    if(password.length < 4){
+
+      $("personError").textContent =
+        "Password must be at least 4 characters.";
+
+      return;
+
+    }
+
+
+    const person = {
+
+      id:db.nextId++,
+
+      name,
+
+      username,
+
+      password,
+
+      role,
+
+      className,
+
+      active:true,
+
+      createdAt:
+        new Date().toISOString()
+
+    };
+
+
+    db.users.push(person);
+
+    saveDatabase();
+
+    closeModal(
+      "personModal"
+    );
+
+    renderPeople();
+
   }
+);
+
+
+/* =========================================================
+   PEOPLE RENDER
+========================================================= */
+
+$("peopleSearch")
+  .addEventListener(
+    "input",
+    renderPeople
+  );
+
+
+function renderPeople(){
+
+  if(
+    currentUser.role !== "Admin"
+  )
+    return;
 
 
   const search =
-    studentSearch.value
+    $("peopleSearch")
+      .value
       .trim()
       .toLowerCase();
 
 
-  const students =
-    users
-      .filter(
-        user =>
-          user.role ===
-          "Student"
-      )
-      .filter(
-        user =>
-          user.username
-            .toLowerCase()
-            .includes(search)
-      );
+  const people =
+    db.users.filter(
+      user =>
+        user.name
+          .toLowerCase()
+          .includes(search) ||
+        user.username
+          .toLowerCase()
+          .includes(search) ||
+        user.role
+          .toLowerCase()
+          .includes(search)
+    );
 
 
-  studentsGrid.innerHTML =
-    students
+  $("peopleGrid").innerHTML =
+    people
       .map(
-        student => {
+        person => `
 
-          const mine =
-            getUserRecords(
-              student.username
-            );
+          <div class="person-card">
 
+            <div class="person-head">
 
-          const merits =
-            mine.filter(
-              r =>
-                r.type ===
-                "merit"
-            ).length;
+              <div class="avatar">
+                ${escapeHTML(
+                  person.name.charAt(0)
+                )}
+              </div>
 
+              <div>
 
-          const demerits =
-            mine.filter(
-              r =>
-                r.type ===
-                "demerit"
-            ).length;
-
-
-          const incidents =
-            mine.filter(
-              r =>
-                r.type ===
-                "negative-incident"
-            ).length;
-
-
-          return `
-
-            <div class="student-card">
-
-              <div class="student-header">
-
-                <div class="avatar">
-
+                <h3>
                   ${escapeHTML(
-                    student.username
-                      .charAt(0)
+                    person.name
                   )}
+                </h3>
 
-                </div>
-
-                <div>
-
-                  <h3>
-                    ${escapeHTML(
-                      student.username
-                    )}
-                  </h3>
-
-                  <small>
-                    Student
-                  </small>
-
-                </div>
+                <small>
+                  @${escapeHTML(
+                    person.username
+                  )}
+                </small>
 
               </div>
-
-
-              <div class="student-stats">
-
-                <div class="student-stat">
-
-                  <strong>
-                    ${merits}
-                  </strong>
-
-                  <span>
-                    Merits
-                  </span>
-
-                </div>
-
-
-                <div class="student-stat">
-
-                  <strong>
-                    ${demerits}
-                  </strong>
-
-                  <span>
-                    Demerits
-                  </span>
-
-                </div>
-
-
-                <div class="student-stat">
-
-                  <strong>
-                    ${incidents}
-                  </strong>
-
-                  <span>
-                    Incidents
-                  </span>
-
-                </div>
-
-              </div>
-
-
-              <button
-                class="profile-button"
-                onclick="openStudentProfile(
-                  '${escapeJS(
-                    student.username
-                  )}'
-                )"
-              >
-                Open Profile
-              </button>
 
             </div>
 
-          `;
 
-        }
+            <div class="person-role">
+
+              <span class="badge ${
+                person.role === "Admin"
+                  ? "purple"
+                  : person.role === "Teacher"
+                    ? "blue"
+                    : "green"
+              }">
+
+                ${escapeHTML(
+                  person.role
+                )}
+
+              </span>
+
+              ${
+                person.className
+                  ? `
+                    <span
+                      class="badge gray"
+                      style="margin-left:4px"
+                    >
+                      ${escapeHTML(
+                        person.className
+                      )}
+                    </span>
+                  `
+                  : ""
+              }
+
+            </div>
+
+
+            <div class="person-actions">
+
+              ${
+                person.id !== currentUser.id
+
+                  ? `
+
+                    <button
+                      class="btn btn-small btn-danger"
+                      onclick="deletePerson(${person.id})"
+                    >
+                      Remove
+                    </button>
+
+                  `
+
+                  : `
+
+                    <button
+                      class="btn btn-small btn-gray"
+                      disabled
+                    >
+                      Current Account
+                    </button>
+
+                  `
+              }
+
+            </div>
+
+          </div>
+
+        `
       )
       .join("");
 
 }
 
 
-studentSearch.addEventListener(
-  "input",
-  renderStudents
-);
+function deletePerson(id){
+
+  if(
+    currentUser.role !== "Admin"
+  )
+    return;
 
 
-/* =========================================================
-   STUDENT PROFILE
-========================================================= */
-
-function openStudentProfile(
-  username
-) {
-
-  const student =
-    users.find(
-      user =>
-        user.username ===
-        username
+  const person =
+    db.users.find(
+      u => u.id === id
     );
 
 
-  if (!student) return;
+  if(!person)
+    return;
 
 
-  openedProfile =
-    username;
+  if(
+    !confirm(
+      `Remove ${person.name}'s account?`
+    )
+  )
+    return;
 
 
-  const mine =
+  /*
+    Soft-delete account so old records
+    remain connected to the person.
+  */
+
+  person.active = false;
+
+  saveDatabase();
+
+  renderPeople();
+
+}
+
+
+/* =========================================================
+   STUDENTS
+========================================================= */
+
+$("studentSearch")
+  .addEventListener(
+    "input",
+    renderStudents
+  );
+
+
+function renderStudents(){
+
+  if(
+    currentUser.role ===
+    "Student"
+  )
+    return;
+
+
+  const search =
+    $("studentSearch")
+      .value
+      .trim()
+      .toLowerCase();
+
+
+  const students =
+    db.users
+      .filter(
+        u =>
+          u.role === "Student" &&
+          u.active !== false
+      )
+      .filter(
+        u =>
+          u.name
+            .toLowerCase()
+            .includes(search) ||
+          u.username
+            .toLowerCase()
+            .includes(search) ||
+          u.className
+            .toLowerCase()
+            .includes(search)
+      );
+
+
+  $("studentsGrid").innerHTML =
+    students
+      .map(student => {
+
+        const records =
+          getUserRecords(
+            student.id
+          );
+
+
+        const merits =
+          records.filter(
+            r =>
+              r.type === "merit"
+          );
+
+
+        const demerits =
+          records.filter(
+            r =>
+              r.type === "demerit"
+          );
+
+
+        const detentions =
+          records.filter(
+            r =>
+              r.type === "detention"
+          );
+
+
+        const meritPoints =
+          merits.reduce(
+            (sum,r) =>
+              sum +
+              Number(r.points || 0),
+            0
+          );
+
+
+        return `
+
+          <div class="person-card">
+
+            <div class="person-head">
+
+              <div class="avatar">
+                ${escapeHTML(
+                  student.name.charAt(0)
+                )}
+              </div>
+
+              <div>
+
+                <h3>
+                  ${escapeHTML(
+                    student.name
+                  )}
+                </h3>
+
+                <small>
+                  ${
+                    student.className
+                      ? escapeHTML(
+                          student.className
+                        )
+                      : "Student"
+                  }
+                </small>
+
+              </div>
+
+            </div>
+
+
+            <div class="profile-stats"
+              style="
+                grid-template-columns:repeat(3,1fr);
+                margin:14px 0 12px;
+              "
+            >
+
+              <div class="profile-stat">
+                <span>Merit</span>
+                <strong>${meritPoints}</strong>
+              </div>
+
+              <div class="profile-stat">
+                <span>Demerits</span>
+                <strong>${demerits.length}</strong>
+              </div>
+
+              <div class="profile-stat">
+                <span>Detentions</span>
+                <strong>${detentions.length}</strong>
+              </div>
+
+            </div>
+
+
+            <button
+              class="btn btn-soft full"
+              onclick="openProfile(${student.id})"
+            >
+              Open Student Portal
+            </button>
+
+          </div>
+
+        `;
+
+      })
+      .join("");
+
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+function openProfile(
+  userId
+){
+
+  selectedProfile =
+    Number(userId);
+
+  showPage(
+    "profile"
+  );
+
+}
+
+
+function renderProfile(){
+
+  if(
+    selectedProfile === null
+  )
+    return;
+
+
+  const student =
+    db.users.find(
+      u =>
+        u.id === selectedProfile
+    );
+
+
+  if(!student)
+    return;
+
+
+  const records =
     getUserRecords(
-      username
+      student.id
     );
 
 
   const merits =
-    mine.filter(
+    records.filter(
       r =>
-        r.type ===
-        "merit"
+        r.type === "merit"
     );
 
 
   const demerits =
-    mine.filter(
+    records.filter(
       r =>
-        r.type ===
-        "demerit"
+        r.type === "demerit"
     );
 
 
   const incidents =
-    mine.filter(
+    records.filter(
       r =>
         r.type ===
         "negative-incident"
@@ -4837,7 +3709,7 @@ function openStudentProfile(
 
 
   const detentions =
-    mine.filter(
+    records.filter(
       r =>
         r.type ===
         "detention"
@@ -4846,49 +3718,58 @@ function openStudentProfile(
 
   const meritPoints =
     merits.reduce(
-      (total, record) =>
-        total +
-        Number(
-          record.points || 0
-        ),
+      (sum,r) =>
+        sum +
+        Number(r.points || 0),
       0
     );
 
 
   const demeritPoints =
     demerits.reduce(
-      (total, record) =>
-        total +
-        Number(
-          record.points || 0
-        ),
+      (sum,r) =>
+        sum +
+        Number(r.points || 0),
       0
     );
 
 
-  profileContent.innerHTML = `
+  const completed =
+    detentions.filter(
+      d =>
+        d.status === "completed"
+    ).length;
 
-    <div class="profile-header">
+
+  $("profileContent").innerHTML = `
+
+    <div class="profile-top">
 
       <div class="profile-person">
 
         <div class="profile-avatar">
-
           ${escapeHTML(
-            username.charAt(0)
+            student.name.charAt(0)
           )}
-
         </div>
-
 
         <div>
 
           <h1>
-            ${escapeHTML(username)}
+            ${escapeHTML(
+              student.name
+            )}
           </h1>
 
           <p>
-            Student · Aloha School of Angels
+            ${
+              student.className
+                ? escapeHTML(
+                    student.className
+                  ) + " · "
+                : ""
+            }
+            Student
           </p>
 
         </div>
@@ -4897,28 +3778,25 @@ function openStudentProfile(
 
 
       ${
-        currentUser.role ===
-          "Admin" ||
-        currentUser.role ===
-          "Teacher"
+        currentUser.role !==
+        "Student"
 
           ? `
 
             <button
-              class="primary-button"
+              class="btn btn-primary"
               onclick="openRecordModal(
-                'negative-incident',
-                '${escapeJS(
-                  username
-                )}'
+                'merit',
+                ${student.id}
               )"
             >
-              + Add Record
+              + Add Merit
             </button>
 
           `
 
           : ""
+
       }
 
     </div>
@@ -4927,80 +3805,63 @@ function openStudentProfile(
     <div class="profile-stats">
 
       <div class="profile-stat">
-
-        <span>
-          Merit Points
-        </span>
-
-        <strong>
-          ${meritPoints}
-        </strong>
-
+        <span>Merit Points</span>
+        <strong>${meritPoints}</strong>
       </div>
 
-
       <div class="profile-stat">
-
-        <span>
-          Demerit Points
-        </span>
-
-        <strong>
-          ${demeritPoints}
-        </strong>
-
+        <span>Demerit Points</span>
+        <strong>${demeritPoints}</strong>
       </div>
 
-
       <div class="profile-stat">
-
-        <span>
-          Incidents
-        </span>
-
-        <strong>
-          ${incidents.length}
-        </strong>
-
+        <span>Incidents</span>
+        <strong>${incidents.length}</strong>
       </div>
 
+      <div class="profile-stat">
+        <span>Detentions</span>
+        <strong>${detentions.length}</strong>
+      </div>
 
       <div class="profile-stat">
-
-        <span>
-          Detentions
-        </span>
-
-        <strong>
-          ${detentions.length}
-        </strong>
-
+        <span>Completed</span>
+        <strong>${completed}</strong>
       </div>
 
     </div>
 
 
-    <div class="profile-records">
+    <div class="records">
 
-      <div class="panel-header">
+      <div class="panel-head">
 
         <h3>
-          Complete Record
+          Complete Student History
         </h3>
 
         <p>
-          All behaviour and disciplinary records
+          Completed detentions remain here even after
+          they leave the active Detention Roll.
         </p>
 
       </div>
 
 
       ${
-        mine.length
+        records.length
 
-          ? mine
+          ? records
               .slice()
-              .reverse()
+              .sort(
+                (a,b) =>
+                  new Date(
+                    b.createdAt || b.date
+                  ) -
+                  new Date(
+                    a.createdAt || a.date
+                  )
+              )
               .map(
                 record =>
                   recordHTML(record)
@@ -5008,20 +3869,36 @@ function openStudentProfile(
               .join("")
 
           : `
-
-            <div class="empty-state">
-              No records for this student.
-            </div>
-
-          `
+              <div class="empty">
+                No records yet.
+              </div>
+            `
       }
 
     </div>
 
   `;
 
+}
 
-  showPage("profile");
+
+function goBackToStudents(){
+
+  if(
+    currentUser.role === "Student"
+  ){
+
+    showPage(
+      "dashboard"
+    );
+
+  }else{
+
+    showPage(
+      "students"
+    );
+
+  }
 
 }
 
@@ -5030,191 +3907,207 @@ function openStudentProfile(
    SCHOOL ROLL
 ========================================================= */
 
-function renderSchoolRoll() {
+function renderSchoolRoll(){
 
-  const list =
-    document.getElementById(
-      "schoolRollList"
-    );
+  if(
+    currentUser.role ===
+    "Student"
+  ){
+
+    $("schoolRollList").innerHTML = `
+      <div class="empty">
+        Attendance is managed by school staff.
+      </div>
+    `;
+
+    return;
+
+  }
 
 
-  const dateInput =
-    document.getElementById(
-      "schoolRollDate"
-    );
+  if(
+    !$("schoolDate").value
+  ){
 
-
-  if (!dateInput.value) {
-
-    dateInput.value =
-      new Date()
-        .toISOString()
-        .split("T")[0];
+    $("schoolDate").value =
+      today();
 
   }
 
 
   const date =
-    dateInput.value;
+    $("schoolDate").value;
 
 
   const students =
-    users.filter(
-      user =>
-        user.role ===
-        "Student"
+    db.users.filter(
+      u =>
+        u.role === "Student" &&
+        u.active !== false
     );
 
 
-  list.innerHTML =
+  $("schoolRollList").innerHTML =
     students
-      .map(
-        student => {
+      .map(student => {
 
-          const existing =
-            schoolRolls.find(
-              roll =>
-                roll.username ===
-                  student.username &&
-                roll.date ===
-                  date
-            );
+        const existing =
+          db.schoolRolls.find(
+            r =>
+              r.userId === student.id &&
+              r.date === date
+          );
 
 
-          const status =
-            existing
-              ? existing.status
-              : "Present";
+        const status =
+          existing
+            ? existing.status
+            : "Present";
 
 
-          return `
+        return `
 
-            <div class="roll-row">
+          <div class="roll-row">
 
-              <div class="roll-student">
+            <div class="roll-person">
 
-                <div class="avatar">
-
-                  ${escapeHTML(
-                    student.username
-                      .charAt(0)
-                  )}
-
-                </div>
-
-                <div>
-
-                  <strong>
-                    ${escapeHTML(
-                      student.username
-                    )}
-                  </strong>
-
-                  <small>
-                    Student
-                  </small>
-
-                </div>
-
+              <div class="avatar">
+                ${escapeHTML(
+                  student.name.charAt(0)
+                )}
               </div>
 
+              <div>
 
-              <div class="roll-options">
+                <strong>
+                  ${escapeHTML(
+                    student.name
+                  )}
+                </strong>
 
-                ${rollButton(
-                  student.username,
-                  "Present",
-                  status,
-                  "school"
-                )}
-
-                ${rollButton(
-                  student.username,
-                  "Late",
-                  status,
-                  "school"
-                )}
-
-                ${rollButton(
-                  student.username,
-                  "Absent",
-                  status,
-                  "school"
-                )}
-
-                ${rollButton(
-                  student.username,
-                  "Excused",
-                  status,
-                  "school"
-                )}
+                <small>
+                  ${
+                    student.className
+                      ? escapeHTML(
+                          student.className
+                        )
+                      : "Student"
+                  }
+                </small>
 
               </div>
 
             </div>
 
-          `;
 
-        }
-      )
+            <div class="roll-buttons">
+
+              ${rollButton(
+                student.id,
+                "Present",
+                status,
+                "school"
+              )}
+
+              ${rollButton(
+                student.id,
+                "Late",
+                status,
+                "school"
+              )}
+
+              ${rollButton(
+                student.id,
+                "Absent",
+                status,
+                "school"
+              )}
+
+              ${rollButton(
+                student.id,
+                "Excused",
+                status,
+                "school"
+              )}
+
+            </div>
+
+          </div>
+
+        `;
+
+      })
       .join("");
 
 }
 
 
-function saveSchoolRoll() {
+$("schoolDate")
+  .addEventListener(
+    "change",
+    renderSchoolRoll
+  );
 
-  if (
-    !isStaff()
-  ) return;
+
+function saveSchoolRoll(){
+
+  if(
+    currentUser.role ===
+    "Student"
+  )
+    return;
 
 
   const date =
-    document.getElementById(
-      "schoolRollDate"
-    ).value;
+    $("schoolDate").value;
 
 
   document
     .querySelectorAll(
-      '.roll-button[data-roll-type="school"].selected'
+      '.roll-btn[data-roll-type="school"].selected'
     )
     .forEach(button => {
 
-      const username =
-        button.dataset.username;
+      const userId =
+        Number(
+          button.dataset.userId
+        );
+
 
       const status =
         button.dataset.status;
 
 
-      schoolRolls =
-        schoolRolls.filter(
-          roll =>
+      db.schoolRolls =
+        db.schoolRolls.filter(
+          r =>
             !(
-              roll.username ===
-                username &&
-              roll.date ===
-                date
+              r.userId === userId &&
+              r.date === date
             )
         );
 
 
-      schoolRolls.push({
+      db.schoolRolls.push({
 
-        username,
+        userId,
 
         date,
 
         status,
 
         markedBy:
-          currentUser.username
+          currentUser.id,
+
+        updatedAt:
+          new Date().toISOString()
 
       });
 
     });
 
+
+  saveDatabase();
 
   alert(
     "School roll saved."
@@ -5227,35 +4120,17 @@ function saveSchoolRoll() {
    DETENTION ROLL
 ========================================================= */
 
-function renderDetentionRoll() {
+function renderDetentionRoll(){
 
-  const list =
-    document.getElementById(
-      "detentionRollList"
-    );
+  if(
+    currentUser.role ===
+    "Student"
+  ){
 
-
-  const detentions =
-    records
-      .filter(
-        record =>
-          record.type ===
-          "detention"
-      )
-      .slice()
-      .reverse();
-
-
-  if (!detentions.length) {
-
-    list.innerHTML = `
-
-      <div class="empty-state">
-
-        No detention records yet.
-
+    $("detentionRollList").innerHTML = `
+      <div class="empty">
+        Detention attendance is managed by school staff.
       </div>
-
     `;
 
     return;
@@ -5263,125 +4138,158 @@ function renderDetentionRoll() {
   }
 
 
-  list.innerHTML =
+  /*
+    CRITICAL RULE:
+    Only detentions that are NOT completed
+    appear on the active Detention Roll.
+  */
+
+  const detentions =
+    db.records
+      .filter(
+        r =>
+          r.type === "detention" &&
+          r.status !== "completed"
+      )
+      .sort(
+        (a,b) =>
+          new Date(a.date) -
+          new Date(b.date)
+      );
+
+
+  if(!detentions.length){
+
+    $("detentionRollList").innerHTML = `
+      <div class="empty">
+        🎉 No active detentions on the roll.
+      </div>
+    `;
+
+    return;
+
+  }
+
+
+  $("detentionRollList").innerHTML =
     detentions
-      .map(
-        detention => {
+      .map(detention => {
 
-          const existing =
-            detentionRolls.find(
-              roll =>
-                roll.recordId ===
-                detention.id
-            );
-
-
-          const status =
-            existing
-              ? existing.status
-              : "Present";
+        const student =
+          db.users.find(
+            u =>
+              u.id ===
+              detention.userId
+          );
 
 
-          return `
-
-            <div class="roll-row">
-
-              <div class="roll-student">
-
-                <div class="avatar">
-
-                  ${escapeHTML(
-                    detention.username
-                      .charAt(0)
-                  )}
-
-                </div>
+        const existing =
+          db.detentionRolls.find(
+            r =>
+              r.recordId ===
+              detention.id
+          );
 
 
-                <div>
-
-                  <strong>
-
-                    ${escapeHTML(
-                      detention.username
-                    )}
-
-                  </strong>
+        const status =
+          existing
+            ? existing.status
+            : "Present";
 
 
-                  <small>
+        return `
 
-                    ${escapeHTML(
-                      detention.reason
-                    )}
+          <div class="roll-row">
 
-                    ·
+            <div class="roll-person">
 
-                    ${formatDate(
-                      detention.date
-                    )}
-
-                    ${
-                      detention.issuedBy
-                        ? ` · Issued by ${escapeHTML(
-                            detention.issuedBy
-                          )}`
-                        : ""
-                    }
-
-                  </small>
-
-                </div>
-
+              <div class="avatar">
+                ${
+                  student
+                    ? escapeHTML(
+                        student.name.charAt(0)
+                      )
+                    : "?"
+                }
               </div>
 
+              <div>
 
-              <div class="roll-options">
+                <strong>
+                  ${
+                    student
+                      ? escapeHTML(
+                          student.name
+                        )
+                      : "Unknown Student"
+                  }
+                </strong>
 
-                ${rollButton(
-                  String(
-                    detention.id
-                  ),
-                  "Present",
-                  status,
-                  "detention"
-                )}
+                <small>
 
-                ${rollButton(
-                  String(
-                    detention.id
-                  ),
-                  "Late",
-                  status,
-                  "detention"
-                )}
+                  ${escapeHTML(
+                    detention.reason
+                  )}
 
-                ${rollButton(
-                  String(
-                    detention.id
-                  ),
-                  "Absent",
-                  status,
-                  "detention"
-                )}
+                  ·
 
-                ${rollButton(
-                  String(
-                    detention.id
-                  ),
-                  "Excused",
-                  status,
-                  "detention"
-                )}
+                  ${formatDate(
+                    detention.date
+                  )}
+
+                  ${
+                    detention.time
+                      ? " · " +
+                        escapeHTML(
+                          detention.time
+                        )
+                      : ""
+                  }
+
+                </small>
 
               </div>
 
             </div>
 
-          `;
 
-        }
-      )
+            <div class="roll-buttons">
+
+              ${rollButton(
+                detention.id,
+                "Present",
+                status,
+                "detention"
+              )}
+
+              ${rollButton(
+                detention.id,
+                "Late",
+                status,
+                "detention"
+              )}
+
+              ${rollButton(
+                detention.id,
+                "Absent",
+                status,
+                "detention"
+              )}
+
+              ${rollButton(
+                detention.id,
+                "Excused",
+                status,
+                "detention"
+              )}
+
+            </div>
+
+          </div>
+
+        `;
+
+      })
       .join("");
 
 }
@@ -5392,34 +4300,32 @@ function renderDetentionRoll() {
 ========================================================= */
 
 function rollButton(
-  username,
-  option,
+  id,
+  status,
   currentStatus,
   rollType
-) {
+){
 
   return `
 
     <button
       type="button"
       class="
-        roll-button
+        roll-btn
         ${
-          currentStatus ===
-          option
-            ? "selected"
+          currentStatus === status
+            ? "selected " +
+              status.toLowerCase()
             : ""
         }
-        status-${option.toLowerCase()}
       "
-      data-username="${escapeHTML(
-        username
-      )}"
-      data-status="${option}"
+      data-user-id="${id}"
+      data-record-id="${id}"
+      data-status="${status}"
       data-roll-type="${rollType}"
-      onclick="selectRollStatus(this)"
+      onclick="selectRoll(this)"
     >
-      ${option}
+      ${status}
     </button>
 
   `;
@@ -5427,54 +4333,101 @@ function rollButton(
 }
 
 
-function selectRollStatus(
-  button
-) {
-
-  const username =
-    button.dataset.username;
+function selectRoll(button){
 
   const rollType =
     button.dataset.rollType;
 
 
+  const id =
+    rollType === "detention"
+      ? button.dataset.recordId
+      : button.dataset.userId;
+
+
   document
     .querySelectorAll(
-      `.roll-button[data-username="${CSS.escape(
-        username
-      )}"][data-roll-type="${rollType}"]`
+      `.roll-btn[data-roll-type="${rollType}"]`
     )
-    .forEach(
-      item =>
-        item.classList.remove(
-          "selected"
-        )
-    );
+    .forEach(btn => {
+
+      const other =
+        rollType === "detention"
+          ? btn.dataset.recordId
+          : btn.dataset.userId;
+
+
+      if(
+        other === id
+      ){
+
+        btn.classList.remove(
+          "selected",
+          "present",
+          "late",
+          "absent",
+          "excused"
+        );
+
+      }
+
+    });
 
 
   button.classList.add(
-    "selected"
+    "selected",
+    button.dataset.status.toLowerCase()
   );
 
 }
 
 
-function saveDetentionRoll() {
+/* =========================================================
+   DETENTION ROLL SAVE
+========================================================= */
 
-  if (
-    !isStaff()
-  ) return;
+function saveDetentionRoll(){
+
+  if(
+    currentUser.role ===
+    "Student"
+  )
+    return;
+
+
+  /*
+    THIS IS THE IMPORTANT PART.
+
+    PRESENT:
+      - detention is marked completed
+      - removed from active roll
+      - remains in db.records
+      - student's portal still shows it
+      - completion metadata is stored
+
+    LATE:
+      - remains active
+      - status becomes late
+
+    ABSENT:
+      - remains active
+      - status becomes absent
+
+    EXCUSED:
+      - remains active
+      - status becomes excused
+  */
 
 
   document
     .querySelectorAll(
-      '.roll-button[data-roll-type="detention"].selected'
+      '.roll-btn[data-roll-type="detention"].selected'
     )
     .forEach(button => {
 
       const recordId =
         Number(
-          button.dataset.username
+          button.dataset.recordId
         );
 
 
@@ -5482,137 +4435,414 @@ function saveDetentionRoll() {
         button.dataset.status;
 
 
-      detentionRolls =
-        detentionRolls.filter(
-          roll =>
-            roll.recordId !==
-            recordId
+      if(
+        status === "Present"
+      ){
+
+        completeDetention(
+          recordId,
+          "roll"
         );
 
+      }else{
 
-      detentionRolls.push({
+        const detention =
+          db.records.find(
+            r =>
+              r.id === recordId &&
+              r.type === "detention"
+          );
 
-        recordId,
 
-        status,
+        if(!detention)
+          return;
 
-        markedBy:
-          currentUser.username
 
-      });
+        detention.status =
+          status.toLowerCase();
+
+
+        detention.rollMarkedBy =
+          currentUser.id;
+
+
+        detention.rollMarkedAt =
+          new Date().toISOString();
+
+
+        /*
+          Keep the roll entry for
+          non-completed statuses.
+        */
+
+        db.detentionRolls =
+          db.detentionRolls.filter(
+            r =>
+              r.recordId !==
+              recordId
+          );
+
+
+        db.detentionRolls.push({
+
+          recordId,
+
+          status:
+            status.toLowerCase(),
+
+          markedBy:
+            currentUser.id,
+
+          markedAt:
+            new Date().toISOString()
+
+        });
+
+      }
 
     });
 
 
-  alert(
-    "Detention roll saved."
+  saveDatabase();
+
+  renderDetentionRoll();
+
+  renderDetentions();
+
+  renderDashboard();
+
+}
+
+
+/* =========================================================
+   COMPLETE DETENTION
+========================================================= */
+
+function completeDetention(
+  recordId,
+  method = "manual"
+){
+
+  const detention =
+    db.records.find(
+      r =>
+        r.id === recordId &&
+        r.type === "detention"
+    );
+
+
+  if(!detention)
+    return;
+
+
+  /*
+    Do not destroy the record.
+    This is what keeps the detention
+    visible on the student's portal.
+  */
+
+  detention.status =
+    "completed";
+
+
+  detention.completedAt =
+    new Date().toISOString();
+
+
+  detention.completedBy =
+    currentUser.id;
+
+
+  detention.completionMethod =
+    method;
+
+
+  /*
+    Remove from ACTIVE detention roll.
+    The actual detention record stays.
+  */
+
+  db.detentionRolls =
+    db.detentionRolls.filter(
+      roll =>
+        roll.recordId !==
+        recordId
+    );
+
+
+  saveDatabase();
+
+}
+
+
+/* =========================================================
+   SETTINGS
+========================================================= */
+
+function renderSettings(){
+
+  if(
+    currentUser.role !== "Admin"
+  )
+    return;
+
+
+  setToggle(
+    "toggleIncidentDetention",
+    db.settings.incidentDetention
+  );
+
+
+  setToggle(
+    "toggleDemeritDetention",
+    db.settings.demeritDetention
+  );
+
+}
+
+
+function setToggle(
+  id,
+  enabled
+){
+
+  $(id).classList.toggle(
+    "on",
+    enabled
+  );
+
+}
+
+
+function toggleSetting(
+  setting
+){
+
+  if(
+    currentUser.role !== "Admin"
+  )
+    return;
+
+
+  db.settings[setting] =
+    !db.settings[setting];
+
+
+  saveDatabase();
+
+  renderSettings();
+
+}
+
+
+/* =========================================================
+   EXPORT / RESET
+========================================================= */
+
+function exportData(){
+
+  if(
+    currentUser.role !== "Admin"
+  )
+    return;
+
+
+  const blob =
+    new Blob(
+      [
+        JSON.stringify(
+          db,
+          null,
+          2
+        )
+      ],
+      {
+        type:"application/json"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(
+      blob
+    );
+
+
+  const a =
+    document.createElement("a");
+
+  a.href = url;
+
+  a.download =
+    "aloha-school-backup.json";
+
+  a.click();
+
+  URL.revokeObjectURL(
+    url
+  );
+
+}
+
+
+function resetAllData(){
+
+  if(
+    currentUser.role !== "Admin"
+  )
+    return;
+
+
+  const first =
+    prompt(
+      'Type RESET to erase the entire local portal.'
+    );
+
+
+  if(first !== "RESET")
+    return;
+
+
+  localStorage.removeItem(
+    STORAGE_KEY
+  );
+
+
+  location.reload();
+
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+$("logout").addEventListener(
+  "click",
+  () => {
+
+    currentUser =
+      null;
+
+    selectedProfile =
+      null;
+
+    $("app")
+      .classList.add(
+        "hidden"
+      );
+
+    $("loginPage")
+      .classList.remove(
+        "hidden"
+      );
+
+    $("loginForm")
+      .reset();
+
+    updateFirstRun();
+
+  }
+);
+
+
+/* =========================================================
+   MODALS
+========================================================= */
+
+function closeModal(
+  id
+){
+
+  $(id)
+    .classList.add(
+      "hidden"
+    );
+
+}
+
+
+document
+  .querySelectorAll(".modal")
+  .forEach(modal => {
+
+    modal.addEventListener(
+      "click",
+      event => {
+
+        if(
+          event.target ===
+          modal
+        ){
+
+          closeModal(
+            modal.id
+          );
+
+        }
+
+      }
+    );
+
+  });
+
+
+/* =========================================================
+   VISIBILITY
+========================================================= */
+
+function getVisibleRecords(){
+
+  if(
+    currentUser.role ===
+    "Student"
+  ){
+
+    return db.records.filter(
+      r =>
+        r.userId ===
+        currentUser.id
+    );
+
+  }
+
+
+  return db.records.slice();
+
+}
+
+
+function getUserRecords(
+  userId
+){
+
+  return db.records.filter(
+    r =>
+      r.userId ===
+      userId
   );
 
 }
 
 
 /* =========================================================
-   RECENT ACTIVITIES
+   USER HELPERS
 ========================================================= */
 
-function renderRecentActivitiesHTML(
-  username = null
-) {
+function getUserName(
+  id
+){
 
-  let list =
-    username
-      ? getUserRecords(
-          username
-        )
-      : getVisibleRecords();
-
-
-  list =
-    list
-      .slice()
-      .reverse()
-      .slice(0, 7);
+  const user =
+    db.users.find(
+      u =>
+        u.id === id
+    );
 
 
-  if (!list.length) {
-
-    return `
-
-      <div class="empty-state">
-        No records have been added yet.
-      </div>
-
-    `;
-
-  }
-
-
-  return list
-    .map(
-      record => `
-
-        <div class="activity">
-
-          <div
-            class="
-              activity-icon
-              ${getActivityClass(
-                record.type
-              )}
-            "
-          >
-            ${getRecordIcon(
-              record.type
-            )}
-          </div>
-
-
-          <div>
-
-            <strong>
-              ${escapeHTML(
-                record.reason
-              )}
-            </strong>
-
-
-            <span>
-
-              ${
-                username
-                  ? ""
-                  : `${escapeHTML(
-                      record.username
-                    )} · `
-              }
-
-              ${formatRecordType(
-                record.type
-              )}
-
-              ·
-
-              ${formatDate(
-                record.date
-              )}
-
-              ${
-                record.issuedBy
-                  ? ` · Issued by ${escapeHTML(
-                      record.issuedBy
-                    )}`
-                  : ""
-              }
-
-            </span>
-
-          </div>
-
-        </div>
-
-      `
-    )
-    .join("");
+  return user
+    ? user.name
+    : "Unknown User";
 
 }
 
@@ -5621,62 +4851,46 @@ function renderRecentActivitiesHTML(
    RECORD HELPERS
 ========================================================= */
 
-function formatRecordType(
+function recordClass(
   type
-) {
+){
 
-  const names = {
+  if(type === "merit")
+    return "merit";
 
-    merit:
-      "Merit",
+  if(type === "demerit")
+    return "demerit";
 
-    demerit:
-      "Demerit",
+  if(
+    type === "negative-incident"
+  )
+    return "incident";
 
-    "negative-incident":
-      "Negative Incident",
+  if(type === "detention")
+    return "detention";
 
-    detention:
-      "Detention",
-
-    suspension:
-      "Suspension",
-
-    expulsion:
-      "Expulsion"
-
-  };
-
-
-  return (
-    names[type] ||
-    type
-  );
+  return "other";
 
 }
 
 
-function getRecordIcon(
+function recordIcon(
   type
-) {
+){
 
   const icons = {
 
-    merit: "★",
+    merit:"★",
 
-    demerit: "!",
+    demerit:"!",
 
-    "negative-incident":
-      "⚠",
+    "negative-incident":"⚠",
 
-    detention:
-      "◷",
+    detention:"◷",
 
-    suspension:
-      "⚠",
+    suspension:"⚠",
 
-    expulsion:
-      "×"
+    expulsion:"×"
 
   };
 
@@ -5689,490 +4903,52 @@ function getRecordIcon(
 }
 
 
-function getActivityClass(
-  type
-) {
-
-  if (
-    type === "merit"
-  ) {
-
-    return "merit";
-
-  }
-
-
-  if (
-    type === "demerit"
-  ) {
-
-    return "demerit";
-
-  }
-
-
-  if (
-    type === "detention"
-  ) {
-
-    return "detention";
-
-  }
-
-
-  return "suspension";
-
-}
-
-
 /* =========================================================
-   REMOVE RECORD
+   GENERAL HELPERS
 ========================================================= */
 
-function removeRecord(
-  recordId
-) {
-
-  if (
-    !isStaff()
-  ) return;
-
-
-  const record =
-    records.find(
-      item =>
-        item.id ===
-        recordId
-    );
-
-
-  if (!record) return;
-
-
-  const confirmed =
-    confirm(
-      `Remove this ${formatRecordType(
-        record.type
-      ).toLowerCase()} for ${record.username}?`
-    );
-
-
-  if (!confirmed) return;
-
-
-  /*
-    If this is a source record
-    for an automatic detention,
-    remove the linked automatic detention.
-  */
-
-  const linkedDetention =
-    records.find(
-      item =>
-        item.type ===
-          "detention" &&
-        item.sourceRecordId ===
-          record.id
-    );
-
-
-  records =
-    records.filter(
-      item =>
-        item.id !==
-          recordId &&
-        item.id !==
-          (
-            linkedDetention
-              ? linkedDetention.id
-              : -999999
-          )
-    );
-
-
-  detentionRolls =
-    detentionRolls.filter(
-      roll =>
-        roll.recordId !==
-        (
-          linkedDetention
-            ? linkedDetention.id
-            : -999999
-        )
-    );
-
-
-  /*
-    Recalculate automatic
-    demerit detention eligibility.
-  */
-
-  if (
-    record.type ===
-    "demerit"
-  ) {
-
-    rebuildDemeritDetention(
-      record.username
-    );
-
-  }
-
-
-  renderEverything();
-
-
-  if (openedProfile) {
-
-    openStudentProfile(
-      openedProfile
-    );
-
-  }
-
-}
-
-
-/* =========================================================
-   REBUILD DEMERIT DETENTION
-========================================================= */
-
-function rebuildDemeritDetention(
-  username
-) {
-
-  const total =
-    records
-      .filter(
-        record =>
-          record.username ===
-            username &&
-          record.type ===
-            "demerit"
-      )
-      .reduce(
-        (sum, record) =>
-          sum +
-          Number(
-            record.points || 0
-          ),
-        0
-      );
-
-
-  if (
-    total < 5
-  ) {
-
-    records =
-      records.filter(
-        record =>
-          !(
-            record.username ===
-              username &&
-            record.type ===
-              "detention" &&
-            record.autoSource ===
-              "demerit-threshold"
-          )
-      );
-
-    return;
-
-  }
-
-
-  const exists =
-    records.some(
-      record =>
-        record.username ===
-          username &&
-        record.type ===
-          "detention" &&
-        record.autoSource ===
-          "demerit-threshold"
-    );
-
-
-  if (!exists) {
-
-    const latestDemerit =
-      records
-        .filter(
-          record =>
-            record.username ===
-              username &&
-            record.type ===
-              "demerit"
-        )
-        .slice()
-        .pop();
-
-
-    if (latestDemerit) {
-
-      createAutomaticDetention(
-        username,
-        "Automatic detention — 5 demerit points reached",
-        latestDemerit
-      );
-
-    }
-
-  }
-
-}
-
-
-/* =========================================================
-   BUTTON EVENTS
-========================================================= */
-
-document
-  .getElementById(
-    "addMeritButton"
-  )
-  .addEventListener(
-    "click",
-    () =>
-      openRecordModal(
-        "merit"
-      )
-  );
-
-
-document
-  .getElementById(
-    "addDemeritButton"
-  )
-  .addEventListener(
-    "click",
-    () =>
-      openRecordModal(
-        "demerit"
-      )
-  );
-
-
-document
-  .getElementById(
-    "addNegativeIncidentButton"
-  )
-  .addEventListener(
-    "click",
-    () =>
-      openRecordModal(
-        "negative-incident"
-      )
-  );
-
-
-document
-  .getElementById(
-    "addDetentionButton"
-  )
-  .addEventListener(
-    "click",
-    () =>
-      openRecordModal(
-        "detention"
-      )
-  );
-
-
-document
-  .getElementById(
-    "addSuspensionButton"
-  )
-  .addEventListener(
-    "click",
-    () =>
-      openRecordModal(
-        "suspension"
-      )
-  );
-
-
-document
-  .getElementById(
-    "addExpulsionButton"
-  )
-  .addEventListener(
-    "click",
-    () =>
-      openRecordModal(
-        "expulsion"
-      )
-  );
-
-
-/* =========================================================
-   CLOSE MODAL
-========================================================= */
-
-document
-  .getElementById(
-    "closeModal"
-  )
-  .addEventListener(
-    "click",
-    closeModal
-  );
-
-
-recordModal.addEventListener(
-  "click",
-  event => {
-
-    if (
-      event.target ===
-      recordModal
-    ) {
-
-      closeModal();
-
-    }
-
-  }
-);
-
-
-function closeModal() {
-
-  recordModal.classList.add(
-    "hidden"
-  );
-
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-studentSearch.addEventListener(
-  "input",
-  renderStudents
-);
-
-
-/* =========================================================
-   BACK TO STUDENTS
-========================================================= */
-
-document
-  .getElementById(
-    "backToStudents"
-  )
-  .addEventListener(
-    "click",
-    () =>
-      showPage(
-        "students"
-      )
-  );
-
-
-/* =========================================================
-   SCHOOL ROLL DATE
-========================================================= */
-
-document
-  .getElementById(
-    "schoolRollDate"
-  )
-  .addEventListener(
-    "change",
-    renderSchoolRoll
-);
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
-
-document
-  .getElementById(
-    "logoutButton"
-  )
-  .addEventListener(
-    "click",
-    () => {
-
-      currentUser =
-        null;
-
-      openedProfile =
-        null;
-
-      app.classList.add(
-        "hidden"
-      );
-
-      loginPage.classList.remove(
-        "hidden"
-      );
-
-      loginForm.reset();
-
-    }
-  );
-
-
-/* =========================================================
-   HELPERS
-========================================================= */
-
-function isStaff() {
-
-  return (
-    currentUser &&
-    (
-      currentUser.role ===
-        "Admin" ||
-      currentUser.role ===
-        "Teacher"
-    )
-  );
+function today(){
+
+  return new Date()
+    .toISOString()
+    .split("T")[0];
 
 }
 
 
 function formatDate(
   date
-) {
+){
 
-  if (!date) {
-
+  if(!date)
     return "No date";
 
-  }
 
-
-  const parsed =
+  const d =
     new Date(
       date +
-      "T00:00:00"
+      (
+        String(date).includes("T")
+          ? ""
+          : "T00:00:00"
+      )
     );
 
 
-  if (
+  if(
     Number.isNaN(
-      parsed.getTime()
+      d.getTime()
     )
-  ) {
-
+  )
     return date;
 
-  }
 
-
-  return parsed.toLocaleDateString(
+  return d.toLocaleDateString(
     undefined,
     {
-      day: "numeric",
-      month: "short",
-      year: "numeric"
+      day:"numeric",
+      month:"short",
+      year:"numeric"
     }
   );
 
@@ -6181,54 +4957,54 @@ function formatDate(
 
 function escapeHTML(
   value
-) {
+){
 
   return String(
-    value
+    value ?? ""
   )
-    .replaceAll(
-      "&",
-      "&amp;"
-    )
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
-    .replaceAll(
-      "'",
-      "&#039;"
-    );
+  .replaceAll(
+    "&",
+    "&amp;"
+  )
+  .replaceAll(
+    "<",
+    "&lt;"
+  )
+  .replaceAll(
+    ">",
+    "&gt;"
+  )
+  .replaceAll(
+    '"',
+    "&quot;"
+  )
+  .replaceAll(
+    "'",
+    "&#039;"
+  );
 
 }
 
 
 function escapeJS(
   value
-) {
+){
 
   return String(
-    value
+    value ?? ""
   )
-    .replaceAll(
-      "\\",
-      "\\\\"
-    )
-    .replaceAll(
-      "'",
-      "\\'"
-    )
-    .replaceAll(
-      '"',
-      '\\"'
-    );
+  .replaceAll(
+    "\\",
+    "\\\\"
+  )
+  .replaceAll(
+    "'",
+    "\\'"
+  )
+  .replaceAll(
+    '"',
+    '\\"'
+  );
 
 }
 
@@ -6237,31 +5013,28 @@ function escapeJS(
    RENDER EVERYTHING
 ========================================================= */
 
-function renderEverything() {
+function renderEverything(){
 
-  if (!currentUser)
+  if(!currentUser)
     return;
 
 
-  renderDashboard();
-
-  renderRecordPages();
-
-  renderStudents();
-
-  renderSchoolRoll();
-
-  renderDetentionRoll();
+  renderPage(
+    currentPage
+  );
 
 }
 
 
 /* =========================================================
-   START
+   STARTUP
 ========================================================= */
 
+$("schoolDate").value =
+  today();
+
 console.log(
-  "Aloha School of Angels loaded."
+  "Aloha School of Angels portal loaded."
 );
 
 </script>
