@@ -1,16 +1,33 @@
 /*
 ====================================================
  ALOHA SCHOOL OF ANGELS
- Fake Roleplay School Management Portal
+ School Management Roleplay Portal
+====================================================
 
- Frontend only.
- Nothing is saved permanently.
- Refreshing the browser resets records.
+ Records are intentionally NOT persistent.
 
- Roles:
- - Admin
- - Teacher
- - Student
+ Refreshing the browser resets all records.
+
+ Supported records:
+
+ - Merits
+ - Demerits
+ - Negative Incidents
+ - Detentions
+ - Suspensions
+ - Expulsions
+
+ Staff members can issue a record to multiple
+ students at the same time.
+
+ Every record stores:
+
+ username
+ type
+ reason
+ points
+ date
+ issuedBy
 ====================================================
 */
 
@@ -63,12 +80,6 @@ const users = [
     role: "Student"
   },
 
-  /*
-    Extra teacher account.
-
-    Change these credentials whenever you want.
-  */
-
   {
     username: "Teacher",
     password: "Teacher123",
@@ -79,18 +90,8 @@ const users = [
 
 
 /* ==================================================
-   RECORDS
+   STATE
 ================================================== */
-
-/*
- IMPORTANT:
-
- There are intentionally NO preset
- merits, demerits, detentions,
- suspensions or expulsions.
-
- Everything starts empty.
-*/
 
 let records = [];
 
@@ -131,6 +132,9 @@ const meritsPage =
 const demeritsPage =
   document.getElementById("demeritsPage");
 
+const negativeIncidentsPage =
+  document.getElementById("negative-incidentsPage");
+
 const detentionsPage =
   document.getElementById("detentionsPage");
 
@@ -154,6 +158,9 @@ const meritsList =
 
 const demeritsList =
   document.getElementById("demeritsList");
+
+const negativeIncidentsList =
+  document.getElementById("negativeIncidentsList");
 
 const detentionsList =
   document.getElementById("detentionsList");
@@ -236,6 +243,7 @@ loginForm.addEventListener(
         "Incorrect username or password.";
 
       return;
+
     }
 
     currentUser = user;
@@ -255,7 +263,7 @@ loginForm.addEventListener(
 
 
 /* ==================================================
-   USER SETUP
+   SETUP USER
 ================================================== */
 
 function setupUser() {
@@ -296,11 +304,6 @@ function setupUser() {
     initial;
 
 
-  /*
-    Students cannot see
-    the student directory.
-  */
-
   document.getElementById(
     "studentsNav"
   ).style.display =
@@ -308,10 +311,6 @@ function setupUser() {
       ? "none"
       : "";
 
-
-  /*
-    Teacher/Admin buttons.
-  */
 
   document
     .querySelectorAll(".admin-teacher")
@@ -325,10 +324,6 @@ function setupUser() {
 
     });
 
-
-  /*
-    Admin-only actions.
-  */
 
   document
     .querySelectorAll(".admin-only")
@@ -379,6 +374,9 @@ function showPage(page) {
 
     demerits: demeritsPage,
 
+    "negative-incidents":
+      negativeIncidentsPage,
+
     detentions: detentionsPage,
 
     suspensions: suspensionsPage,
@@ -403,6 +401,7 @@ function showPage(page) {
 
 
   if (!pages[page]) return;
+
 
   pages[page]
     .classList.add(
@@ -444,6 +443,9 @@ function showPage(page) {
 
     demerits: "Demerits",
 
+    "negative-incidents":
+      "Negative Incidents",
+
     detentions: "Detentions",
 
     suspensions: "Suspensions",
@@ -464,7 +466,7 @@ function showPage(page) {
 
 
 /* ==================================================
-   RECORD FILTERING
+   RECORD VISIBILITY
 ================================================== */
 
 function getVisibleRecords() {
@@ -554,16 +556,16 @@ function renderAdminDashboard() {
         record.type === "demerit"
     ).length;
 
+  const incidents =
+    records.filter(
+      record =>
+        record.type === "negative-incident"
+    ).length;
+
   const detentions =
     records.filter(
       record =>
         record.type === "detention"
-    ).length;
-
-  const suspensions =
-    records.filter(
-      record =>
-        record.type === "suspension"
     ).length;
 
 
@@ -578,7 +580,8 @@ function renderAdminDashboard() {
         </p>
 
         <h1>
-          Welcome back, ${escapeHTML(currentUser.username)}.
+          Welcome back,
+          ${escapeHTML(currentUser.username)}.
         </h1>
 
         <p>
@@ -619,9 +622,9 @@ function renderAdminDashboard() {
 
       ${statCard(
         "yellow",
-        "◷",
-        "Detentions",
-        detentions
+        "⚠",
+        "Incidents",
+        incidents
       )}
 
     </div>
@@ -680,9 +683,9 @@ function renderAdminDashboard() {
 
           <button
             class="teacher-action"
-            onclick="openRecordModal('detention')"
+            onclick="openRecordModal('negative-incident')"
           >
-            ◷ Detention
+            ⚠ Negative Incident
           </button>
 
           <button
@@ -727,6 +730,12 @@ function renderTeacherDashboard() {
         record.type === "demerit"
     ).length;
 
+  const incidents =
+    records.filter(
+      record =>
+        record.type === "negative-incident"
+    ).length;
+
   const detentions =
     records.filter(
       record =>
@@ -745,7 +754,8 @@ function renderTeacherDashboard() {
         </p>
 
         <h1>
-          Good day, ${escapeHTML(currentUser.username)}.
+          Good day,
+          ${escapeHTML(currentUser.username)}.
         </h1>
 
         <p>
@@ -786,9 +796,9 @@ function renderTeacherDashboard() {
 
       ${statCard(
         "yellow",
-        "◷",
-        "Detentions",
-        detentions
+        "⚠",
+        "Incidents",
+        incidents
       )}
 
     </div>
@@ -847,9 +857,9 @@ function renderTeacherDashboard() {
 
           <button
             class="teacher-action"
-            onclick="openRecordModal('detention')"
+            onclick="openRecordModal('negative-incident')"
           >
-            ◷ Detention
+            ⚠ Negative Incident
           </button>
 
           <button
@@ -893,6 +903,12 @@ function renderStudentDashboard() {
         record.type === "demerit"
     );
 
+  const incidents =
+    myRecords.filter(
+      record =>
+        record.type === "negative-incident"
+    );
+
   const detentions =
     myRecords.filter(
       record =>
@@ -912,6 +928,7 @@ function renderStudentDashboard() {
         sum + Number(record.points || 0),
       0
     );
+
 
   const demeritPoints =
     demerits.reduce(
@@ -954,7 +971,8 @@ function renderStudentDashboard() {
         </p>
 
         <h1>
-          Welcome, ${escapeHTML(currentUser.username)}.
+          Welcome,
+          ${escapeHTML(currentUser.username)}.
         </h1>
 
         <p>
@@ -988,9 +1006,9 @@ function renderStudentDashboard() {
 
       ${statCard(
         "yellow",
-        "◷",
-        "Detentions",
-        detentions.length
+        "⚠",
+        "Incidents",
+        incidents.length
       )}
 
       ${statCard(
@@ -1040,29 +1058,30 @@ function renderStudentDashboard() {
 
         </div>
 
-        <div class="student-record-summary">
+        <p>
+          Merits:
+          <strong>${merits.length}</strong>
+        </p>
 
-          <p>
-            Merits:
-            <strong>${merits.length}</strong>
-          </p>
+        <p>
+          Demerits:
+          <strong>${demerits.length}</strong>
+        </p>
 
-          <p>
-            Demerits:
-            <strong>${demerits.length}</strong>
-          </p>
+        <p>
+          Negative Incidents:
+          <strong>${incidents.length}</strong>
+        </p>
 
-          <p>
-            Detentions:
-            <strong>${detentions.length}</strong>
-          </p>
+        <p>
+          Detentions:
+          <strong>${detentions.length}</strong>
+        </p>
 
-          <p>
-            Suspensions:
-            <strong>${suspensions.length}</strong>
-          </p>
-
-        </div>
+        <p>
+          Suspensions:
+          <strong>${suspensions.length}</strong>
+        </p>
 
       </div>
 
@@ -1144,17 +1163,14 @@ function renderRecentActivitiesHTML(
   return visible.map(
     record => {
 
-      const icon =
-        getRecordIcon(
-          record.type
-        );
-
       return `
 
         <div class="activity">
 
-          <div class="activity-icon ${record.type}">
-            ${icon}
+          <div
+            class="activity-icon ${getActivityClass(record.type)}"
+          >
+            ${getRecordIcon(record.type)}
           </div>
 
           <div>
@@ -1164,17 +1180,23 @@ function renderRecentActivitiesHTML(
             </strong>
 
             <span>
-              ${escapeHTML(
-                record.username
-              )}
+
+              ${escapeHTML(record.username)}
+
               ·
-              ${formatRecordType(
-                record.type
-              )}
+
+              ${formatRecordType(record.type)}
+
               ·
-              ${formatDate(
-                record.date
-              )}
+
+              ${formatDate(record.date)}
+
+              ${
+                record.issuedBy
+                  ? ` · Issued by ${escapeHTML(record.issuedBy)}`
+                  : ""
+              }
+
             </span>
 
           </div>
@@ -1209,6 +1231,12 @@ function renderRecordPages() {
     demeritsList,
     visible,
     "demerit"
+  );
+
+  renderTypedRecords(
+    negativeIncidentsList,
+    visible,
+    "negative-incident"
   );
 
   renderTypedRecords(
@@ -1282,32 +1310,37 @@ function renderTypedRecords(
 
             <div class="record-left">
 
-              <div class="record-icon ${type}">
+              <div
+                class="record-icon ${getActivityClass(type)}"
+              >
                 ${getRecordIcon(type)}
               </div>
 
               <div>
 
                 <h4>
-                  ${escapeHTML(
-                    record.reason
-                  )}
+                  ${escapeHTML(record.reason)}
                 </h4>
 
                 <p>
 
-                  ${currentUser.role !== "Student"
-                    ? `${escapeHTML(record.username)} · `
-                    : ""
+                  ${
+                    currentUser.role !== "Student"
+                      ? `${escapeHTML(record.username)} · `
+                      : ""
                   }
 
                   ${formatRecordType(type)}
 
                   ·
 
-                  ${formatDate(
-                    record.date
-                  )}
+                  ${formatDate(record.date)}
+
+                  ${
+                    record.issuedBy
+                      ? ` · Issued by ${escapeHTML(record.issuedBy)}`
+                      : ""
+                  }
 
                 </p>
 
@@ -1318,19 +1351,19 @@ function renderTypedRecords(
 
             ${
               isPoints
-              ? `
-                <div
-                  class="record-points ${
-                    type === "merit"
-                      ? "positive"
-                      : "negative"
-                  }"
-                >
-                  ${type === "merit" ? "+" : "-"}
-                  ${record.points}
-                </div>
-              `
-              : ""
+                ? `
+                  <div
+                    class="record-points ${
+                      type === "merit"
+                        ? "positive"
+                        : "negative"
+                    }"
+                  >
+                    ${type === "merit" ? "+" : "-"}
+                    ${record.points}
+                  </div>
+                `
+                : ""
             }
 
           </div>
@@ -1344,7 +1377,7 @@ function renderTypedRecords(
 
 
 /* ==================================================
-   STUDENT DIRECTORY
+   STUDENTS
 ================================================== */
 
 function renderStudents() {
@@ -1408,10 +1441,10 @@ function renderStudents() {
           ).length;
 
 
-        const detentions =
+        const incidents =
           userRecords.filter(
             r =>
-              r.type === "detention"
+              r.type === "negative-incident"
           ).length;
 
 
@@ -1423,17 +1456,14 @@ function renderStudents() {
 
               <div class="avatar">
                 ${escapeHTML(
-                  student.username
-                    .charAt(0)
+                  student.username.charAt(0)
                 )}
               </div>
 
               <div>
 
                 <h3>
-                  ${escapeHTML(
-                    student.username
-                  )}
+                  ${escapeHTML(student.username)}
                 </h3>
 
                 <small>
@@ -1458,8 +1488,8 @@ function renderStudents() {
               </div>
 
               <div class="student-stat">
-                <strong>${detentions}</strong>
-                <span>Detentions</span>
+                <strong>${incidents}</strong>
+                <span>Incidents</span>
               </div>
 
             </div>
@@ -1492,9 +1522,7 @@ studentSearch.addEventListener(
    STUDENT PROFILE
 ================================================== */
 
-function openStudentProfile(
-  username
-) {
+function openStudentProfile(username) {
 
   const student =
     users.find(
@@ -1526,22 +1554,16 @@ function openStudentProfile(
         r.type === "demerit"
     );
 
+  const incidents =
+    userRecords.filter(
+      r =>
+        r.type === "negative-incident"
+    );
+
   const detentions =
     userRecords.filter(
       r =>
         r.type === "detention"
-    );
-
-  const suspensions =
-    userRecords.filter(
-      r =>
-        r.type === "suspension"
-    );
-
-  const expulsions =
-    userRecords.filter(
-      r =>
-        r.type === "expulsion"
     );
 
 
@@ -1597,21 +1619,21 @@ function openStudentProfile(
         currentUser.role === "Admin" ||
         currentUser.role === "Teacher"
 
-        ? `
+          ? `
 
-          <button
-            class="primary-button"
-            onclick="openRecordModal(
-              'demerit',
-              '${escapeJS(username)}'
-            )"
-          >
-            + Add Record
-          </button>
+            <button
+              class="primary-button"
+              onclick="openRecordModal(
+                'negative-incident',
+                '${escapeJS(username)}'
+              )"
+            >
+              + Add Record
+            </button>
 
-        `
+          `
 
-        : ""
+          : ""
       }
 
     </div>
@@ -1630,19 +1652,13 @@ function openStudentProfile(
       </div>
 
       <div class="profile-stat">
-        <span>Detentions</span>
-        <strong>${detentions.length}</strong>
+        <span>Incidents</span>
+        <strong>${incidents.length}</strong>
       </div>
 
       <div class="profile-stat">
-        <span>Standing</span>
-        <strong>
-          ${
-            totalPoints < 0
-              ? "Review"
-              : "Good"
-          }
-        </strong>
+        <span>Detentions</span>
+        <strong>${detentions.length}</strong>
       </div>
 
     </div>
@@ -1657,7 +1673,7 @@ function openStudentProfile(
         </h3>
 
         <p>
-          All merits, demerits and disciplinary actions
+          All behaviour and disciplinary records
         </p>
 
       </div>
@@ -1665,68 +1681,78 @@ function openStudentProfile(
 
       ${
         userRecords.length
-        ? userRecords
-            .slice()
-            .reverse()
-            .map(record => `
 
-              <div class="record">
+          ? userRecords
+              .slice()
+              .reverse()
+              .map(record => `
 
-                <div class="record-left">
+                <div class="record">
 
-                  <div
-                    class="record-icon ${record.type}"
-                  >
-                    ${getRecordIcon(
-                      record.type
-                    )}
+                  <div class="record-left">
+
+                    <div
+                      class="record-icon ${getActivityClass(record.type)}"
+                    >
+                      ${getRecordIcon(record.type)}
+                    </div>
+
+                    <div>
+
+                      <h4>
+                        ${escapeHTML(record.reason)}
+                      </h4>
+
+                      <p>
+
+                        ${formatRecordType(record.type)}
+
+                        ·
+
+                        ${formatDate(record.date)}
+
+                        ${
+                          record.issuedBy
+                            ? ` · Issued by ${escapeHTML(record.issuedBy)}`
+                            : ""
+                        }
+
+                      </p>
+
+                    </div>
+
                   </div>
 
-                  <div>
+                  ${
+                    record.points
+                      ? `
+                        <div class="record-points">
 
-                    <h4>
-                      ${escapeHTML(
-                        record.reason
-                      )}
-                    </h4>
+                          ${
+                            record.type === "merit"
+                              ? "+"
+                              : "-"
+                          }
 
-                    <p>
-                      ${formatRecordType(
-                        record.type
-                      )}
-                      ·
-                      ${formatDate(
-                        record.date
-                      )}
-                    </p>
+                          ${record.points}
 
-                  </div>
+                        </div>
+                      `
+                      : ""
+                  }
 
                 </div>
 
-                ${
-                  record.points
-                  ? `
-                    <div class="record-points">
-                      ${record.type === "merit" ? "+" : "-"}
-                      ${record.points}
-                    </div>
-                  `
-                  : ""
-                }
+              `)
+              .join("")
 
-              </div>
+          : `
 
-            `)
-            .join("")
+            <div class="empty-state">
+              No records for this student.
+            </div>
 
-        : `
-
-          <div class="empty-state">
-            No records for this student.
-          </div>
-
-        `
+          `
       }
 
     </div>
@@ -1778,33 +1804,32 @@ function openRecordModal(
     type;
 
 
-  const names =
-    users
-      .filter(
-        user =>
-          user.role === "Student"
-      );
+  const students =
+    users.filter(
+      user =>
+        user.role === "Student"
+    );
 
 
   recordStudent.innerHTML =
-    names.map(
-      user => `
+    students
+      .map(
+        student => `
 
-        <option
-          value="${escapeHTML(user.username)}"
-          ${
-            user.username === selectedStudent
-              ? "selected"
-              : ""
-          }
-        >
-          ${escapeHTML(
-            user.username
-          )}
-        </option>
+          <option
+            value="${escapeHTML(student.username)}"
+            ${
+              student.username === selectedStudent
+                ? "selected"
+                : ""
+            }
+          >
+            ${escapeHTML(student.username)}
+          </option>
 
-      `
-    ).join("");
+        `
+      )
+      .join("");
 
 
   recordReason.value = "";
@@ -1828,6 +1853,9 @@ function openRecordModal(
 
     demerit: "Add Demerit",
 
+    "negative-incident":
+      "Add Negative Incident",
+
     detention: "Add Detention",
 
     suspension: "Add Suspension",
@@ -1837,17 +1865,25 @@ function openRecordModal(
   };
 
 
-  const eyebrow = {
+  const eyebrows = {
 
-    merit: "POSITIVE RECOGNITION",
+    merit:
+      "POSITIVE RECOGNITION",
 
-    demerit: "BEHAVIOUR RECORD",
+    demerit:
+      "BEHAVIOUR RECORD",
 
-    detention: "DISCIPLINE",
+    "negative-incident":
+      "NEGATIVE INCIDENT",
 
-    suspension: "DISCIPLINARY ACTION",
+    detention:
+      "DISCIPLINE",
 
-    expulsion: "SERIOUS DISCIPLINARY ACTION"
+    suspension:
+      "DISCIPLINARY ACTION",
+
+    expulsion:
+      "SERIOUS DISCIPLINARY ACTION"
 
   };
 
@@ -1856,13 +1892,8 @@ function openRecordModal(
     titles[type];
 
   modalEyebrow.textContent =
-    eyebrow[type];
+    eyebrows[type];
 
-
-  /*
-    Only merits and demerits
-    use points.
-  */
 
   pointsGroup.style.display =
     type === "merit" ||
@@ -1877,6 +1908,10 @@ function openRecordModal(
 
 }
 
+
+/* ==================================================
+   BUTTONS
+================================================== */
 
 document
   .getElementById("addMeritButton")
@@ -1893,6 +1928,17 @@ document
     "click",
     () =>
       openRecordModal("demerit")
+  );
+
+
+document
+  .getElementById("addNegativeIncidentButton")
+  .addEventListener(
+    "click",
+    () =>
+      openRecordModal(
+        "negative-incident"
+      )
   );
 
 
@@ -1961,7 +2007,7 @@ function closeModal() {
 
 
 /* ==================================================
-   CREATE RECORD
+   CREATE RECORDS
 ================================================== */
 
 recordForm.addEventListener(
@@ -1981,8 +2027,22 @@ recordForm.addEventListener(
     }
 
 
-    const username =
-      recordStudent.value;
+    /*
+      MULTIPLE STUDENTS
+
+      Because the select has the
+      "multiple" attribute, selectedOptions
+      contains every selected student.
+    */
+
+    const selectedStudents =
+      Array.from(
+        recordStudent.selectedOptions
+      ).map(
+        option =>
+          option.value
+      );
+
 
     const reason =
       recordReason.value.trim();
@@ -1995,36 +2055,60 @@ recordForm.addEventListener(
 
 
     if (
-      !username ||
+      selectedStudents.length === 0 ||
       !reason ||
       !date
     ) {
+
+      alert(
+        "Please select at least one student and enter the required information."
+      );
 
       return;
 
     }
 
 
-    records.push({
+    /*
+      Create a separate record
+      for EACH selected student.
+    */
 
-      id: nextRecordId++,
+    selectedStudents.forEach(
+      username => {
 
-      username,
+        records.push({
 
-      type:
-        currentRecordType,
+          id: nextRecordId++,
 
-      reason,
+          username,
 
-      points:
-        currentRecordType === "merit" ||
-        currentRecordType === "demerit"
-          ? points
-          : null,
+          type:
+            currentRecordType,
 
-      date
+          reason,
 
-    });
+          points:
+            currentRecordType === "merit" ||
+            currentRecordType === "demerit"
+              ? points
+              : null,
+
+          date,
+
+          /*
+            THIS is what makes the
+            student portal show who
+            issued the record.
+          */
+
+          issuedBy:
+            currentUser.username
+
+        });
+
+      }
+    );
 
 
     closeModal();
@@ -2032,14 +2116,7 @@ recordForm.addEventListener(
     renderEverything();
 
 
-    /*
-      If currently viewing
-      a student profile, refresh it.
-    */
-
-    if (
-      openedProfile
-    ) {
+    if (openedProfile) {
 
       openStudentProfile(
         openedProfile
@@ -2087,6 +2164,8 @@ document
 
 function renderEverything() {
 
+  if (!currentUser) return;
+
   renderDashboard();
 
   renderRecordPages();
@@ -2097,7 +2176,7 @@ function renderEverything() {
 
 
 /* ==================================================
-   ICONS
+   RECORD ICONS
 ================================================== */
 
 function getRecordIcon(type) {
@@ -2107,6 +2186,9 @@ function getRecordIcon(type) {
     merit: "★",
 
     demerit: "!",
+
+    "negative-incident":
+      "⚠",
 
     detention: "◷",
 
@@ -2123,7 +2205,43 @@ function getRecordIcon(type) {
 
 
 /* ==================================================
-   TYPE NAMES
+   ACTIVITY CSS CLASS
+================================================== */
+
+function getActivityClass(type) {
+
+  if (type === "merit") {
+
+    return "merit";
+
+  }
+
+
+  if (type === "demerit") {
+
+    return "demerit";
+
+  }
+
+
+  if (
+    type === "negative-incident" ||
+    type === "suspension" ||
+    type === "expulsion"
+  ) {
+
+    return "suspension";
+
+  }
+
+
+  return "detention";
+
+}
+
+
+/* ==================================================
+   RECORD NAMES
 ================================================== */
 
 function formatRecordType(type) {
@@ -2133,6 +2251,9 @@ function formatRecordType(type) {
     merit: "Merit",
 
     demerit: "Demerit",
+
+    "negative-incident":
+      "Negative Incident",
 
     detention: "Detention",
 
@@ -2207,7 +2328,7 @@ function escapeHTML(value) {
 
 
 /* ==================================================
-   JAVASCRIPT STRING ESCAPING
+   JAVASCRIPT ESCAPING
 ================================================== */
 
 function escapeJS(value) {
@@ -2221,12 +2342,8 @@ function escapeJS(value) {
 
 
 /* ==================================================
-   INITIAL STATE
+   START
 ================================================== */
-
-/*
-  The portal starts with no records.
-*/
 
 console.log(
   "Aloha School of Angels loaded."
